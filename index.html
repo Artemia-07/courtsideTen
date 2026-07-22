@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Courtside Ten — Top 10 NBA Players, 2025‑26</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#12141A;
+  --panel:#1A1D25;
+  --panel-2:#20242E;
+  --line: rgba(244,242,237,0.12);
+  --chalk:#F4F2ED;
+  --chalk-dim: rgba(244,242,237,0.62);
+  --amber:#E8963C;
+  --flare:#FF5A1F;
+  --steel:#465468;
+  --a:#4CAF6D;
+  --b:#E8C34A;
+  --c:#D9743A;
+  --d:#C24141;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--ink);
+  color:var(--chalk);
+  font-family:'Inter',sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+body::before{
+  content:"";
+  position:fixed; inset:0;
+  background-image: repeating-linear-gradient(0deg, rgba(244,242,237,0.025) 0px, rgba(244,242,237,0.025) 1px, transparent 1px, transparent 42px);
+  pointer-events:none; z-index:0;
+}
+.display{font-family:'Anton',sans-serif; text-transform:uppercase; letter-spacing:0.01em;}
+.mono{font-family:'JetBrains Mono',monospace;}
+a{color:inherit; text-decoration:none;}
+::selection{background:var(--flare); color:#12141A;}
+
+/* NAV */
+.nav{
+  position:sticky; top:0; z-index:50;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:18px 5vw;
+  background:rgba(18,20,26,0.86);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.nav .logo{display:flex; align-items:center; gap:10px; font-size:1.15rem;}
+.nav .logo .dot{width:10px; height:10px; background:var(--flare); border-radius:2px; transform:rotate(45deg);}
+.nav .logo b{display:block;}
+.nav .logo small{display:block; font-family:'Inter',sans-serif; text-transform:none; letter-spacing:0; font-size:0.62rem; color:var(--chalk-dim); font-weight:600;}
+.nav .season{font-family:'JetBrains Mono',monospace; font-size:0.78rem; color:var(--amber); border:1px solid rgba(232,150,60,0.4); padding:6px 12px; border-radius:100px;}
+
+main{position:relative; z-index:1; max-width:1120px; margin:0 auto; padding:0 5vw 100px;}
+
+/* HERO */
+.hero{padding:64px 0 40px; border-bottom:1px solid var(--line);}
+.eyebrow{font-family:'JetBrains Mono',monospace; color:var(--flare); font-size:0.8rem; letter-spacing:0.14em; margin-bottom:14px;}
+.hero h1{font-size:clamp(2.6rem,7vw,5.2rem); line-height:0.94; margin:0 0 20px;}
+.hero h1 .stroke{-webkit-text-stroke:1.5px var(--chalk); color:transparent;}
+.hero p{max-width:620px; color:var(--chalk-dim); font-size:1.05rem; line-height:1.65;}
+.hero .meta-row{display:flex; gap:28px; margin-top:32px; flex-wrap:wrap;}
+.meta-item{font-family:'JetBrains Mono',monospace; font-size:0.78rem; color:var(--chalk-dim);}
+.meta-item b{color:var(--chalk); display:block; font-size:1.1rem; font-family:'Inter',sans-serif; font-weight:800;}
+
+/* METHODOLOGY STRIP */
+.method{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); margin:36px 0 0; border:1px solid var(--line);}
+.method div{background:var(--panel); padding:16px 18px;}
+.method div span{display:block; font-family:'JetBrains Mono',monospace; font-size:0.68rem; color:var(--amber); margin-bottom:6px;}
+.method div p{margin:0; font-size:0.83rem; color:var(--chalk-dim); line-height:1.4;}
+
+/* COUNTDOWN LIST */
+.list-head{display:flex; justify-content:space-between; align-items:baseline; margin:56px 0 18px;}
+.list-head h2{font-size:1.1rem; margin:0; color:var(--chalk-dim); font-weight:600; letter-spacing:0.02em;}
+.row{
+  display:grid;
+  grid-template-columns: 92px 1fr auto auto;
+  align-items:center;
+  gap:22px;
+  padding:22px 18px;
+  border-bottom:1px solid var(--line);
+  cursor:pointer;
+  transition: background 0.15s ease, padding-left 0.15s ease;
+  position:relative;
+  overflow:hidden;
+}
+.row:hover{background:var(--panel); padding-left:26px;}
+.row::before{
+  content:""; position:absolute; left:0; top:0; bottom:0; width:4px;
+  background: var(--team, var(--flare)); opacity:0; transition:opacity .15s;
+}
+.row:hover::before{opacity:1;}
+.rank-num{font-family:'Anton',sans-serif; font-size:2.6rem; color:var(--team, var(--steel)); opacity:0.9; line-height:1;}
+.row-name h3{margin:0 0 4px; font-size:1.3rem; font-weight:800;}
+.row-name .sub{font-family:'JetBrains Mono',monospace; font-size:0.76rem; color:var(--chalk-dim);}
+.row-hook{display:none;}
+@media(min-width:760px){ .row-hook{display:block; max-width:300px; font-size:0.85rem; color:var(--chalk-dim); line-height:1.4;} }
+.grade-pill{
+  font-family:'Anton',sans-serif; font-size:1.1rem; width:44px; height:44px;
+  border-radius:50%; display:flex; align-items:center; justify-content:center;
+  border:2px solid var(--grade-color,var(--b)); color:var(--grade-color,var(--b));
+  flex-shrink:0;
+}
+
+/* FOOTER */
+.site-footer{margin-top:80px; padding-top:28px; border-top:1px solid var(--line); display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; color:var(--chalk-dim); font-size:0.8rem;}
+
+/* PLAYER PAGE */
+.back-link{display:inline-flex; align-items:center; gap:8px; margin:32px 0 0; font-family:'JetBrains Mono',monospace; font-size:0.8rem; color:var(--chalk-dim);}
+.back-link:hover{color:var(--amber);}
+.p-hero{
+  position:relative;
+  margin-top:22px;
+  padding:46px 34px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  overflow:hidden;
+  background: linear-gradient(135deg, var(--team,#20242E) 0%, #14161c 68%);
+}
+.p-hero .watermark{
+  position:absolute; right:-0.05em; top:-0.22em;
+  font-family:'Anton',sans-serif; font-size:14rem; color:rgba(255,255,255,0.06);
+  line-height:1; pointer-events:none; user-select:none;
+}
+.p-hero .rank-tag{font-family:'JetBrains Mono',monospace; font-size:0.85rem; background:rgba(0,0,0,0.35); border:1px solid rgba(255,255,255,0.25); padding:6px 14px; border-radius:100px; display:inline-block; margin-bottom:18px;}
+.p-hero h1{font-size:clamp(2.4rem,6vw,4.2rem); margin:0 0 6px; position:relative;}
+.p-hero .team-line{font-family:'JetBrains Mono',monospace; color:rgba(244,242,237,0.85); font-size:0.95rem; margin-bottom:22px;}
+.p-hero .hook{max-width:640px; font-size:1.05rem; line-height:1.6; color:rgba(244,242,237,0.92); position:relative;}
+
+/* report card */
+.report-card{
+  display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+  background:var(--line); border:1px solid var(--line); margin-top:-1px; border-radius:0 0 18px 18px; overflow:hidden;
+}
+.report-card .cell{background:#161822; padding:20px 16px; text-align:center;}
+.report-card .cell .label{font-family:'JetBrains Mono',monospace; font-size:0.66rem; color:var(--chalk-dim); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:10px;}
+.report-card .cell .grade{font-family:'Anton',sans-serif; font-size:2.1rem; color:var(--grade-color);}
+@media(max-width:640px){.report-card{grid-template-columns:repeat(2,1fr);}}
+
+/* stat bars */
+.section-title{font-family:'JetBrains Mono',monospace; color:var(--amber); font-size:0.78rem; letter-spacing:0.1em; margin:52px 0 18px; display:flex; align-items:center; gap:10px;}
+.section-title::after{content:""; flex:1; height:1px; background:var(--line);}
+.stat-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:14px;}
+.stat-box{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:18px;}
+.stat-box .v{font-family:'Anton',sans-serif; font-size:1.9rem; color:var(--chalk);}
+.stat-box .k{font-family:'JetBrains Mono',monospace; font-size:0.7rem; color:var(--chalk-dim); margin-top:2px;}
+.bar-row{display:grid; grid-template-columns:120px 1fr 56px; align-items:center; gap:14px; margin-bottom:14px;}
+.bar-row .lbl{font-size:0.85rem; color:var(--chalk-dim); font-family:'JetBrains Mono',monospace;}
+.bar-track{height:10px; background:var(--panel-2); border-radius:6px; overflow:hidden; border:1px solid var(--line);}
+.bar-fill{height:100%; background:linear-gradient(90deg, var(--team,var(--amber)), var(--flare));}
+.bar-row .pct{font-family:'JetBrains Mono',monospace; font-size:0.78rem; color:var(--chalk-dim); text-align:right;}
+
+.prose p{line-height:1.75; color:var(--chalk-dim); font-size:1rem; margin:0 0 18px;}
+.prose strong{color:var(--chalk); font-weight:700;}
+.achv-list{list-style:none; margin:0; padding:0; display:grid; gap:10px;}
+.achv-list li{display:flex; gap:12px; align-items:flex-start; font-size:0.95rem; color:var(--chalk-dim); line-height:1.5;}
+.achv-list li::before{content:"▸"; color:var(--amber); flex-shrink:0;}
+
+.pager{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:60px;}
+.pager a{border:1px solid var(--line); border-radius:14px; padding:20px 22px; display:block; transition:border-color .15s, background .15s;}
+.pager a:hover{border-color:var(--amber); background:var(--panel);}
+.pager .dir{font-family:'JetBrains Mono',monospace; font-size:0.7rem; color:var(--chalk-dim); margin-bottom:6px;}
+.pager .nm{font-weight:800; font-size:1.1rem;}
+.pager .next{text-align:right;}
+@media(max-width:600px){.pager{grid-template-columns:1fr;}}
+
+@media (prefers-reduced-motion: reduce){ *{transition:none !important; scroll-behavior:auto !important;} }
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a href="#/" class="logo">
+    <span class="dot"></span>
+    <span><b class="display">Courtside Ten</b><small>SEASON GRADES &amp; ANALYSIS</small></span>
+  </a>
+  <div class="season mono">2025–26 SEASON</div>
+</nav>
+<main id="app"></main>
+
+<script>
+const PLAYERS = [
+{
+  slug:"shai-gilgeous-alexander", rank:1, name:"Shai Gilgeous‑Alexander", team:"Oklahoma City Thunder", pos:"Guard",
+  color:"#EF3B24",
+  hook:"Back‑to‑back MVP and the most complete season of anyone in the league. SGA never had a real dip, led the Thunder to the NBA's best record, and carried Oklahoma City all the way to the Western Conference Finals.",
+  grades:{raw:"A+", advanced:"A+", playoffs:"A-", achievements:"A+", overall:"A+"},
+  stats:[["Scoring efficiency","96%"],["Team win rate","98%"],["Playoff depth","88%"]],
+  statBoxes:[["31.1","PPG"],["6.6","APG"],["64","Regular‑season wins"],["100/100","1st‑Team All‑NBA votes"]],
+  narrative:[
+    "Gilgeous‑Alexander's follow‑up to his first MVP season raised the bar. He scored 31.1 points a night, the second most in the league, while touching the ball less often than almost any other high‑usage star — a sign of just how surgical his shot selection has become. He also led the league in blocks for guards for the third year running.",
+    "Oklahoma City's depth chart was hit hard by absences all year, with several rotation pieces missing 25‑plus games, yet the Thunder still finished with the NBA's best record. That gap between roster continuity and team success is exactly what MVP voters reward, and Gilgeous‑Alexander won unanimously — 83 first‑place votes, 73 more than runner‑up Nikola Jokić — then earned a unanimous First Team All‑NBA nod on top of it.",
+    "In the playoffs, Oklahoma City rolled through the first two rounds before running into a red‑hot Victor Wembanyama and San Antonio in the Western Conference Finals. It's the one blemish on an otherwise complete season, but a deep playoff run plus the league's best record plus a unanimous MVP is still the strongest all‑around case in basketball this year."
+  ],
+  achievements:["2025‑26 NBA Most Valuable Player (back‑to‑back, unanimous)","Kia All‑NBA First Team, unanimous 100‑of‑100 vote","Led the NBA in regular‑season wins","Led Oklahoma City to the Western Conference Finals"]
+},
+{
+  slug:"nikola-jokic", rank:2, name:"Nikola Jokić", team:"Denver Nuggets", pos:"Center",
+  color:"#FEC524",
+  hook:"The most statistically absurd season of anyone in the league. Jokić spent 2025‑26 flirting with a triple‑double average while leading the NBA in both rebounds and assists — production no center has ever produced.",
+  grades:{raw:"A+", advanced:"A+", playoffs:"C+", achievements:"A", overall:"A"},
+  stats:[["True shooting","97%"],["Playmaking load","95%"],["Rebounding rate","94%"]],
+  statBoxes:[["27.9","PPG"],["12.9","RPG"],["10.9","APG"],["67.2%","True shooting"]],
+  narrative:[
+    "Jokić's box score this season reads like a typo. He averaged a near triple‑double while leading the league in both rebounding and assists — a combination that, historically, simply doesn't happen for a seven‑footer — and did it while shooting a scorching 61.2% from the field and 42.6% from three.",
+    "He finished the year with more triple‑doubles and more double‑doubles than anyone else in basketball, and his 67.2% true shooting mark sat at the very top of the league among high‑usage players. It's the kind of efficiency‑at‑volume that advanced stat models love, which is why he was a unanimous First Team All‑NBA pick and finished a close second in MVP voting.",
+    "The letdown was a first‑round exit, as Minnesota upset Denver despite Jokić's individual dominance — a reminder that even a historic regular season doesn't guarantee playoff success when the roster around a star comes up short in a short series. It's the main thing keeping this from being an even stronger year."
+  ],
+  achievements:["2025‑26 NBA MVP runner‑up (finished 2nd in voting)","Kia All‑NBA First Team, unanimous vote","Led the NBA in rebounding and assists","Most triple‑doubles (13) and double‑doubles (24) in the league"]
+},
+{
+  slug:"victor-wembanyama", rank:3, name:"Victor Wembanyama", team:"San Antonio Spurs", pos:"Center",
+  color:"#C4CED4",
+  hook:"A generational two‑way anomaly who paired a near‑unanimous First Team season with a run all the way to the NBA Finals, anchoring the league's most feared defense as a third‑place MVP finalist.",
+  grades:{raw:"A-", advanced:"A", playoffs:"A", achievements:"A-", overall:"A"},
+  stats:[["Rim protection","98%"],["Two‑way impact","95%"],["Playoff run","95%"]],
+  statBoxes:[["3rd","MVP finalist"],["4‑1","Finals appearance"],["99/100","1st‑Team votes"],["West Finals","won over OKC"]],
+  narrative:[
+    "No player in the league combines Wembanyama's defensive gravity with his guard‑like shot‑making at his size, and this was the year that translated into winning at scale. San Antonio knocked off the league's best teams during the regular season, including a Christmas Day win over Oklahoma City, on the way to an MVP‑caliber campaign for their franchise center.",
+    "He finished as a top‑three finalist for MVP behind only Shai Gilgeous‑Alexander and Nikola Jokić, and missed a unanimous First Team All‑NBA selection by a single vote — the clearest sign yet that the league's media has fully bought into his two‑way ceiling.",
+    "Then came the playoffs: Wembanyama and San Antonio beat Gilgeous‑Alexander's Thunder in the Western Conference Finals before falling to New York in five games. Between the regular‑season hardware and an actual Finals appearance, this was the best combination of individual and team achievement of anyone not holding a championship ring."
+  ],
+  achievements:["2025‑26 NBA MVP finalist (3rd place)","Kia All‑NBA First Team, 99‑of‑100 vote","Beat Oklahoma City in the Western Conference Finals","Led San Antonio to the 2026 NBA Finals"]
+},
+{
+  slug:"luka-doncic", rank:4, name:"Luka Dončić", team:"Los Angeles Lakers", pos:"Guard",
+  color:"#FDB927",
+  hook:"The league's most dangerous individual scorer. Dončić led the NBA in scoring this season and earned a First Team All‑NBA nod despite battling injuries that nearly cost him eligibility.",
+  grades:{raw:"A+", advanced:"A-", playoffs:"B-", achievements:"A-", overall:"B+"},
+  stats:[["Scoring volume","97%"],["Shot creation","94%"],["Efficiency","86%"]],
+  statBoxes:[["1st","in NBA scoring"],["First Team","All‑NBA"],["Round 2","playoff exit"],["LAL","full first season"]],
+  narrative:[
+    "In his first full season in a Lakers uniform, Dončić settled in as the focal point of Los Angeles' offense and led the entire NBA in scoring, edging out a stacked field that included Shai Gilgeous‑Alexander. He needed a league exception just to qualify for awards after missing time, and voters made clear it was worth the wait — First Team All‑NBA, no debate.",
+    "His combination of size, handle, and step‑back shot‑making remains close to unguardable in isolation, and Los Angeles leaned on that shot creation night after night to keep pace in a loaded Western Conference.",
+    "The Lakers beat Houston in the first round before running into Oklahoma City in the second, where the series ended their run. A strong showing, but not the deep postseason push that separates this tier of player from the very top of the list."
+  ],
+  achievements:["Led the NBA in scoring average for 2025‑26","Kia All‑NBA First Team selection","Led the Lakers past Houston in the first round of the playoffs"]
+},
+{
+  slug:"cade-cunningham", rank:5, name:"Cade Cunningham", team:"Detroit Pistons", pos:"Guard",
+  color:"#1D42BA",
+  hook:"The centerpiece of Detroit's turnaround. Cunningham made his first All‑NBA team while dragging the Pistons to the East's top seed and a genuine second‑round playoff push.",
+  grades:{raw:"A-", advanced:"B+", playoffs:"B", achievements:"A-", overall:"B+"},
+  stats:[["Playmaking volume","93%"],["Offensive control","90%"],["Team turnaround","95%"]],
+  statBoxes:[["23.9","PPG"],["9.9","APG"],["5.5","RPG"],["East's","No. 1 seed"]],
+  narrative:[
+    "Cunningham's leap this season is the biggest reason Detroit went from lottery team to conference top seed. He finished near the top of the league in assists while carrying a scoring workload that kept the Pistons' offense humming, and he did it with a steady hand that belied his age.",
+    "His passing elevated a young supporting cast and made Detroit's offense difficult to key on, and the league rewarded it with his first career First Team All‑NBA selection — a rare honor for a Pistons player in the last two decades.",
+    "Detroit beat Orlando in the first round before running into Cleveland, where their season ended in the second round. It's real playoff progress for a franchise that had barely sniffed the postseason in years, and a strong signal that Cunningham's ceiling is still rising."
+  ],
+  achievements:["Kia All‑NBA First Team, first career selection","Led Detroit to the Eastern Conference's No. 1 seed","Won a playoff series for the first time in his career","Ranked among the league's assist leaders"]
+},
+{
+  slug:"jalen-brunson", rank:6, name:"Jalen Brunson", team:"New York Knicks", pos:"Point Guard",
+  color:"#F58426",
+  hook:"The best playoff performer in basketball this year. Brunson's All‑NBA Second Team season was the floor — the ceiling was a unanimous Finals MVP and New York's first title in 53 years.",
+  grades:{raw:"A-", advanced:"B+", playoffs:"A+", achievements:"A+", overall:"A"},
+  stats:[["Playoff scoring load","94%"],["Clutch reliability","96%"],["Shot creation","90%"]],
+  statBoxes:[["45","PTS in Game 5"],["32.6","Finals PPG"],["4‑1","Finals record"],["11/11","Finals MVP votes"]],
+  narrative:[
+    "Brunson's regular season was, by his own standard, business as usual — a steady, high‑volume, high‑efficiency year that earned him a Second Team All‑NBA nod behind a genuinely stacked guard class. It's a very good season on its own, just not quite top‑five‑in‑basketball territory before the playoffs started.",
+    "Then the postseason arrived, and Brunson was the best player on the floor almost every night. New York rolled through a brutal Eastern Conference bracket, at one point reeling off thirteen straight wins, and kept doing it against a Spurs team that refused to go away in the Finals.",
+    "The signature moment came in Game 5 in San Antonio: 45 points on 14‑of‑27 shooting, including ten straight during a fourth‑quarter surge that flipped a ten‑point deficit into a championship. It tied Michael Jordan's mark for points scored on the road to clinch a title, and it made Brunson a unanimous Finals MVP — the single best individual playoff run of the 2025‑26 season, even if his regular season alone wouldn't have cracked the top five."
+  ],
+  achievements:["2026 NBA Champion, New York Knicks","2026 NBA Finals MVP, unanimous 11‑of‑11 vote","Kia All‑NBA Second Team","Set a Knicks Finals scoring record with 45 points in Game 5"]
+},
+{
+  slug:"donovan-mitchell", rank:7, name:"Donovan Mitchell", team:"Cleveland Cavaliers", pos:"Guard",
+  color:"#6F263D",
+  hook:"A career‑best regular season paired with Cleveland's deepest playoff run in years — Mitchell set new personal highs in scoring efficiency and pushed the Cavaliers to the Eastern Conference Finals.",
+  grades:{raw:"A-", advanced:"B+", playoffs:"B+", achievements:"A-", overall:"B+"},
+  stats:[["Scoring efficiency","89%"],["Shot volume","88%"],["Playoff run","85%"]],
+  statBoxes:[["Career-high","FT attempts"],["Second Team","All‑NBA"],["East Finals","appearance"],["7th","straight All-Star"]],
+  narrative:[
+    "Mitchell's seventh straight All‑Star‑caliber season was also arguably his most efficient, setting career highs across several scoring and shot‑making categories on his way to a Second Team All‑NBA selection.",
+    "Cleveland leaned on him heavily in a grueling seven‑game first‑round series against Toronto, and he answered the call, then helped the Cavaliers get past Detroit in the second round for their deepest playoff push in years.",
+    "Cleveland's run finally ended against New York in the Eastern Conference Finals, but Mitchell's two‑way workload and shot‑making all postseason made him the clear best player on a team that came within two rounds of the Finals."
+  ],
+  achievements:["Kia All‑NBA Second Team selection","Led Cleveland to the Eastern Conference Finals","Set career highs in multiple efficiency categories","2025‑26 NBA All‑Star selection"]
+},
+{
+  slug:"jaylen-brown", rank:8, name:"Jaylen Brown", team:"Boston Celtics", pos:"Forward",
+  color:"#007A33",
+  hook:"Boston's best player in a gap year. With Jayson Tatum sidelined for most of the season, Brown took on a career‑high workload and nearly forced his way onto the All‑NBA First Team.",
+  grades:{raw:"A-", advanced:"B", playoffs:"C+", achievements:"B+", overall:"B+"},
+  stats:[["Offensive workload","94%"],["Two‑way minutes","91%"],["Playoff result","65%"]],
+  statBoxes:[["2,443","Total minutes"],["Second Team","All‑NBA"],["44","1st‑Team votes received"],["Round 1","playoff exit"]],
+  narrative:[
+    "With Jayson Tatum sidelined for most of the year, Brown took on the highest‑usage offensive role of his career while still drawing the toughest perimeter defensive assignment most nights. He shouldered more total minutes than any other Second Team All‑NBA selection and got to the line 7.5 times a game to help balance a three‑heavy Boston attack.",
+    "It was close to a First Team season — he pulled 44 first‑place votes, the most of anyone outside the top five, and would have made the cut outright if Luka Dončić and Cade Cunningham hadn't been granted eligibility exceptions.",
+    "The letdown was the playoffs: Boston lost in seven games to Philadelphia in the first round, a disappointing finish for a team that still had designs on contending. Brown's individual season was excellent; the team result was not."
+  ],
+  achievements:["Kia All‑NBA Second Team selection","Received the most All‑NBA First Team votes outside the top five","Carried a career‑high offensive workload with Tatum sidelined"]
+},
+{
+  slug:"kevin-durant", rank:9, name:"Kevin Durant", team:"Houston Rockets", pos:"Forward",
+  color:"#CE1141",
+  hook:"Still one of the most efficient scorers alive. Durant passed Michael Jordan on the all‑time scoring list this season and picked up his twelfth career All‑NBA selection in his first year in Houston.",
+  grades:{raw:"B+", advanced:"A-", playoffs:"C", achievements:"B+", overall:"B+"},
+  stats:[["Scoring efficiency","92%"],["Shot‑making versatility","90%"],["Playoff result","55%"]],
+  statBoxes:[["12th","career All-NBA nod"],["5th","all-time scoring"],["Second Team","All‑NBA"],["Round 1","playoff exit"]],
+  narrative:[
+    "In his first season in Houston, Durant slotted in as a lethal secondary scorer, passing Michael Jordan for fifth on the NBA's all‑time scoring list along the way — a milestone that speaks to nearly two decades of remarkably consistent shot‑making.",
+    "His Second Team All‑NBA nod, his twelfth career All‑NBA selection, put him in rare company: only a small handful of players in league history have earned that many.",
+    "The Rockets' season ended in the first round against the Lakers, and Durant's own playoff run was cut short by injury after a single game — the one real drawback on an otherwise remarkably productive age‑defying year."
+  ],
+  achievements:["Kia All‑NBA Second Team, 12th career All‑NBA selection","Passed Michael Jordan for 5th on the NBA's all‑time scoring list","One of only a handful of players in NBA history with 12+ All‑NBA nods"]
+},
+{
+  slug:"tyrese-maxey", rank:10, name:"Tyrese Maxey", team:"Philadelphia 76ers", pos:"Guard",
+  color:"#006BB6",
+  hook:"A breakout, All‑NBA‑caliber season that turned into real playoff results — Maxey outlasted Boston in the first round before pushing eventual‑champion New York in the second.",
+  grades:{raw:"B+", advanced:"B", playoffs:"B+", achievements:"B+", overall:"B"},
+  stats:[["Scoring volume","86%"],["Playmaking growth","82%"],["Playoff result","80%"]],
+  statBoxes:[["Third Team","All‑NBA"],["Round 1","won vs. Boston"],["Round 2","vs. NY Knicks"],["Career-best","season"]],
+  narrative:[
+    "Maxey's game took another step forward this season, adding enough shot creation and playmaking to his elite speed and shooting to land his first career All‑NBA selection on the Third Team.",
+    "Philadelphia rode that growth to a first‑round upset over Boston, ending the Celtics' season in seven games, before running into the eventual champion Knicks in the second round.",
+    "It's the kind of season — real individual growth plus a real playoff run against a title team — that belongs in any top‑ten conversation built on the full body of work rather than reputation alone."
+  ],
+  achievements:["Kia All‑NBA Third Team, first career selection","Helped eliminate Boston in the first round of the playoffs","Pushed the eventual NBA champion Knicks in the second round"]
+}
+];
+
+const GRADE_COLOR = g => {
+  if(!g) return "var(--b)";
+  const l = g[0];
+  if(l==="A") return "var(--a)";
+  if(l==="B") return "var(--b)";
+  if(l==="C") return "var(--c)";
+  return "var(--d)";
+};
+
+function renderHome(){
+  const rows = PLAYERS.slice().sort((a,b)=>a.rank-b.rank).map(p=>`
+    <a href="#/player/${p.slug}" class="row" style="--team:${p.color}">
+      <div class="rank-num">${p.rank}</div>
+      <div class="row-name">
+        <h3>${p.name}</h3>
+        <div class="sub">${p.team} · ${p.pos}</div>
+      </div>
+      <div class="row-hook">${p.hook}</div>
+      <div class="grade-pill" style="--grade-color:${GRADE_COLOR(p.grades.overall)}">${p.grades.overall}</div>
+    </a>
+  `).join("");
+
+  return `
+    <section class="hero">
+      <div class="eyebrow">// 2025–26 SEASON REVIEW</div>
+      <h1>TOP <span class="stroke">10</span><br>NBA PLAYERS<br>RIGHT NOW</h1>
+      <p>A ranked, graded breakdown of the ten players who defined this NBA season — weighted first on the full 82‑game body of work (raw box scores, advanced efficiency, All‑NBA voting), then on what each player did in the playoffs. Team success only counts toward a player's own grade, not a teammate's. Click into any player for the full report.</p>
+      <div class="meta-row">
+        <div class="meta-item">CHAMPION<b>New York Knicks</b></div>
+        <div class="meta-item">MVP<b>Shai Gilgeous‑Alexander</b></div>
+        <div class="meta-item">SCORING LEADER<b>Luka Dončić</b></div>
+        <div class="meta-item">FINALS MVP<b>Jalen Brunson</b></div>
+      </div>
+      <div class="method">
+        <div><span>RAW STATS</span><p>Per‑game scoring, rebounding, and playmaking volume.</p></div>
+        <div><span>ADVANCED STATS</span><p>Efficiency, true shooting, and impact metrics.</p></div>
+        <div><span>PLAYOFF SUCCESS</span><p>How far they went, and how they performed when it mattered.</p></div>
+        <div><span>ACHIEVEMENTS</span><p>Awards, All‑NBA nods, and hardware earned this season.</p></div>
+      </div>
+    </section>
+    <div class="list-head">
+      <h2 class="mono">THE COUNTDOWN — TAP ANY PLAYER FOR THE FULL REPORT</h2>
+    </div>
+    <div class="list">${rows}</div>
+    <footer class="site-footer">
+      <div>Courtside Ten — independent 2025‑26 season analysis &amp; grading.</div>
+      <div>Grades reflect editorial judgment, not official NBA scoring.</div>
+    </footer>
+  `;
+}
+
+function renderPlayer(slug){
+  const list = PLAYERS.slice().sort((a,b)=>a.rank-b.rank);
+  const idx = list.findIndex(p=>p.slug===slug);
+  if(idx===-1) return `<div style="padding:80px 0;">Player not found. <a href="#/" class="mono" style="color:var(--amber);">Back to countdown →</a></div>`;
+  const p = list[idx];
+  const prev = list[(idx-1+list.length)%list.length];
+  const next = list[(idx+1)%list.length];
+
+  const bars = p.stats.map(([label,pct])=>`
+    <div class="bar-row">
+      <div class="lbl">${label}</div>
+      <div class="bar-track"><div class="bar-fill" style="--team:${p.color}; width:${pct};"></div></div>
+      <div class="pct">${pct}</div>
+    </div>
+  `).join("");
+
+  const boxes = p.statBoxes.map(([v,k])=>`
+    <div class="stat-box"><div class="v">${v}</div><div class="k">${k}</div></div>
+  `).join("");
+
+  const narrative = p.narrative.map(par=>`<p>${par}</p>`).join("");
+  const achv = p.achievements.map(a=>`<li>${a}</li>`).join("");
+  const cells = ["raw","advanced","playoffs","achievements"].map(key=>{
+    const label = {raw:"Raw Stats",advanced:"Advanced",playoffs:"Playoffs",achievements:"Achievements"}[key];
+    const g = p.grades[key];
+    return `<div class="cell" style="--grade-color:${GRADE_COLOR(g)}"><div class="label">${label}</div><div class="grade">${g}</div></div>`;
+  }).join("");
+
+  return `
+    <a href="#/" class="back-link">← BACK TO THE COUNTDOWN</a>
+    <div class="p-hero" style="--team:${p.color}">
+      <div class="watermark">${p.rank}</div>
+      <div class="rank-tag mono">RANK #${p.rank} OF 10</div>
+      <h1>${p.name}</h1>
+      <div class="team-line mono">${p.team} · ${p.pos}</div>
+      <div class="hook">${p.hook}</div>
+    </div>
+    <div class="report-card">${cells}</div>
+
+    <div class="section-title">SEASON SNAPSHOT</div>
+    <div class="stat-grid">${boxes}</div>
+
+    <div class="section-title">SCOUTING BREAKDOWN</div>
+    ${bars}
+
+    <div class="section-title">THE FULL REPORT</div>
+    <div class="prose">${narrative}</div>
+
+    <div class="section-title">AWARDS &amp; ACHIEVEMENTS</div>
+    <ul class="achv-list">${achv}</ul>
+
+    <div class="pager">
+      <a href="#/player/${prev.slug}"><div class="dir mono">← PREVIOUS · #${prev.rank}</div><div class="nm">${prev.name}</div></a>
+      <a href="#/player/${next.slug}" class="next"><div class="dir mono">NEXT · #${next.rank} →</div><div class="nm">${next.name}</div></a>
+    </div>
+    <footer class="site-footer">
+      <div>Courtside Ten — independent 2025‑26 season analysis &amp; grading.</div>
+      <div>Grades reflect editorial judgment, not official NBA scoring.</div>
+    </footer>
+  `;
+}
+
+function router(){
+  const hash = location.hash || "#/";
+  const app = document.getElementById("app");
+  const playerMatch = hash.match(/^#\/player\/([a-z0-9-]+)/);
+  if(playerMatch){
+    app.innerHTML = renderPlayer(playerMatch[1]);
+  } else {
+    app.innerHTML = renderHome();
+  }
+  window.scrollTo({top:0, behavior:"instant"});
+}
+window.addEventListener("hashchange", router);
+window.addEventListener("DOMContentLoaded", router);
+</script>
+</body>
+</html>
