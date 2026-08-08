@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Top 10 NBA Players Right Now (2025‑26 Season) | Courtside Ten</title>
-<meta name="description" content="A ranked, graded breakdown of the top 10 NBA players of the 2025‑26 season — built from raw stats, advanced metrics, All‑NBA voting, and real playoff results. See who made the cut and why.">
-<meta property="og:title" content="Top 10 NBA Players Right Now (2025‑26 Season) | Courtside Ten">
-<meta property="og:description" content="A ranked, graded breakdown of the top 10 NBA players of the 2025‑26 season, from Shai Gilgeous‑Alexander at No. 1 to Tyrese Maxey at No. 10.">
+<title>Courtside Ten — NBA Rankings, Grades &amp; Analysis</title>
+<meta name="description" content="Courtside Ten is a home for ranked, graded breakdowns of basketball's best — countdowns, player report cards, and analysis, with new lists added all the time.">
+<meta property="og:title" content="Courtside Ten — NBA Rankings, Grades & Analysis">
+<meta property="og:description" content="Ranked, graded countdowns of basketball's best players, built from raw stats, advanced metrics, and playoff results.">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
@@ -45,21 +45,28 @@ body::before{
 .mono{font-family:'JetBrains Mono',monospace;}
 a{color:inherit; text-decoration:none;}
 ::selection{background:var(--flare); color:#12141A;}
+button, input, textarea{font-family:inherit;}
 
 /* NAV */
 .nav{
   position:sticky; top:0; z-index:50;
   display:flex; align-items:center; justify-content:space-between;
-  padding:18px 5vw;
-  background:rgba(18,20,26,0.86);
+  gap:20px; flex-wrap:wrap;
+  padding:16px 5vw;
+  background:rgba(18,20,26,0.9);
   backdrop-filter:blur(10px);
   border-bottom:1px solid var(--line);
 }
 .nav .logo{display:flex; align-items:center; gap:10px; font-size:1.15rem;}
-.nav .logo .dot{width:10px; height:10px; background:var(--flare); border-radius:2px; transform:rotate(45deg);}
+.nav .logo .dot{width:10px; height:10px; background:var(--flare); border-radius:2px; transform:rotate(45deg); flex-shrink:0;}
 .nav .logo b{display:block;}
 .nav .logo small{display:block; font-family:'Inter',sans-serif; text-transform:none; letter-spacing:0; font-size:0.62rem; color:var(--chalk-dim); font-weight:600;}
-.nav .season{font-family:'JetBrains Mono',monospace; font-size:0.78rem; color:var(--amber); border:1px solid rgba(232,150,60,0.4); padding:6px 12px; border-radius:100px;}
+.nav-links{display:flex; gap:24px; flex-wrap:wrap;}
+.nav-links a{font-size:0.78rem; color:var(--chalk-dim); letter-spacing:0.02em; padding:4px 1px; border-bottom:2px solid transparent; transition:color .15s, border-color .15s;}
+.nav-links a:hover{color:var(--chalk);}
+.nav-links a.active{color:var(--amber); border-color:var(--amber);}
+.nav .season{font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--amber); border:1px solid rgba(232,150,60,0.4); padding:6px 12px; border-radius:100px; white-space:nowrap;}
+@media(max-width:640px){ .nav .season{display:none;} }
 
 main{position:relative; z-index:1; max-width:1120px; margin:0 auto; padding:0 5vw 100px;}
 
@@ -68,10 +75,15 @@ main{position:relative; z-index:1; max-width:1120px; margin:0 auto; padding:0 5v
 .eyebrow{font-family:'JetBrains Mono',monospace; color:var(--flare); font-size:0.8rem; letter-spacing:0.14em; margin-bottom:14px;}
 .hero h1{font-size:clamp(2.6rem,7vw,5.2rem); line-height:0.94; margin:0 0 20px;}
 .hero h1 .stroke{-webkit-text-stroke:1.5px var(--chalk); color:transparent;}
-.hero p{max-width:620px; color:var(--chalk-dim); font-size:1.05rem; line-height:1.65;}
+.hero p{max-width:640px; color:var(--chalk-dim); font-size:1.05rem; line-height:1.65;}
 .hero .meta-row{display:flex; gap:28px; margin-top:32px; flex-wrap:wrap;}
 .meta-item{font-family:'JetBrains Mono',monospace; font-size:0.78rem; color:var(--chalk-dim);}
 .meta-item b{color:var(--chalk); display:block; font-size:1.1rem; font-family:'Inter',sans-serif; font-weight:800;}
+
+/* Smaller page hero (about/contact/news) */
+.page-hero{padding:56px 0 34px; border-bottom:1px solid var(--line);}
+.page-hero h1{font-size:clamp(2.1rem,5.5vw,3.4rem); line-height:1.02; margin:0 0 16px;}
+.page-hero p{max-width:640px; color:var(--chalk-dim); font-size:1.02rem; line-height:1.65;}
 
 /* METHODOLOGY STRIP */
 .method{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); margin:36px 0 0; border:1px solid var(--line);}
@@ -80,7 +92,7 @@ main{position:relative; z-index:1; max-width:1120px; margin:0 auto; padding:0 5v
 .method div p{margin:0; font-size:0.83rem; color:var(--chalk-dim); line-height:1.4;}
 
 /* COUNTDOWN LIST */
-.list-head{display:flex; justify-content:space-between; align-items:baseline; margin:56px 0 18px;}
+.list-head{display:flex; justify-content:space-between; align-items:baseline; margin:56px 0 18px; flex-wrap:wrap; gap:10px;}
 .list-head h2{font-size:1.1rem; margin:0; color:var(--chalk-dim); font-weight:600; letter-spacing:0.02em;}
 .row{
   display:grid;
@@ -113,7 +125,12 @@ main{position:relative; z-index:1; max-width:1120px; margin:0 auto; padding:0 5v
 }
 
 /* FOOTER */
-.site-footer{margin-top:80px; padding-top:28px; border-top:1px solid var(--line); display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; color:var(--chalk-dim); font-size:0.8rem;}
+.site-footer{margin-top:80px; padding-top:28px; border-top:1px solid var(--line); display:flex; justify-content:space-between; flex-wrap:wrap; gap:16px; color:var(--chalk-dim); font-size:0.8rem;}
+.site-footer .fcols{display:flex; gap:48px; flex-wrap:wrap;}
+.site-footer .fcol b{display:block; color:var(--chalk); font-size:0.78rem; margin-bottom:10px; font-family:'JetBrains Mono',monospace; letter-spacing:0.06em;}
+.site-footer .fcol a{display:block; margin-bottom:6px; color:var(--chalk-dim);}
+.site-footer .fcol a:hover{color:var(--amber);}
+.site-footer .fbottom{width:100%; margin-top:20px; padding-top:16px; border-top:1px solid var(--line); font-size:0.74rem;}
 
 /* PLAYER PAGE */
 .back-link{display:inline-flex; align-items:center; gap:8px; margin:32px 0 0; font-family:'JetBrains Mono',monospace; font-size:0.8rem; color:var(--chalk-dim);}
@@ -174,6 +191,63 @@ main{position:relative; z-index:1; max-width:1120px; margin:0 auto; padding:0 5v
 .pager .next{text-align:right;}
 @media(max-width:600px){.pager{grid-template-columns:1fr;}}
 
+/* HUB / RANKINGS ARCHIVE */
+.hub-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(270px,1fr)); gap:18px; margin-top:28px;}
+.hub-card{background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:26px; position:relative; transition:border-color .15s, transform .15s;}
+.hub-card:hover{border-color:var(--amber); transform:translateY(-3px);}
+.hub-card .badge{font-family:'JetBrains Mono',monospace; font-size:0.66rem; color:var(--amber); letter-spacing:0.08em; display:block; margin-bottom:12px;}
+.hub-card h3{font-size:1.25rem; margin:0 0 10px; line-height:1.25;}
+.hub-card p{color:var(--chalk-dim); font-size:0.86rem; line-height:1.5; margin:0 0 18px;}
+.hub-card .cta{font-family:'JetBrains Mono',monospace; font-size:0.72rem; color:var(--flare); font-weight:700;}
+.hub-card.soon{opacity:0.5; cursor:default;}
+.hub-card.soon:hover{border-color:var(--line); transform:none;}
+.hub-card.soon .cta{color:var(--steel);}
+
+/* SPOTLIGHT (featured ranking on homepage) */
+.spotlight{margin-top:28px; padding:42px 36px; border:1px solid var(--line); border-radius:18px; background:linear-gradient(135deg, var(--panel-2), var(--panel) 75%); position:relative; overflow:hidden;}
+.spotlight .tag{font-family:'JetBrains Mono',monospace; font-size:0.72rem; color:var(--amber); margin-bottom:14px; display:inline-block;}
+.spotlight h2{font-size:clamp(1.6rem,4vw,2.3rem); margin:0 0 14px; line-height:1.1;}
+.spotlight p{color:var(--chalk-dim); max-width:600px; line-height:1.6; margin:0 0 24px;}
+.spotlight .btn{display:inline-flex; align-items:center; gap:8px; font-family:'JetBrains Mono',monospace; font-size:0.8rem; color:var(--ink); background:var(--amber); padding:12px 22px; border-radius:100px; font-weight:700; transition:background .15s;}
+.spotlight .btn:hover{background:var(--flare);}
+
+/* AD SLOT */
+.ad-slot{border:1px dashed var(--line); border-radius:12px; padding:26px; text-align:center; color:var(--chalk-dim); font-family:'JetBrains Mono',monospace; font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; margin:52px 0;}
+.ad-slot span{display:block; margin-top:4px; font-size:0.64rem; opacity:0.55; letter-spacing:0.04em; text-transform:none;}
+
+/* NEWS */
+.news-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(270px,1fr)); gap:18px; margin-top:8px;}
+.news-card{background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:22px; transition:border-color .15s, transform .15s;}
+.news-card:hover{border-color:var(--amber); transform:translateY(-2px);}
+.news-card .cat{font-family:'JetBrains Mono',monospace; font-size:0.66rem; color:var(--flare); letter-spacing:0.08em; margin-bottom:10px; display:block;}
+.news-card h3{margin:0 0 8px; font-size:1.12rem; line-height:1.3;}
+.news-card p{margin:0; color:var(--chalk-dim); font-size:0.87rem; line-height:1.5;}
+.news-card .date{margin-top:16px; font-family:'JetBrains Mono',monospace; font-size:0.68rem; color:var(--steel);}
+.article-meta{font-family:'JetBrains Mono',monospace; font-size:0.76rem; color:var(--chalk-dim); margin:18px 0 40px; display:flex; gap:18px; flex-wrap:wrap;}
+.article-meta span{color:var(--amber);}
+
+/* ABOUT / CONTACT */
+.info-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; margin:30px 0;}
+.info-box{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:20px;}
+.info-box .v{font-family:'Anton',sans-serif; font-size:1.8rem; color:var(--amber);}
+.info-box .k{font-family:'JetBrains Mono',monospace; font-size:0.7rem; color:var(--chalk-dim); margin-top:4px;}
+.page-section{margin:48px 0;}
+.page-section h2{font-size:1.4rem; margin:0 0 16px;}
+.page-section p{color:var(--chalk-dim); line-height:1.7; max-width:680px; margin:0 0 14px;}
+.contact-form{display:grid; gap:14px; max-width:480px; margin-top:24px;}
+.contact-form label{font-family:'JetBrains Mono',monospace; font-size:0.72rem; color:var(--chalk-dim); margin-bottom:6px; display:block; letter-spacing:0.04em;}
+.contact-form input, .contact-form textarea{width:100%; background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:12px 14px; color:var(--chalk); font-size:0.92rem;}
+.contact-form input:focus, .contact-form textarea:focus{outline:none; border-color:var(--amber);}
+.contact-form textarea{resize:vertical; min-height:110px;}
+.contact-form button{justify-self:start; background:var(--amber); color:var(--ink); border:none; padding:13px 26px; border-radius:100px; font-weight:800; font-size:0.85rem; cursor:pointer; transition:background .15s;}
+.contact-form button:hover{background:var(--flare);}
+.form-note{font-family:'JetBrains Mono',monospace; font-size:0.72rem; color:var(--steel); margin-top:12px;}
+.contact-alt{margin-top:36px; display:flex; gap:40px; flex-wrap:wrap;}
+.contact-alt div b{display:block; font-family:'JetBrains Mono',monospace; font-size:0.7rem; color:var(--amber); margin-bottom:6px; letter-spacing:0.06em;}
+
+.not-found{padding:100px 0; text-align:center;}
+.not-found h1{font-size:3rem; margin-bottom:14px;}
+
 @media (prefers-reduced-motion: reduce){ *{transition:none !important; scroll-behavior:auto !important;} }
 </style>
 </head>
@@ -181,12 +255,18 @@ main{position:relative; z-index:1; max-width:1120px; margin:0 auto; padding:0 5v
 <nav class="nav">
   <a href="#/" class="logo">
     <span class="dot"></span>
-    <span><b class="display">Courtside Ten</b><small>SEASON GRADES &amp; ANALYSIS</small></span>
+    <span><b class="display">Courtside Ten</b><small>RANKINGS &amp; ANALYSIS</small></span>
   </a>
+  <div class="nav-links mono" id="navLinks">
+    <a href="#/" data-route="#/">Home</a>
+    <a href="#/rankings" data-route="#/rankings">Rankings</a>
+    <a href="#/news" data-route="#/news">News</a>
+    <a href="#/about" data-route="#/about">About</a>
+    <a href="#/contact" data-route="#/contact">Contact</a>
+  </div>
   <div class="season mono">2025–26 SEASON</div>
 </nav>
 <main id="app"></main>
-
 <script>
 const PLAYERS = [
 {
@@ -331,6 +411,113 @@ const PLAYERS = [
 }
 ];
 
+const RANKINGS = [
+  {
+    id:"top-10-nba-players-2025-26",
+    status:"live",
+    badge:"NBA · 2025–26 Season",
+    title:"Top 10 NBA Players Right Now",
+    short:"Top 10 NBA Players",
+    blurb:"A ranked, graded breakdown of the ten players who defined this NBA season — weighted first on the full 82‑game body of work (raw box scores, advanced efficiency, All‑NBA voting), then on what each player did in the playoffs.",
+    eyebrow:"// 2025–26 SEASON REVIEW",
+    headline:["TOP <span class=\"stroke\">10</span>","NBA PLAYERS","RIGHT NOW"],
+    meta:[
+      ["CHAMPION","New York Knicks"],
+      ["MVP","Shai Gilgeous‑Alexander"],
+      ["SCORING LEADER","Luka Dončić"],
+      ["FINALS MVP","Jalen Brunson"]
+    ],
+    method:[
+      ["RAW STATS","Per‑game scoring, rebounding, and playmaking volume."],
+      ["ADVANCED STATS","Efficiency, true shooting, and impact metrics."],
+      ["PLAYOFF SUCCESS","How far they went, and how they performed when it mattered."],
+      ["ACHIEVEMENTS","Awards, All‑NBA nods, and hardware earned this season."]
+    ],
+    players: PLAYERS
+  },
+  {
+    id:"top-10-centers-all-time",
+    status:"soon",
+    badge:"All‑Time · Coming Soon",
+    title:"Top 10 Centers of All Time",
+    blurb:"From George Mikan to Jokić — a full-career look at the players who defined the middle of the floor."
+  },
+  {
+    id:"top-10-rookies-2025-26",
+    status:"soon",
+    badge:"NBA · Coming Soon",
+    title:"Top 10 Rookies Right Now",
+    blurb:"Grading this season's rookie class on production, efficiency, and what it means for their ceilings."
+  },
+  {
+    id:"top-10-defenders-2025-26",
+    status:"soon",
+    badge:"NBA · Coming Soon",
+    title:"Top 10 Defenders Right Now",
+    blurb:"The league's best two-way disruptors, ranked on matchup data, rim protection, and playoff defensive impact."
+  },
+  {
+    id:"top-10-point-guards-all-time",
+    status:"soon",
+    badge:"All‑Time · Coming Soon",
+    title:"Top 10 Point Guards of All Time",
+    blurb:"Magic, Stockton, Curry, and the rest of the position's all-time greats, graded across every era."
+  }
+];
+
+const NEWS = [
+  {
+    slug:"how-we-grade",
+    category:"Methodology",
+    title:"How We Grade: Inside the Courtside Ten Methodology",
+    date:"Aug 1, 2026",
+    excerpt:"Every countdown on this site runs through the same four-part grading system. Here's exactly how raw stats, advanced metrics, playoff results, and achievements get turned into a single letter grade.",
+    body:[
+      "Every ranking on Courtside Ten is built the same way: four graded categories — raw stats, advanced stats, playoff results, and achievements — combined into a single overall grade for each player.",
+      "Raw stats cover the basic per-game production: scoring, rebounding, playmaking volume. Advanced stats layer in efficiency — true shooting percentage, on/off impact, and other context-adjusted numbers that raw box scores miss.",
+      "Playoff results are weighted deliberately: a player's own performance counts toward their grade, but a teammate's heroics don't inflate someone else's number just because they shared a locker room. Achievements round things out — All-NBA nods, awards, and other hardware earned that season or over a career, depending on the list.",
+      "The goal isn't to replicate an algorithm — it's to be transparent about the inputs so readers can agree, disagree, and argue with the reasoning, not just the final order."
+    ]
+  },
+  {
+    slug:"true-shooting-percentage-explained",
+    category:"Explainer",
+    title:"What Is True Shooting Percentage, and Why Does It Matter?",
+    date:"Jul 22, 2026",
+    excerpt:"Field goal percentage doesn't tell the whole story. True shooting percentage folds in threes and free throws to give a much more complete picture of scoring efficiency.",
+    body:[
+      "Plain field goal percentage treats a made three the same as a made mid-range jumper, and it ignores free throws entirely. That's a problem, because those two things — three-point volume and trips to the line — are a huge part of how modern offenses generate value.",
+      "True shooting percentage fixes that by weighting shot value properly: threes count for more than twos, and free throw trips are folded into the formula instead of ignored. The result is a single number that reflects how efficiently a player actually scores, possession for possession.",
+      "It's why you'll see true shooting percentage used throughout the advanced-stats grading on this site instead of plain shooting splits. A player who scores at high volume but low efficiency isn't necessarily more valuable than one who scores a bit less but scores it far more efficiently."
+    ]
+  },
+  {
+    slug:"all-nba-voting-explained",
+    category:"Explainer",
+    title:"All-NBA Voting, Explained",
+    date:"Jul 10, 2026",
+    excerpt:"First, Second, and Third Team All-NBA selections show up in almost every achievements grade on this site. Here's how the voting actually works.",
+    body:[
+      "Each season, a panel of media voters selects three five-player All-NBA teams — First, Second, and Third — with two guards, three frontcourt players, and no set position requirement beyond that on each team.",
+      "Voters rank their top players at each broader position group, and points are awarded based on where a player lands on each ballot. It's why counting 'first-place votes received' can matter almost as much as which team a player actually lands on — it's a signal of how close a Second Team season came to being a First Team one.",
+      "All-NBA selections carry real weight in this site's achievements grading, since they represent a season-long consensus among people who watch the entire league, not just one team, all year."
+    ]
+  },
+  {
+    slug:"players-on-the-rise",
+    category:"Analysis",
+    title:"Way-Too-Early: Names That Could Push Into Next Season's Countdown",
+    date:"Jun 28, 2026",
+    excerpt:"The current Top 10 is set for this season, but a handful of players outside it are trending toward next year's conversation. Here's who's worth watching.",
+    body:[
+      "Every countdown is a snapshot, not a permanent ranking, and the gap between the players just outside the current Top 10 and the ones inside it is usually thinner than the final grades suggest.",
+      "Young, ascending players who took real leaps in role and efficiency this year are the most obvious candidates to push in — a step forward in shot creation or defensive impact can matter more than a marginal scoring bump for a player already established.",
+      "Health matters too. More than one player capable of a Top 10 season has been kept off this list by injury or a shortened season; a full healthy year alone could be enough to change the conversation next time this list gets rebuilt.",
+      "We'll revisit this list again after next season — that's the whole idea behind building Courtside Ten as an ongoing archive rather than a one-off post."
+    ]
+  }
+];
+
 const GRADE_COLOR = g => {
   if(!g) return "var(--b)";
   const l = g[0];
@@ -340,9 +527,113 @@ const GRADE_COLOR = g => {
   return "var(--d)";
 };
 
-function renderHome(){
-  const rows = PLAYERS.slice().sort((a,b)=>a.rank-b.rank).map(p=>`
-    <a href="#/player/${p.slug}" class="row" style="--team:${p.color}">
+function adSlot(label){
+  return `<div class="ad-slot">Advertisement<span>${label || "Space reserved for sponsored placement"}</span></div>`;
+}
+
+function findRanking(id){
+  return RANKINGS.find(r=>r.id===id);
+}
+
+/* ---------- HOME (site homepage) ---------- */
+function renderHub(){
+  document.title = "Courtside Ten — NBA Rankings, Grades & Analysis";
+  const live = RANKINGS.filter(r=>r.status==="live");
+  const soonCount = RANKINGS.filter(r=>r.status==="soon").length;
+  const featured = live[0];
+
+  const previewCards = RANKINGS.slice(0,3).map(r=>hubCard(r)).join("");
+  const newsPreview = NEWS.slice(0,3).map(n=>newsCard(n)).join("");
+
+  return `
+    <section class="hero">
+      <div class="eyebrow">// WELCOME TO COURTSIDE TEN</div>
+      <h1>RANKING THE<br>GAME, <span class="stroke">10</span><br>AT A TIME</h1>
+      <p>Courtside Ten builds ranked, graded countdowns of basketball's best — players, seasons, and eras — using a transparent mix of raw stats, advanced metrics, and playoff results. One list lives here today. Many more are on the way.</p>
+      <div class="meta-row">
+        <div class="meta-item">LIVE RANKINGS<b>${live.length}</b></div>
+        <div class="meta-item">PLAYERS GRADED<b>${featured ? featured.players.length : 0}</b></div>
+        <div class="meta-item">COMING SOON<b>${soonCount}</b></div>
+        <div class="meta-item">CURRENT SEASON<b>2025–26</b></div>
+      </div>
+    </section>
+
+    ${featured ? `
+    <div class="spotlight">
+      <span class="tag mono">FEATURED RANKING</span>
+      <h2 class="display">${featured.title}</h2>
+      <p>${featured.blurb}</p>
+      <a href="#/rankings/${featured.id}" class="btn">See the full countdown →</a>
+    </div>` : ""}
+
+    ${adSlot()}
+
+    <div class="list-head">
+      <h2 class="mono">MORE RANKINGS</h2>
+      <a href="#/rankings" class="mono" style="color:var(--amber); font-size:0.8rem;">View all rankings →</a>
+    </div>
+    <div class="hub-grid">${previewCards}</div>
+
+    <div class="list-head">
+      <h2 class="mono">FROM THE BLOG</h2>
+      <a href="#/news" class="mono" style="color:var(--amber); font-size:0.8rem;">View all articles →</a>
+    </div>
+    <div class="news-grid">${newsPreview}</div>
+
+    ${siteFooter()}
+  `;
+}
+
+function hubCard(r){
+  const isLive = r.status === "live";
+  const href = isLive ? `href="#/rankings/${r.id}"` : "";
+  return `
+    <a ${href} class="hub-card ${isLive ? "" : "soon"}">
+      <span class="badge mono">${r.badge}</span>
+      <h3>${r.title}</h3>
+      <p>${r.blurb}</p>
+      <div class="cta mono">${isLive ? "See the countdown →" : "Coming soon"}</div>
+    </a>
+  `;
+}
+
+function newsCard(n){
+  return `
+    <a href="#/news/${n.slug}" class="news-card">
+      <span class="cat mono">${n.category}</span>
+      <h3>${n.title}</h3>
+      <p>${n.excerpt}</p>
+      <div class="date">${n.date}</div>
+    </a>
+  `;
+}
+
+/* ---------- RANKINGS ARCHIVE ---------- */
+function renderRankingsIndex(){
+  document.title = "All Rankings | Courtside Ten";
+  const cards = RANKINGS.map(r=>hubCard(r)).join("");
+  return `
+    <section class="page-hero">
+      <div class="eyebrow">// THE ARCHIVE</div>
+      <h1 class="display">EVERY LIST,<br>ONE GROWING ARCHIVE</h1>
+      <p>Every countdown Courtside Ten has published — or is currently building — lives here. New rankings get added to this page as soon as they go live.</p>
+    </section>
+    <div class="hub-grid" style="margin-top:36px;">${cards}</div>
+    ${adSlot()}
+    ${siteFooter()}
+  `;
+}
+
+/* ---------- RANKING DETAIL (the countdown itself) ---------- */
+function renderRanking(id){
+  const ranking = findRanking(id);
+  if(!ranking || ranking.status !== "live"){
+    return notFoundBlock("That ranking isn't live yet.", "#/rankings", "← Back to all rankings");
+  }
+  document.title = ranking.title + " | Courtside Ten";
+  const list = ranking.players.slice().sort((a,b)=>a.rank-b.rank);
+  const rows = list.map(p=>`
+    <a href="#/rankings/${ranking.id}/player/${p.slug}" class="row" style="--team:${p.color}">
       <div class="rank-num">${p.rank}</div>
       <div class="row-name">
         <h3>${p.name}</h3>
@@ -353,40 +644,40 @@ function renderHome(){
     </a>
   `).join("");
 
+  const metaRow = ranking.meta.map(([k,v])=>`<div class="meta-item">${k}<b>${v}</b></div>`).join("");
+  const methodRow = ranking.method.map(([k,v])=>`<div><span>${k}</span><p>${v}</p></div>`).join("");
+
   return `
+    <a href="#/rankings" class="back-link">← ALL RANKINGS</a>
     <section class="hero">
-      <div class="eyebrow">// 2025–26 SEASON REVIEW</div>
-      <h1>TOP <span class="stroke">10</span><br>NBA PLAYERS<br>RIGHT NOW</h1>
-      <p>A ranked, graded breakdown of the ten players who defined this NBA season — weighted first on the full 82‑game body of work (raw box scores, advanced efficiency, All‑NBA voting), then on what each player did in the playoffs. Team success only counts toward a player's own grade, not a teammate's. Click into any player for the full report.</p>
-      <div class="meta-row">
-        <div class="meta-item">CHAMPION<b>New York Knicks</b></div>
-        <div class="meta-item">MVP<b>Shai Gilgeous‑Alexander</b></div>
-        <div class="meta-item">SCORING LEADER<b>Luka Dončić</b></div>
-        <div class="meta-item">FINALS MVP<b>Jalen Brunson</b></div>
-      </div>
-      <div class="method">
-        <div><span>RAW STATS</span><p>Per‑game scoring, rebounding, and playmaking volume.</p></div>
-        <div><span>ADVANCED STATS</span><p>Efficiency, true shooting, and impact metrics.</p></div>
-        <div><span>PLAYOFF SUCCESS</span><p>How far they went, and how they performed when it mattered.</p></div>
-        <div><span>ACHIEVEMENTS</span><p>Awards, All‑NBA nods, and hardware earned this season.</p></div>
-      </div>
+      <div class="eyebrow">${ranking.eyebrow}</div>
+      <h1>${ranking.headline.join("<br>")}</h1>
+      <p>${ranking.blurb} Click into any player for the full report.</p>
+      <div class="meta-row">${metaRow}</div>
+      <div class="method">${methodRow}</div>
     </section>
     <div class="list-head">
       <h2 class="mono">THE COUNTDOWN — TAP ANY PLAYER FOR THE FULL REPORT</h2>
     </div>
     <div class="list">${rows}</div>
-    <footer class="site-footer">
-      <div>Courtside Ten — independent 2025‑26 season analysis &amp; grading.</div>
-      <div>Grades reflect editorial judgment, not official NBA scoring.</div>
-    </footer>
+    ${adSlot()}
+    ${siteFooter()}
   `;
 }
 
-function renderPlayer(slug){
-  const list = PLAYERS.slice().sort((a,b)=>a.rank-b.rank);
+/* ---------- PLAYER PAGE ---------- */
+function renderPlayer(rankingId, slug){
+  const ranking = findRanking(rankingId);
+  if(!ranking || ranking.status !== "live"){
+    return notFoundBlock("That ranking isn't live yet.", "#/rankings", "← Back to all rankings");
+  }
+  const list = ranking.players.slice().sort((a,b)=>a.rank-b.rank);
   const idx = list.findIndex(p=>p.slug===slug);
-  if(idx===-1) return `<div style="padding:80px 0;">Player not found. <a href="#/" class="mono" style="color:var(--amber);">Back to countdown →</a></div>`;
+  if(idx===-1){
+    return notFoundBlock("Player not found.", `#/rankings/${ranking.id}`, "← Back to the countdown");
+  }
   const p = list[idx];
+  document.title = `${p.name} — #${p.rank} | ${ranking.title} | Courtside Ten`;
   const prev = list[(idx-1+list.length)%list.length];
   const next = list[(idx+1)%list.length];
 
@@ -411,10 +702,10 @@ function renderPlayer(slug){
   }).join("");
 
   return `
-    <a href="#/" class="back-link">← BACK TO THE COUNTDOWN</a>
+    <a href="#/rankings/${ranking.id}" class="back-link">← BACK TO THE COUNTDOWN</a>
     <div class="p-hero" style="--team:${p.color}">
       <div class="watermark">${p.rank}</div>
-      <div class="rank-tag mono">RANK #${p.rank} OF 10</div>
+      <div class="rank-tag mono">RANK #${p.rank} OF ${list.length}</div>
       <h1>${p.name}</h1>
       <div class="team-line mono">${p.team} · ${p.pos}</div>
       <div class="hook">${p.hook}</div>
@@ -430,29 +721,203 @@ function renderPlayer(slug){
     <div class="section-title">THE FULL REPORT</div>
     <div class="prose">${narrative}</div>
 
+    ${adSlot()}
+
     <div class="section-title">AWARDS &amp; ACHIEVEMENTS</div>
     <ul class="achv-list">${achv}</ul>
 
     <div class="pager">
-      <a href="#/player/${prev.slug}"><div class="dir mono">← PREVIOUS · #${prev.rank}</div><div class="nm">${prev.name}</div></a>
-      <a href="#/player/${next.slug}" class="next"><div class="dir mono">NEXT · #${next.rank} →</div><div class="nm">${next.name}</div></a>
+      <a href="#/rankings/${ranking.id}/player/${prev.slug}"><div class="dir mono">← PREVIOUS · #${prev.rank}</div><div class="nm">${prev.name}</div></a>
+      <a href="#/rankings/${ranking.id}/player/${next.slug}" class="next"><div class="dir mono">NEXT · #${next.rank} →</div><div class="nm">${next.name}</div></a>
     </div>
+    ${siteFooter()}
+  `;
+}
+
+/* ---------- NEWS ---------- */
+function renderNewsList(){
+  document.title = "News & Analysis | Courtside Ten";
+  const cards = NEWS.map(n=>newsCard(n)).join("");
+  return `
+    <section class="page-hero">
+      <div class="eyebrow">// THE BLOG</div>
+      <h1 class="display">NEWS, EXPLAINERS<br>&amp; ANALYSIS</h1>
+      <p>Methodology breakdowns, stat explainers, and analysis to go along with the rankings.</p>
+    </section>
+    <div class="news-grid" style="margin-top:32px;">${cards}</div>
+    ${adSlot()}
+    ${siteFooter()}
+  `;
+}
+
+function renderArticle(slug){
+  const n = NEWS.find(x=>x.slug===slug);
+  if(!n) return notFoundBlock("Article not found.", "#/news", "← Back to news");
+  document.title = n.title + " | Courtside Ten";
+  const body = n.body.map(par=>`<p>${par}</p>`).join("");
+  const idx = NEWS.findIndex(x=>x.slug===slug);
+  const others = NEWS.filter((x,i)=>i!==idx).slice(0,2).map(x=>newsCard(x)).join("");
+  return `
+    <a href="#/news" class="back-link">← ALL ARTICLES</a>
+    <section class="page-hero" style="padding-bottom:0; border-bottom:none;">
+      <div class="eyebrow">${n.category.toUpperCase()}</div>
+      <h1 class="display" style="font-size:clamp(1.9rem,5vw,3rem);">${n.title}</h1>
+      <div class="article-meta"><span>${n.date}</span><span>Courtside Ten Staff</span></div>
+    </section>
+    <div class="prose">${body}</div>
+    ${adSlot()}
+    <div class="list-head"><h2 class="mono">READ NEXT</h2></div>
+    <div class="news-grid">${others}</div>
+    ${siteFooter()}
+  `;
+}
+
+/* ---------- ABOUT ---------- */
+function renderAbout(){
+  document.title = "About | Courtside Ten";
+  return `
+    <section class="page-hero">
+      <div class="eyebrow">// ABOUT US</div>
+      <h1 class="display">GRADED, SOURCED,<br>ARGUED‑OVER RANKINGS</h1>
+      <p>Courtside Ten is an independent basketball rankings site. We build ranked, graded countdowns using a consistent methodology, then publish the full reasoning behind every grade.</p>
+    </section>
+
+    <div class="info-grid">
+      <div class="info-box"><div class="v">4</div><div class="k mono">GRADED CATEGORIES PER LIST</div></div>
+      <div class="info-box"><div class="v">10</div><div class="k mono">PLAYERS PER COUNTDOWN</div></div>
+      <div class="info-box"><div class="v">1</div><div class="k mono">CONSISTENT METHODOLOGY</div></div>
+    </div>
+
+    <div class="page-section">
+      <h2>Our Methodology</h2>
+      <p>Every countdown is graded across four categories: raw stats, advanced stats, playoff or career results, and achievements. Team success only ever counts toward the player directly responsible for it — a teammate's ring doesn't inflate someone else's grade.</p>
+      <p>Grades are editorial judgment, built from publicly available stats and results, not an output of any official league scoring system. Read the full breakdown in our <a href="#/news/how-we-grade" style="color:var(--amber);">methodology explainer</a>.</p>
+    </div>
+
+    <div class="page-section">
+      <h2>What's Next</h2>
+      <p>The current live countdown is Top 10 NBA Players Right Now (2025–26 Season). It's the first of many — all-time position rankings, rookie countdowns, and defensive rankings are all in progress. Check the <a href="#/rankings" style="color:var(--amber);">rankings archive</a> to see what's live and what's coming.</p>
+    </div>
+
+    <div class="page-section">
+      <h2>Advertise With Us</h2>
+      <p>Courtside Ten is building toward a full slate of basketball rankings and analysis. If you're interested in advertising or partnering with the site, reach out on our <a href="#/contact" style="color:var(--amber);">contact page</a>.</p>
+    </div>
+
+    ${siteFooter()}
+  `;
+}
+
+/* ---------- CONTACT ---------- */
+function renderContact(){
+  document.title = "Contact | Courtside Ten";
+  return `
+    <section class="page-hero">
+      <div class="eyebrow">// GET IN TOUCH</div>
+      <h1 class="display">CONTACT<br>COURTSIDE TEN</h1>
+      <p>Questions about a grade, a tip for a future ranking, or an advertising inquiry — send it over.</p>
+    </section>
+
+    <form class="contact-form" onsubmit="event.preventDefault(); this.querySelector('.form-note').textContent='Thanks — this demo form isn\\'t wired up yet, but message sending is coming soon. Email us directly in the meantime.';">
+      <div>
+        <label class="mono">NAME</label>
+        <input type="text" placeholder="Your name" required>
+      </div>
+      <div>
+        <label class="mono">EMAIL</label>
+        <input type="email" placeholder="you@email.com" required>
+      </div>
+      <div>
+        <label class="mono">MESSAGE</label>
+        <textarea placeholder="What's on your mind?" required></textarea>
+      </div>
+      <button type="submit">Send message</button>
+      <div class="form-note mono">This is a placeholder form — submissions aren't sent anywhere yet.</div>
+    </form>
+
+    <div class="contact-alt">
+      <div><b class="mono">GENERAL</b>hello@courtsideten.example</div>
+      <div><b class="mono">ADVERTISING</b>ads@courtsideten.example</div>
+    </div>
+
+    ${siteFooter()}
+  `;
+}
+
+/* ---------- NOT FOUND ---------- */
+function notFoundBlock(msg, href, label){
+  document.title = "Not Found | Courtside Ten";
+  return `
+    <div class="not-found">
+      <h1 class="display">404</h1>
+      <p style="color:var(--chalk-dim); margin-bottom:24px;">${msg}</p>
+      <a href="${href}" class="mono" style="color:var(--amber);">${label}</a>
+    </div>
+  `;
+}
+
+/* ---------- FOOTER ---------- */
+function siteFooter(){
+  return `
     <footer class="site-footer">
-      <div>Courtside Ten — independent 2025‑26 season analysis &amp; grading.</div>
-      <div>Grades reflect editorial judgment, not official NBA scoring.</div>
+      <div class="fcols">
+        <div class="fcol">
+          <b>SITE</b>
+          <a href="#/">Home</a>
+          <a href="#/rankings">Rankings</a>
+          <a href="#/news">News</a>
+        </div>
+        <div class="fcol">
+          <b>COMPANY</b>
+          <a href="#/about">About</a>
+          <a href="#/contact">Contact</a>
+          <a href="#/contact">Advertise</a>
+        </div>
+      </div>
+      <div class="fbottom">
+        Courtside Ten — independent basketball rankings, grading &amp; analysis. Grades reflect editorial judgment, not official league scoring.
+      </div>
     </footer>
   `;
+}
+
+/* ---------- ROUTER ---------- */
+function updateActiveNav(hash){
+  const links = document.querySelectorAll("#navLinks a");
+  let section = "#/";
+  if(hash.startsWith("#/rankings")) section = "#/rankings";
+  else if(hash.startsWith("#/news")) section = "#/news";
+  else if(hash.startsWith("#/about")) section = "#/about";
+  else if(hash.startsWith("#/contact")) section = "#/contact";
+  links.forEach(a=>{
+    a.classList.toggle("active", a.getAttribute("data-route")===section);
+  });
 }
 
 function router(){
   const hash = location.hash || "#/";
   const app = document.getElementById("app");
-  const playerMatch = hash.match(/^#\/player\/([a-z0-9-]+)/);
-  if(playerMatch){
-    app.innerHTML = renderPlayer(playerMatch[1]);
+  let m;
+  if(hash === "#/" || hash === ""){
+    app.innerHTML = renderHub();
+  } else if(hash === "#/rankings"){
+    app.innerHTML = renderRankingsIndex();
+  } else if(m = hash.match(/^#\/rankings\/([a-z0-9-]+)\/player\/([a-z0-9-]+)/)){
+    app.innerHTML = renderPlayer(m[1], m[2]);
+  } else if(m = hash.match(/^#\/rankings\/([a-z0-9-]+)/)){
+    app.innerHTML = renderRanking(m[1]);
+  } else if(hash === "#/news"){
+    app.innerHTML = renderNewsList();
+  } else if(m = hash.match(/^#\/news\/([a-z0-9-]+)/)){
+    app.innerHTML = renderArticle(m[1]);
+  } else if(hash === "#/about"){
+    app.innerHTML = renderAbout();
+  } else if(hash === "#/contact"){
+    app.innerHTML = renderContact();
   } else {
-    app.innerHTML = renderHome();
+    app.innerHTML = notFoundBlock("That page doesn't exist.", "#/", "← Back home");
   }
+  updateActiveNav(hash);
   window.scrollTo({top:0, behavior:"instant"});
 }
 window.addEventListener("hashchange", router);
