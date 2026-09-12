@@ -211,6 +211,17 @@ main{position:relative; z-index:1; max-width:1120px; margin:0 auto; padding:0 5v
 .spotlight .btn{display:inline-flex; align-items:center; gap:8px; font-family:'JetBrains Mono',monospace; font-size:0.8rem; color:var(--ink); background:var(--amber); padding:12px 22px; border-radius:100px; font-weight:700; transition:background .15s;}
 .spotlight .btn:hover{background:var(--flare);}
 
+/* HONORABLE MENTIONS */
+.hm-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px; margin-top:8px;}
+.hm-card{background:var(--panel); border:1px solid var(--line); border-top:3px solid var(--team,var(--steel)); border-radius:12px; padding:20px;}
+.hm-card.asterisk{border-top-color:var(--flare); opacity:0.9;}
+.hm-tag{font-size:0.66rem; color:var(--amber); letter-spacing:0.08em; display:block; margin-bottom:8px;}
+.hm-card.asterisk .hm-tag{color:var(--flare);}
+.hm-card h4{margin:0 0 4px; font-size:1.1rem;}
+.hm-team{font-size:0.74rem; color:var(--chalk-dim); margin-bottom:12px;}
+.hm-card p{margin:0; font-size:0.87rem; color:var(--chalk-dim); line-height:1.55;}
+.hm-asterisk-note{font-family:'JetBrains Mono',monospace; font-size:0.74rem; color:var(--chalk-dim); margin:0 0 16px;}
+
 /* AD SLOT */
 .ad-slot{border:1px dashed var(--line); border-radius:12px; padding:26px; text-align:center; color:var(--chalk-dim); font-family:'JetBrains Mono',monospace; font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; margin:52px 0;}
 .ad-slot span{display:block; margin-top:4px; font-size:0.64rem; opacity:0.55; letter-spacing:0.04em; text-transform:none;}
@@ -326,7 +337,21 @@ const PLAYERS = [
   achievements:["Led the NBA in scoring average for 2025‑26","Kia All‑NBA First Team selection","Led the Lakers past Houston in the first round of the playoffs"]
 },
 {
-  slug:"cade-cunningham", rank:5, name:"Cade Cunningham", team:"Detroit Pistons", pos:"Guard",
+  slug:"jalen-brunson", rank:5, name:"Jalen Brunson", team:"New York Knicks", pos:"Point Guard",
+  color:"#F58426",
+  hook:"The best playoff performer in basketball this year. Brunson's All‑NBA Second Team season was the floor — the ceiling was a unanimous Finals MVP and New York's first title in 53 years.",
+  grades:{raw:"A-", advanced:"B+", playoffs:"A+", achievements:"A+", overall:"A"},
+  stats:[["Playoff scoring load","94%"],["Clutch reliability","96%"],["Shot creation","90%"]],
+  statBoxes:[["45","PTS in Game 5"],["32.6","Finals PPG"],["4‑1","Finals record"],["11/11","Finals MVP votes"]],
+  narrative:[
+    "Brunson's regular season was, by his own standard, business as usual — a steady, high‑volume, high‑efficiency year that earned him a Second Team All‑NBA nod behind a genuinely stacked guard class. It's a very good season on its own, just not quite top‑five‑in‑basketball territory before the playoffs started.",
+    "Then the postseason arrived, and Brunson was the best player on the floor almost every night. New York rolled through a brutal Eastern Conference bracket, swept Cleveland in the Conference Finals, and then kept coming back from double‑digit deficits against a Spurs team that refused to go away in the Finals.",
+    "The signature moment came in Game 5 in San Antonio: 45 points, including thirteen straight during a fourth‑quarter surge that erased a 16‑point deficit and delivered a championship. It set a Knicks Finals scoring record and made Brunson a unanimous Finals MVP — the single best individual playoff run of the 2025‑26 season, even if his regular season alone wouldn't have cracked the top five."
+  ],
+  achievements:["2026 NBA Champion, New York Knicks","2026 NBA Finals MVP, unanimous 11‑of‑11 vote","Kia All‑NBA Second Team","Set a Knicks Finals scoring record with 45 points in Game 5"]
+},
+{
+  slug:"cade-cunningham", rank:6, name:"Cade Cunningham", team:"Detroit Pistons", pos:"Guard",
   color:"#1D42BA",
   hook:"The centerpiece of Detroit's turnaround. Cunningham made his first All‑NBA team while dragging the Pistons to the East's top seed and a genuine second‑round playoff push.",
   grades:{raw:"A-", advanced:"B+", playoffs:"B", achievements:"A-", overall:"B+"},
@@ -340,21 +365,21 @@ const PLAYERS = [
   achievements:["Kia All‑NBA First Team, first career selection","Led Detroit to the Eastern Conference's No. 1 seed","Won a playoff series for the first time in his career","Ranked among the league's assist leaders"]
 },
 {
-  slug:"jalen-brunson", rank:6, name:"Jalen Brunson", team:"New York Knicks", pos:"Point Guard",
-  color:"#F58426",
-  hook:"The best playoff performer in basketball this year. Brunson's All‑NBA Second Team season was the floor — the ceiling was a unanimous Finals MVP and New York's first title in 53 years.",
-  grades:{raw:"A-", advanced:"B+", playoffs:"A+", achievements:"A+", overall:"A"},
-  stats:[["Playoff scoring load","94%"],["Clutch reliability","96%"],["Shot creation","90%"]],
-  statBoxes:[["45","PTS in Game 5"],["32.6","Finals PPG"],["4‑1","Finals record"],["11/11","Finals MVP votes"]],
+  slug:"anthony-edwards", rank:7, name:"Anthony Edwards", team:"Minnesota Timberwolves", pos:"Guard",
+  color:"#78BE20",
+  hook:"A career year that just missed All‑NBA. Edwards set new personal highs across the board and put together some of the league's best playoff scoring nights, but a knee injury and a tough shooting series against San Antonio ended Minnesota's run short.",
+  grades:{raw:"A-", advanced:"B+", playoffs:"B", achievements:"B", overall:"B+"},
+  stats:[["Scoring volume","90%"],["Playoff shot‑making","82%"],["Availability","78%"]],
+  statBoxes:[["28.8","PPG career‑high"],["61","Games played"],["AS MVP","2025‑26 All‑Star Game"],["Round 1","won vs. Memphis"]],
   narrative:[
-    "Brunson's regular season was, by his own standard, business as usual — a steady, high‑volume, high‑efficiency year that earned him a Second Team All‑NBA nod behind a genuinely stacked guard class. It's a very good season on its own, just not quite top‑five‑in‑basketball territory before the playoffs started.",
-    "Then the postseason arrived, and Brunson was the best player on the floor almost every night. New York rolled through a brutal Eastern Conference bracket, at one point reeling off thirteen straight wins, and kept doing it against a Spurs team that refused to go away in the Finals.",
-    "The signature moment came in Game 5 in San Antonio: 45 points on 14‑of‑27 shooting, including ten straight during a fourth‑quarter surge that flipped a ten‑point deficit into a championship. It tied Michael Jordan's mark for points scored on the road to clinch a title, and it made Brunson a unanimous Finals MVP — the single best individual playoff run of the 2025‑26 season, even if his regular season alone wouldn't have cracked the top five."
+    "Edwards posted a career‑best 28.8 points a night and picked up his second straight All‑Star Game MVP award, cementing himself as one of the league's most explosive scorers on both ends of the calendar.",
+    "A knee issue cost him regular‑season games down the stretch — 61 played, well off his usual pace — and kept him off the All‑NBA ballot in a brutally deep guard class this year, even with the per‑game numbers to match plenty of players who did make it.",
+    "In the playoffs, Minnesota beat Memphis in six before running into San Antonio in the second round, where a banged‑up Edwards had his rough nights mixed in with a few vintage scoring outbursts. It's still an excellent season — just one where health and a stacked field kept the hardware out of reach."
   ],
-  achievements:["2026 NBA Champion, New York Knicks","2026 NBA Finals MVP, unanimous 11‑of‑11 vote","Kia All‑NBA Second Team","Set a Knicks Finals scoring record with 45 points in Game 5"]
+  achievements:["2025‑26 NBA All‑Star Game MVP (back‑to‑back)","Career‑high 28.8 points per game","Led Minnesota past Memphis in the first round of the playoffs"]
 },
 {
-  slug:"donovan-mitchell", rank:7, name:"Donovan Mitchell", team:"Cleveland Cavaliers", pos:"Guard",
+  slug:"donovan-mitchell", rank:8, name:"Donovan Mitchell", team:"Cleveland Cavaliers", pos:"Guard",
   color:"#6F263D",
   hook:"A career‑best regular season paired with Cleveland's deepest playoff run in years — Mitchell set new personal highs in scoring efficiency and pushed the Cavaliers to the Eastern Conference Finals.",
   grades:{raw:"A-", advanced:"B+", playoffs:"B+", achievements:"A-", overall:"B+"},
@@ -368,7 +393,7 @@ const PLAYERS = [
   achievements:["Kia All‑NBA Second Team selection","Led Cleveland to the Eastern Conference Finals","Set career highs in multiple efficiency categories","2025‑26 NBA All‑Star selection"]
 },
 {
-  slug:"jaylen-brown", rank:8, name:"Jaylen Brown", team:"Boston Celtics", pos:"Forward",
+  slug:"jaylen-brown", rank:9, name:"Jaylen Brown", team:"Boston Celtics", pos:"Forward",
   color:"#007A33",
   hook:"Boston's best player in a gap year. With Jayson Tatum sidelined for most of the season, Brown took on a career‑high workload and nearly forced his way onto the All‑NBA First Team.",
   grades:{raw:"A-", advanced:"B", playoffs:"C+", achievements:"B+", overall:"B+"},
@@ -382,7 +407,7 @@ const PLAYERS = [
   achievements:["Kia All‑NBA Second Team selection","Received the most All‑NBA First Team votes outside the top five","Carried a career‑high offensive workload with Tatum sidelined"]
 },
 {
-  slug:"kevin-durant", rank:9, name:"Kevin Durant", team:"Houston Rockets", pos:"Forward",
+  slug:"kevin-durant", rank:10, name:"Kevin Durant", team:"Houston Rockets", pos:"Forward",
   color:"#CE1141",
   hook:"Still one of the most efficient scorers alive. Durant passed Michael Jordan on the all‑time scoring list this season and picked up his twelfth career All‑NBA selection in his first year in Houston.",
   grades:{raw:"B+", advanced:"A-", playoffs:"C", achievements:"B+", overall:"B+"},
@@ -394,23 +419,689 @@ const PLAYERS = [
     "The Rockets' season ended in the first round against the Lakers, and Durant's own playoff run was cut short by injury after a single game — the one real drawback on an otherwise remarkably productive age‑defying year."
   ],
   achievements:["Kia All‑NBA Second Team, 12th career All‑NBA selection","Passed Michael Jordan for 5th on the NBA's all‑time scoring list","One of only a handful of players in NBA history with 12+ All‑NBA nods"]
-},
-{
-  slug:"tyrese-maxey", rank:10, name:"Tyrese Maxey", team:"Philadelphia 76ers", pos:"Guard",
-  color:"#006BB6",
-  hook:"A breakout, All‑NBA‑caliber season that turned into real playoff results — Maxey outlasted Boston in the first round before pushing eventual‑champion New York in the second.",
-  grades:{raw:"B+", advanced:"B", playoffs:"B+", achievements:"B+", overall:"B"},
-  stats:[["Scoring volume","86%"],["Playmaking growth","82%"],["Playoff result","80%"]],
-  statBoxes:[["Third Team","All‑NBA"],["Round 1","won vs. Boston"],["Round 2","vs. NY Knicks"],["Career-best","season"]],
-  narrative:[
-    "Maxey's game took another step forward this season, adding enough shot creation and playmaking to his elite speed and shooting to land his first career All‑NBA selection on the Third Team.",
-    "Philadelphia rode that growth to a first‑round upset over Boston, ending the Celtics' season in seven games, before running into the eventual champion Knicks in the second round.",
-    "It's the kind of season — real individual growth plus a real playoff run against a title team — that belongs in any top‑ten conversation built on the full body of work rather than reputation alone."
-  ],
-  achievements:["Kia All‑NBA Third Team, first career selection","Helped eliminate Boston in the first round of the playoffs","Pushed the eventual NBA champion Knicks in the second round"]
 }
 ];
 
+const NBA_TOP10_HM = [
+  {name:"Kawhi Leonard", team:"LA Clippers", tag:"All‑NBA Second Team", color:"#C8102E",
+    note:"Arguably the best pure player of the five left off this list — a career‑high 27.9 PPG on 51% shooting and a Second Team All‑NBA nod. But the Clippers didn't reach the actual playoffs, losing the play‑in to Golden State, which is a tough case to make top 10 on a list built around playoff success."},
+  {name:"Tyrese Maxey", team:"Philadelphia 76ers", tag:"All‑NBA Third Team", color:"#006BB6",
+    note:"A breakout, first career All‑NBA season that came with real playoff results — Maxey eliminated Boston in seven games before pushing the eventual champion Knicks in the second round. Squeezed out by an even deeper group of résumés at 9 and 10."}
+];
+
+const NBA_TOP10_MISSED_TIME = [
+  {name:"Giannis Antetokounmpo", team:"Milwaukee Bucks (traded to Miami)", note:"Played just 36 games as Milwaukee finished 32‑50 and missed the playoffs; no All‑NBA selection this season."},
+  {name:"Stephen Curry", team:"Golden State Warriors", note:"Played 43 games (a right knee injury cost him 27 straight); Golden State missed the playoffs, losing the play‑in to Phoenix, with Curry held to 17 points on 4‑of‑16 shooting in the finale."},
+  {name:"Jayson Tatum", team:"Boston Celtics", note:"Returned in March, just 16 regular‑season games, after an Achilles tear — an incredible comeback, but too small a sample to grade against a full season of work."}
+];
+
+
+/* ---------- POSITION RANKINGS: ENTERING 2026-27 ---------- */
+
+const PG_PLAYERS = [
+{
+  slug:"luka-doncic-pg", rank:1, name:"Luka Dončić", team:"Los Angeles Lakers", pos:"Point Guard",
+  color:"#FDB927",
+  hook:"The league's most versatile offensive engine at the position — size, handle, and shot creation that no point guard in basketball can match possession for possession.",
+  grades:{skill:"A+", twoway:"B", production:"A", pedigree:"A", overall:"A+"},
+  stats:[["Shot creation","98%"],["Passing vision","92%"],["Defensive engagement","65%"]],
+  statBoxes:[["1st","in NBA scoring, 2025‑26"],["First Team","All‑NBA"],["LAL","full first season"],["Elite","pick‑and‑roll operator"]],
+  narrative:[
+    "No point guard in the league creates offense at Dončić's size and shooting touch — he led the NBA in scoring last season while running Los Angeles' entire offensive operation, and there's no reason to expect a real step back entering his second full year in a Lakers uniform.",
+    "The one thing keeping him from the very top of an all‑position list is effort level on defense, which is more of a nitpick than a real flaw at this point. As a pure offensive engine at the position, he's in a class of his own."
+  ],
+  achievements:["Led the NBA in scoring average, 2025‑26","Kia All‑NBA First Team selection","Runs the league's most feared pick‑and‑roll offense"]
+},
+{
+  slug:"shai-gilgeous-alexander-pg", rank:2, name:"Shai Gilgeous‑Alexander", team:"Oklahoma City Thunder", pos:"Point Guard",
+  color:"#EF3B24",
+  hook:"The reigning back‑to‑back MVP and the league's most efficient high‑usage scorer, running the best team in basketball with a game that has no real weaknesses.",
+  grades:{skill:"A+", twoway:"A", production:"A+", pedigree:"A+", overall:"A+"},
+  stats:[["Scoring efficiency","97%"],["Perimeter defense","90%"],["Team control","98%"]],
+  statBoxes:[["Back‑to‑back","NBA MVP"],["31.1","PPG, 2025‑26"],["64","regular‑season wins"],["Elite","on‑ball defender"]],
+  narrative:[
+    "Gilgeous‑Alexander does everything a modern point guard needs to do — score at an elite, efficient volume, defend his position at an All‑NBA level, and organize a team that just posted the league's best record — without needing a single gaudy highlight to prove it.",
+    "The gap to Dončić at this position is mostly about pure shot creation upside; on winning and two‑way completeness, SGA is the standard the rest of the position is measured against."
+  ],
+  achievements:["Back‑to‑back NBA Most Valuable Player","Kia All‑NBA First Team, unanimous selection","Led the NBA in regular‑season wins, 2025‑26"]
+},
+{
+  slug:"cade-cunningham-pg", rank:3, name:"Cade Cunningham", team:"Detroit Pistons", pos:"Point Guard",
+  color:"#1D42BA",
+  hook:"The league's biggest riser at the position — a first career All‑NBA season that turned Detroit from lottery team into a conference top seed.",
+  grades:{skill:"A-", twoway:"B", production:"A", pedigree:"B+", overall:"A-"},
+  stats:[["Playmaking volume","93%"],["On‑ball defense","74%"],["Offensive control","90%"]],
+  statBoxes:[["First Team","All‑NBA, first selection"],["23.9","PPG, 2025‑26"],["9.9","APG, 2025‑26"],["East's","No. 1 seed, 2025‑26"]],
+  narrative:[
+    "Cunningham's leap from talented‑but‑stuck to legitimate All‑NBA engine is the single biggest positional story of the last calendar year, and there's no reason to expect regression — Detroit's whole identity now runs through him.",
+    "He's not yet the two‑way complete package Gilgeous‑Alexander is, but as a pure engine for winning basketball at a young age, he's already in the position's top tier."
+  ],
+  achievements:["Kia All‑NBA First Team, first career selection","Led Detroit to the Eastern Conference's No. 1 seed, 2025‑26","Won a playoff series for the first time in his career"]
+},
+{
+  slug:"jalen-brunson-pg", rank:4, name:"Jalen Brunson", team:"New York Knicks", pos:"Point Guard",
+  color:"#F58426",
+  hook:"The reigning Finals MVP and NBA champion, entering next season as the unquestioned floor general of a title team.",
+  grades:{skill:"A-", twoway:"B", production:"A+", pedigree:"A+", overall:"A"},
+  stats:[["Clutch reliability","96%"],["Shot creation","90%"],["Team control","95%"]],
+  statBoxes:[["2026","NBA Champion"],["Finals MVP","unanimous vote"],["Second Team","All‑NBA"],["4‑1","Finals record"]],
+  narrative:[
+    "Brunson's regular season is very good on its own, but it's the ring and the unanimous Finals MVP that put him this high entering next year — there's no bigger credential in basketball than the last player standing.",
+    "He's undersized and won't ever be a defensive stalwart, but his combination of shot‑making, decision‑making, and now championship pedigree makes him one of the safest bets at the position."
+  ],
+  achievements:["2026 NBA Champion, New York Knicks","2026 NBA Finals MVP, unanimous vote","Kia All‑NBA Second Team"]
+},
+{
+  slug:"stephen-curry-pg", rank:5, name:"Stephen Curry", team:"Golden State Warriors", pos:"Point Guard",
+  color:"#1D428A",
+  hook:"The greatest shooter who's ever played, graded here on reputation and what he showed in the games he did play — a knee injury limited him to 43 games, but the skill level when healthy hasn't dropped off.",
+  grades:{skill:"A", twoway:"C+", production:"B", pedigree:"A+", overall:"A-"},
+  stats:[["Shooting gravity","97%"],["Availability","52%"],["Half‑court shot creation","92%"]],
+  statBoxes:[["26.6","PPG, 2025‑26"],["43","games played"],["4x","NBA Champion"],["2x","NBA MVP (1x unanimous)"]],
+  narrative:[
+    "A right knee injury cost Curry 27 straight games and limited him to 43 appearances, so this ranking leans hard on track record and what he actually showed on the floor rather than a full-season stat line. When he played, the gravity was unchanged — still pulling two defenders 30 feet from the basket, still shooting at a career‑caliber clip.",
+    "Nobody in the sport has warped more defenses over a longer stretch, and a shortened season doesn't erase a decade‑plus of being the most feared shooter alive. The games‑played number is the one real knock here; the skill level isn't in question."
+  ],
+  achievements:["4x NBA Champion","2x NBA MVP, including a unanimous selection","Widely regarded as the greatest shooter in NBA history"]
+},
+{
+  slug:"tyrese-maxey-pg", rank:6, name:"Tyrese Maxey", team:"Philadelphia 76ers", pos:"Point Guard",
+  color:"#006BB6",
+  hook:"A first career All‑NBA season built on elite speed, improving shot creation, and real playoff results — Maxey runs enough of Philadelphia's offense to grade him at the point.",
+  grades:{skill:"B+", twoway:"B-", production:"B+", pedigree:"B", overall:"B+"},
+  stats:[["Scoring volume","86%"],["Playmaking growth","82%"],["Perimeter defense","65%"]],
+  statBoxes:[["Third Team","All‑NBA, first selection"],["Round 1","won vs. Boston, 2026"],["Elite","open‑court speed"],["Career‑best","season, 2025‑26"]],
+  narrative:[
+    "Maxey's game has grown every year — the speed and shooting were always there, and now the shot creation and playmaking have caught up, resulting in his first All‑NBA nod and a real postseason win over Boston.",
+    "He still has room to add strength and defensive consistency, but the offensive trajectory alone makes him one of the clearest risers at the position heading into next season."
+  ],
+  achievements:["Kia All‑NBA Third Team, first career selection","Eliminated Boston in the first round, 2026 playoffs","Career‑best scoring and playmaking season"]
+},
+{
+  slug:"tyrese-haliburton-pg", rank:7, name:"Tyrese Haliburton", team:"Indiana Pacers", pos:"Point Guard",
+  color:"#002D62",
+  hook:"One of the league's best pure playmakers, entering 2026‑27 on a comeback from the torn Achilles that cost him all of last season — a huge swing factor for this ranking a year from now.",
+  grades:{skill:"A-", twoway:"B-", production:"C", pedigree:"B+", overall:"B"},
+  stats:[["Passing vision","94%"],["Health/availability","20%"],["Shooting touch","90%"]],
+  statBoxes:[["0","games played, 2025‑26"],["Achilles","tear, 2025 Finals"],["Prior year","All‑NBA, All‑Star"],["Full recovery","expected by 2026‑27"]],
+  narrative:[
+    "Haliburton tore his Achilles in Game 7 of the 2025 Finals and missed the entire 2025‑26 season recovering — with zero games played, this grade leans entirely on reputation and prior‑year production rather than anything shown this year.",
+    "On pure skill, when healthy, he's one of the two or three best pure passers in the league. That track record keeps him in the top ten, but the total absence this season is the one thing knocking him below players who actually played and produced."
+  ],
+  achievements:["Prior‑year Kia All‑NBA selection","Multiple All‑Star selections","Led Indiana to the 2025 NBA Finals"]
+},
+{
+  slug:"lamelo-ball-pg", rank:8, name:"LaMelo Ball", team:"Minnesota Timberwolves", pos:"Point Guard",
+  color:"#78BE20",
+  hook:"A change‑of‑scenery move to Minnesota pairs Ball's elite table‑setting with Anthony Edwards' scoring — one of the more intriguing backcourt fits heading into next season.",
+  grades:{skill:"A-", twoway:"C+", production:"B", pedigree:"B", overall:"B"},
+  stats:[["Playmaking creativity","91%"],["Perimeter defense","55%"],["Shooting range","88%"]],
+  statBoxes:[["New team","traded to Minnesota"],["Elite","full‑court passer"],["Career","3x All‑Star"],["Pairs with","Anthony Edwards"]],
+  narrative:[
+    "Ball's move to Minnesota gives Edwards the primary shot‑creating partner he's lacked, and on pure table‑setting ability, few guards in the league see the floor the way Ball does.",
+    "Defense and durability remain the swing skills that will decide whether this pairing reaches its ceiling — but as a scoring‑and‑playmaking talent alone, this is one of the more exciting backcourt additions of the offseason."
+  ],
+  achievements:["3x NBA All‑Star","Among the league's assist leaders","Traded to Minnesota to pair with Anthony Edwards"]
+},
+{
+  slug:"trae-young-pg", rank:9, name:"Trae Young", team:"Washington Wizards", pos:"Point Guard",
+  color:"#002B5C",
+  hook:"A four‑time All‑Star whose season was upended by a January trade to Washington and knee and quad injuries — graded here on reputation and what he showed in a short sample, not the down year the box score suggests.",
+  grades:{skill:"A-", twoway:"C", production:"C+", pedigree:"B+", overall:"B-"},
+  stats:[["Shooting range","91%"],["Passing volume","88%"],["Availability","20%"]],
+  statBoxes:[["15","games played, 2025‑26"],["Traded","ATL → WAS, Jan. 2026"],["4x","NBA All‑Star"],["4‑yr, $212M","new deal, 2026"]],
+  narrative:[
+    "Young was dealt from Atlanta to Washington in January and battled knee and quad injuries the rest of the way, finishing with just 15 combined games and per‑game numbers well below his usual standard. That's a real down year by the raw stat line alone.",
+    "But the skill level was still there in the minutes he played — deep range, live‑dribble passing, enough shot‑making to warp a defense from 30 feet out — and the Wizards backed that up with a four‑year, $212 million deal to build around him this offseason. Graded on reputation and what he's shown across an eight‑year track record rather than one injury‑shortened season, he still belongs in this tier."
+  ],
+  achievements:["4x NBA All‑Star","Multiple‑time NBA assists leader","Signed a 4‑year, $212M deal to remain Washington's franchise point guard"]
+},
+{
+  slug:"jamal-murray-pg", rank:10, name:"Jamal Murray", team:"Denver Nuggets", pos:"Point Guard",
+  color:"#0E2240",
+  hook:"A first career All‑Star and All‑NBA season, narrowly beating out a resurgent James Harden for the final spot on pure last‑season production.",
+  grades:{skill:"B+", twoway:"C+", production:"A-", pedigree:"B", overall:"B"},
+  stats:[["Scoring volume","88%"],["Pick‑and‑roll chemistry","93%"],["Perimeter defense","60%"]],
+  statBoxes:[["25.4","PPG, 2025‑26"],["7.1","APG, 2025‑26"],["Third Team","All‑NBA, first selection"],["1st","career All‑Star nod"]],
+  narrative:[
+    "Murray's 2025‑26 was, by a clear margin, the best statistical season of his career — 25.4 points and 7.1 assists a night was enough for his first All‑Star selection and his first All‑NBA nod, both real, individually earned credentials.",
+    "He edges the position's final spot over James Harden, who put up nearly identical per‑game scoring at age 36 but was left off the All‑Star roster entirely — on production alone this season, actual hardware breaks the tie."
+  ],
+  achievements:["First career NBA All‑Star selection, 2026","Kia All‑NBA Third Team, first career selection","Longtime backcourt partner to Nikola Jokić"]
+}
+];
+
+const SG_PLAYERS = [
+{
+  slug:"anthony-edwards-sg", rank:1, name:"Anthony Edwards", team:"Minnesota Timberwolves", pos:"Shooting Guard",
+  color:"#78BE20",
+  hook:"The league's most explosive two-way shooting guard, coming off a career-high scoring season and now paired with a true table-setter in LaMelo Ball.",
+  grades:{skill:"A", twoway:"A-", production:"A", pedigree:"B+", overall:"A"},
+  stats:[["Scoring volume","93%"],["Perimeter defense","85%"],["Playoff shot‑making","82%"]],
+  statBoxes:[["28.8","PPG career‑high, 2025‑26"],["Back‑to‑back","All‑Star Game MVP"],["Elite","two‑way wing scorer"],["New backcourt","with LaMelo Ball"]],
+  narrative:[
+    "Edwards remains the position's clear top talent — a combination of downhill scoring power, a fast-improving jumper, and legitimate point-of-attack defense that few shooting guards in the league can match.",
+    "Adding LaMelo Ball to the backcourt should ease his playmaking burden and let him focus on what he does best: attacking the rim and closing games."
+  ],
+  achievements:["2025‑26 NBA All‑Star Game MVP (back‑to‑back)","Career‑high 28.8 points per game","Led Minnesota to the second round of the 2026 playoffs"]
+},
+{
+  slug:"donovan-mitchell-sg", rank:2, name:"Donovan Mitchell", team:"Cleveland Cavaliers", pos:"Shooting Guard",
+  color:"#6F263D",
+  hook:"Coming off a career-best, All-NBA season that carried Cleveland to its first Eastern Conference Finals appearance in years.",
+  grades:{skill:"A-", twoway:"B+", production:"A-", pedigree:"A-", overall:"A-"},
+  stats:[["Scoring efficiency","89%"],["Perimeter defense","80%"],["Playoff run","85%"]],
+  statBoxes:[["Second Team","All‑NBA, 2025‑26"],["East Finals","2026 appearance"],["Career‑high","efficiency numbers"],["7th","straight All‑Star season"]],
+  narrative:[
+    "Mitchell's two-way workload — elite scoring paired with legitimate perimeter defense — was the biggest reason Cleveland reached the Conference Finals for the first time in his tenure there.",
+    "There's no clear ceiling issue here: he's a proven high-usage scorer who also guards, which is a rarer combination than it sounds at this position."
+  ],
+  achievements:["Kia All‑NBA Second Team selection, 2025‑26","Led Cleveland to the 2026 Eastern Conference Finals","Seven consecutive All‑Star‑caliber seasons"]
+},
+{
+  slug:"devin-booker-sg", rank:3, name:"Devin Booker", team:"Phoenix Suns", pos:"Shooting Guard",
+  color:"#1D1160",
+  hook:"One of the league's most efficient high-volume scorers, still capable of taking over a game from anywhere on the floor.",
+  grades:{skill:"A-", twoway:"B", production:"B+", pedigree:"A-", overall:"A-"},
+  stats:[["Scoring efficiency","92%"],["Shot‑making versatility","90%"],["Perimeter defense","72%"]],
+  statBoxes:[["Multiple","All‑Star selections"],["Elite","midrange scorer"],["Career","30+ point games"],["PHX","franchise cornerstone"]],
+  narrative:[
+    "Booker's blend of shooting range, footwork, and shot‑making touch has kept him among the league's most reliable scorers year after year, regardless of who's around him.",
+    "Phoenix's roster has been in flux, but Booker's individual level of play hasn't wavered — he remains one of the safest bets at the position."
+  ],
+  achievements:["Multiple NBA All‑Star selections","Career 45%+ shooter from the field","Consistently ranks among the league's top scorers"]
+},
+{
+  slug:"derrick-white-sg", rank:6, name:"Derrick White", team:"Boston Celtics", pos:"Shooting Guard",
+  color:"#007A33",
+  hook:"A steady, switchable two-way guard whose shot-making and defensive versatility make him one of the most reliable complementary pieces at the position.",
+  grades:{skill:"B+", twoway:"A-", production:"B", pedigree:"B+", overall:"B+"},
+  stats:[["Perimeter defense","88%"],["Catch‑and‑shoot volume","82%"],["Decision‑making","85%"]],
+  statBoxes:[["2024","NBA Champion"],["Elite","switchable defender"],["Career","38%+ 3‑point shooter"],["BOS","longtime starter"]],
+  narrative:[
+    "White's game is built on doing the right thing possession after possession — a high-IQ, low-mistake guard who can guard multiple positions and space the floor at a high clip from three.",
+    "He's never going to be a high-usage scorer, but as a winning, two-way piece for a contender, few guards in the league offer more consistent value."
+  ],
+  achievements:["2024 NBA Champion, Boston Celtics","One of the league's most switchable perimeter defenders","Career 38%+ three‑point shooter"]
+},
+{
+  slug:"austin-reaves-sg", rank:5, name:"Austin Reaves", team:"Los Angeles Lakers", pos:"Shooting Guard",
+  color:"#FDB927",
+  hook:"An undrafted-turned-indispensable scoring guard who has grown into one of the Lakers' most trusted shot creators alongside Dončić.",
+  grades:{skill:"B+", twoway:"C+", production:"B+", pedigree:"B", overall:"B"},
+  stats:[["Shot creation growth","83%"],["Free‑throw drawing","88%"],["Perimeter defense","58%"]],
+  statBoxes:[["Career‑best","scoring season"],["Elite","foul‑drawing guard"],["LAL","co‑starter role"],["Rising","trajectory"]],
+  narrative:[
+    "Reaves' handle and craft getting to the free-throw line have made him a legitimate secondary shot creator, not just a floor-spacer next to the Lakers' bigger names.",
+    "As his role and usage keep expanding, he's proven capable of shouldering more offensive responsibility than his draft status ever suggested."
+  ],
+  achievements:["Emerged as a full‑time starter and secondary creator for the Lakers","One of the league's most efficient foul‑drawing guards","Undrafted‑to‑core‑piece success story"]
+},
+{
+  slug:"desmond-bane-sg", rank:7, name:"Desmond Bane", team:"Memphis Grizzlies", pos:"Shooting Guard",
+  color:"#5D76A9",
+  hook:"A high-volume, high-efficiency shooter whose scoring has become the steadiest thing about Memphis' offense.",
+  grades:{skill:"B", twoway:"C+", production:"B", pedigree:"B-", overall:"B-"},
+  stats:[["Catch‑and‑shoot volume","89%"],["Shooting efficiency","86%"],["Perimeter defense","60%"]],
+  statBoxes:[["Career","40%+ 3‑point shooter"],["Elite","movement shooter"],["MEM","offensive focal point"],["Multi‑level","scoring growth"]],
+  narrative:[
+    "Bane's shooting gravity off movement remains one of the most efficient weapons in the league, and his shot creation has continued to expand each season.",
+    "He's taken on more offensive load as Memphis has retooled around him, and the efficiency has largely held up."
+  ],
+  achievements:["Career 40%+ three‑point shooter","One of the league's most efficient high‑volume shooters","Grizzlies' primary offensive option"]
+},
+{
+  slug:"amen-thompson-sg", rank:4, name:"Amen Thompson", team:"Houston Rockets", pos:"Shooting Guard",
+  color:"#CE1141",
+  hook:"An explosive, defense-first athlete whose two-way upside has made him one of the most talked-about young guards in the league.",
+  grades:{skill:"B", twoway:"A-", production:"B", pedigree:"C+", overall:"B-"},
+  stats:[["Defensive versatility","90%"],["Transition scoring","85%"],["Jump‑shot development","55%"]],
+  statBoxes:[["Elite","point‑of‑attack defender"],["Explosive","open‑court athlete"],["HOU","rising two‑way piece"],["High","defensive ceiling"]],
+  narrative:[
+    "Thompson's combination of length, speed, and defensive instincts already rates among the best perimeter defenders in the league at his age.",
+    "The jump shot remains the swing skill, but the two-way tools are rare enough that his ceiling keeps climbing regardless."
+  ],
+  achievements:["One of the league's most disruptive young perimeter defenders","Elite open‑court athlete and finisher","Rising two‑way piece for a deep Houston roster"]
+},
+{
+  slug:"stephon-castle-sg", rank:8, name:"Stephon Castle", team:"San Antonio Spurs", pos:"Shooting Guard",
+  color:"#C4CED4",
+  hook:"A polished, defense-minded rookie standout who has quickly become a key piece of San Antonio's young core alongside Wembanyama.",
+  grades:{skill:"B-", twoway:"B", production:"B-", pedigree:"C", overall:"C+"},
+  stats:[["Perimeter defense","82%"],["Playmaking feel","75%"],["Shooting growth","62%"]],
+  statBoxes:[["NBA","Rookie of the Year"],["Elite","point‑of‑attack defender"],["SAS","young core piece"],["Rising","two‑way guard"]],
+  narrative:[
+    "Castle's defensive instincts and secondary playmaking made him an immediate contributor next to Wembanyama, and the Rookie of the Year award reflected just how complete his game already looks.",
+    "The jumper is still a work in progress, but the two-way foundation gives San Antonio a real building block in the backcourt."
+  ],
+  achievements:["NBA Rookie of the Year","Key two‑way piece of San Antonio's young core","One of the more well‑rounded rookie guards in recent memory"]
+},
+{
+  slug:"jalen-green-sg", rank:9, name:"Jalen Green", team:"Phoenix Suns", pos:"Shooting Guard",
+  color:"#1D1160",
+  hook:"An explosive scoring talent now in Phoenix, capable of the kind of scoring outbursts that can single-handedly swing a game.",
+  grades:{skill:"B+", twoway:"C+", production:"B", pedigree:"C+", overall:"B-"},
+  stats:[["Explosiveness","91%"],["Shooting consistency","76%"],["Perimeter defense","62%"]],
+  statBoxes:[["36","points, 2026 play‑in clincher"],["New team","Phoenix Suns"],["Elite","open‑court athlete"],["High","scoring ceiling"]],
+  narrative:[
+    "Green's ceiling has always been obvious — elite bounce, a quick trigger, and the ability to get to 30 in a hurry — and a big 2026 play-in performance was a reminder of just how live his scoring can get.",
+    "Consistency remains the swing factor entering next season; the tools are all there for a bigger leap."
+  ],
+  achievements:["Scored 36 points to eliminate Golden State in the 2026 play-in","One of the league's most explosive open-court scorers","Traded to Phoenix ahead of 2025‑26"]
+},
+{
+  slug:"tyler-herro-sg", rank:10, name:"Tyler Herro", team:"Milwaukee Bucks", pos:"Shooting Guard",
+  color:"#00471B",
+  hook:"A newly-minted All-Star scorer heading to Milwaukee as part of the Giannis Antetokounmpo trade, now positioned to be a lead offensive option.",
+  grades:{skill:"B", twoway:"C", production:"B-", pedigree:"C+", overall:"B-"},
+  stats:[["Shot creation","83%"],["Shooting range","87%"],["Perimeter defense","50%"]],
+  statBoxes:[["NBA All‑Star","selection"],["New team","traded to Milwaukee"],["Elite","shot‑making guard"],["Bucks'","new lead scorer"]],
+  narrative:[
+    "Herro's shot-making and shot creation made him a legitimate All-Star in Miami, and Milwaukee is betting he can be an offensive centerpiece post-Giannis.",
+    "It's a real opportunity and a real question mark at once — worth tracking closely as the Bucks reset around him."
+  ],
+  achievements:["NBA All‑Star selection","Traded to Milwaukee in the Giannis Antetokounmpo deal","Career 37%+ three‑point shooter"]
+}
+];
+
+const SF_PLAYERS = [
+{
+  slug:"lebron-james-sf", rank:1, name:"LeBron James", team:"Los Angeles Lakers", pos:"Small Forward",
+  color:"#FDB927",
+  hook:"Still producing at an All-NBA level deep into his twenties season, LeBron remains one of the most complete offensive threats at the position.",
+  grades:{skill:"A-", twoway:"B", production:"B+", pedigree:"A+", overall:"A-"},
+  stats:[["Playmaking vision","90%"],["Scoring versatility","86%"],["Availability","70%"]],
+  statBoxes:[["4x","NBA Champion"],["4x","Finals MVP"],["All‑time","scoring leader"],["LAL","current team"]],
+  narrative:[
+    "Even this deep into his career, LeBron's court vision and shot-making versatility remain good enough to anchor a playoff offense, and his conditioning has kept him productive well past the point most careers wind down.",
+    "Health and workload management are the real variables entering next season, but on pure two-way feel for the game, he's still one of the position's most complete players."
+  ],
+  achievements:["4x NBA Champion, 4x Finals MVP","NBA's all‑time leading scorer","One of the most durable superstars in league history"]
+},
+{
+  slug:"kevin-durant-sf", rank:2, name:"Kevin Durant", team:"Houston Rockets", pos:"Small Forward",
+  color:"#CE1141",
+  hook:"Still one of the most efficient, versatile scorers alive, coming off a season where he passed Michael Jordan on the NBA's all-time scoring list.",
+  grades:{skill:"A", twoway:"B", production:"B+", pedigree:"A", overall:"A-"},
+  stats:[["Scoring efficiency","92%"],["Shot‑making versatility","90%"],["Availability","75%"]],
+  statBoxes:[["5th","all‑time NBA scoring"],["12th","career All‑NBA nod"],["Second Team","All‑NBA, 2025‑26"],["HOU","first season"]],
+  narrative:[
+    "Durant's shot‑making at his size and age remains remarkable — a lethal secondary scorer in his first year in Houston, passing Michael Jordan on the all-time scoring list along the way.",
+    "The playoff run was cut short by injury, but the underlying scoring efficiency says he's still a top-tier wing option entering next season."
+  ],
+  achievements:["Kia All‑NBA Second Team, 12th career All‑NBA selection","Passed Michael Jordan for 5th on the NBA's all‑time scoring list","One of only a handful of players in NBA history with 12+ All‑NBA nods"]
+},
+{
+  slug:"jayson-tatum-sf", rank:3, name:"Jayson Tatum", team:"Boston Celtics", pos:"Small Forward",
+  color:"#007A33",
+  hook:"A six-time All-Star and four-time First Team All-NBA wing entering next season on a genuine comeback from a torn Achilles — the single biggest swing factor at any position on this list.",
+  grades:{skill:"A", twoway:"A-", production:"A-", pedigree:"A", overall:"A-"},
+  stats:[["Scoring versatility","93%"],["Two‑way impact","88%"],["Health/availability","65%"]],
+  statBoxes:[["16","games played, 2025‑26 comeback"],["4x","First Team All‑NBA"],["6x","All‑Star"],["Astonishing","recovery timeline"]],
+  narrative:[
+    "Tatum's return just 10 months after a ruptured Achilles was one of the most remarkable comebacks in recent NBA history, and the flashes he showed — 23 points, 10 rebounds, 9 assists in a playoff game back — suggest the talent is fully intact.",
+    "This ranking assumes a normal, healthy offseason build-up; on pure two-way scoring talent, when right, he's still arguably the best pure small forward in basketball."
+  ],
+  achievements:["4x Kia All‑NBA First Team selection","6x NBA All‑Star","2024 NBA Champion, Boston Celtics"]
+},
+{
+  slug:"jaylen-brown-sf", rank:4, name:"Jaylen Brown", team:"Philadelphia 76ers", pos:"Small Forward",
+  color:"#006BB6",
+  hook:"Now suiting up in Philadelphia after an offseason trade, Brown enters next season fresh off a career-high usage year that nearly forced its way onto the All-NBA First Team.",
+  grades:{skill:"A-", twoway:"B+", production:"A-", pedigree:"A-", overall:"A-"},
+  stats:[["Offensive workload","94%"],["Two‑way minutes","91%"],["Shot creation growth","85%"]],
+  statBoxes:[["Second Team","All‑NBA, 2025‑26"],["Career‑high","usage rate"],["44","1st‑Team votes received"],["Traded","to Philadelphia"]],
+  narrative:[
+    "With Tatum out for almost the entire season, Brown carried the highest offensive workload of his career while still drawing the toughest defensive assignment most nights — and nearly cracked the All-NBA First Team doing it.",
+    "Now traded to Philadelphia, Brown gives the 76ers a proven, high-usage wing scorer to pair alongside Embiid and Maxey as they retool their roster."
+  ],
+  achievements:["Kia All‑NBA Second Team selection, 2025‑26","2024 NBA Finals MVP","2024 NBA Champion, Boston Celtics"]
+},
+{
+  slug:"kawhi-leonard-sf", rank:5, name:"Kawhi Leonard", team:"Toronto Raptors", pos:"Small Forward",
+  color:"#CE1141",
+  hook:"Now traded to Toronto, a career-high scoring season reminded the league what a healthy Kawhi Leonard still looks like heading into a fresh chapter with the Raptors.",
+  grades:{skill:"A-", twoway:"B+", production:"C+", pedigree:"A", overall:"B+"},
+  stats:[["Scoring efficiency","93%"],["Two‑way impact","87%"],["Availability","70%"]],
+  statBoxes:[["27.9","PPG career‑high, 2025‑26"],["2x","NBA Champion"],["2x","Finals MVP"],["Traded","to Toronto Raptors"]],
+  narrative:[
+    "When healthy, Leonard remains one of the most complete two-way scorers of his generation — this year's career-high scoring average on elite efficiency proved it, even if his previous team ultimately missed the playoffs.",
+    "The move to Toronto answers the 'where' — availability remains the only real question left entering next season."
+  ],
+  achievements:["2x NBA Champion, 2x Finals MVP","Kia All‑NBA Second Team, 2025‑26","Career‑high 27.9 points per game, 2025‑26"]
+},
+{
+  slug:"jalen-williams-sf", rank:6, name:"Jalen Williams", team:"Oklahoma City Thunder", pos:"Small Forward",
+  color:"#EF3B24",
+  hook:"A smooth, switchable wing — known around the league as \"J-Dub\" — whose two-way growth has made him an essential piece of the league's best team.",
+  grades:{skill:"B+", twoway:"A-", production:"B+", pedigree:"B", overall:"B+"},
+  stats:[["Two‑way versatility","88%"],["Shot creation growth","83%"],["Perimeter defense","85%"]],
+  statBoxes:[["OKC","best record in NBA"],["Elite","switchable wing defender"],["Rising","shot creation"],["Key","third star"]],
+  narrative:[
+    "Williams' length and feel on both ends have made him the ideal complementary piece next to Gilgeous-Alexander and Holmgren, capable of guarding multiple positions and creating his own shot when needed.",
+    "As Oklahoma City's title window widens, his steady two-way growth has been one of the quieter reasons why."
+  ],
+  achievements:["Key two‑way piece of the league's best regular‑season team","One of the more versatile perimeter defenders at the position","Growing go‑to scoring option in crunch time"]
+},
+{
+  slug:"franz-wagner-sf", rank:8, name:"Franz Wagner", team:"Orlando Magic", pos:"Small Forward",
+  color:"#0077C0",
+  hook:"A smooth, efficient two-way wing forming one of the league's most promising young frontcourt duos alongside Paolo Banchero.",
+  grades:{skill:"B", twoway:"B+", production:"B+", pedigree:"B", overall:"B"},
+  stats:[["Scoring efficiency","85%"],["Defensive versatility","83%"],["Playmaking","78%"]],
+  statBoxes:[["Elite","secondary scorer"],["ORL","paired with Banchero"],["Improving","shot creation"],["Strong","two‑way profile"]],
+  narrative:[
+    "Wagner's efficiency and defensive versatility make him an ideal complement to Banchero, and his shot creation has steadily improved each season.",
+    "As Orlando pushes toward true contention, Wagner's two-way consistency is one of the more underrated pieces league-wide."
+  ],
+  achievements:["Key piece of Orlando's playoff rise","Efficient two‑way scoring wing","Growing shot‑creation portfolio"]
+},
+{
+  slug:"jalen-johnson-sf", rank:7, name:"Jalen Johnson", team:"Atlanta Hawks", pos:"Small Forward",
+  color:"#E03A3E",
+  hook:"A breakout, do-everything forward who emerged as one of the league's most exciting young two-way talents.",
+  grades:{skill:"B+", twoway:"B+", production:"B+", pedigree:"B", overall:"B+"},
+  stats:[["All‑around production","89%"],["Defensive versatility","85%"],["Playmaking growth","80%"]],
+  statBoxes:[["Third Team","All‑NBA consideration"],["Elite","transition finisher"],["Rising","two‑way talent"],["ATL","young core piece"]],
+  narrative:[
+    "Johnson's combination of athleticism, playmaking, and defensive versatility made him one of the breakout forwards of the last two seasons, and his ceiling still looks like it's rising.",
+    "As Atlanta builds around Young and Johnson together, he's one of the more exciting long-term bets at the position."
+  ],
+  achievements:["Emerged as one of the league's top young forwards","Elite transition and open‑floor athlete","Growing multi‑position defensive impact"]
+},
+{
+  slug:"mikal-bridges-sf", rank:9, name:"Mikal Bridges", team:"New York Knicks", pos:"Small Forward",
+  color:"#F58426",
+  hook:"A durable, switchable wing defender whose off-ball scoring gives the champion Knicks another two-way piece alongside Anunoby.",
+  grades:{skill:"B", twoway:"A-", production:"B", pedigree:"B", overall:"B"},
+  stats:[["Perimeter defense","87%"],["Catch‑and‑shoot volume","83%"],["Durability","95%"]],
+  statBoxes:[["2026","NBA Champion"],["Elite","iron‑man durability"],["Career","never missed a game streak"],["NYK","title‑team starter"]],
+  narrative:[
+    "Bridges' combination of defensive versatility and reliable spot-up shooting made him a seamless fit next to New York's ball-dominant guards during the title run.",
+    "He may never be a No. 1 option, but as a two-way, always-available wing on a contender, he's about as valuable a role player as the league has."
+  ],
+  achievements:["2026 NBA Champion, New York Knicks","One of the league's most durable, always‑available players","Elite catch‑and‑shoot, switchable wing defender"]
+},
+{
+  slug:"jaden-mcdaniels-sf", rank:10, name:"Jaden McDaniels", team:"Minnesota Timberwolves", pos:"Small Forward",
+  color:"#78BE20",
+  hook:"One of the league's premier perimeter defenders, giving Minnesota's backcourt stars a lockdown wing to build around.",
+  grades:{skill:"B-", twoway:"A", production:"B-", pedigree:"C+", overall:"B-"},
+  stats:[["Perimeter defense","93%"],["Length/versatility","89%"],["Shooting consistency","65%"]],
+  statBoxes:[["Elite","point‑of‑attack defender"],["Multiple","All‑Defensive consideration"],["MIN","defensive anchor"],["Rising","offensive role"]],
+  narrative:[
+    "McDaniels draws the toughest perimeter assignment on the floor nearly every night, and his length and instincts make him one of the most disruptive wing defenders in basketball.",
+    "The offense remains secondary, but his defensive value alone makes him one of the most important non-star pieces at the position."
+  ],
+  achievements:["One of the league's top perimeter defenders","Consistently draws the opponent's top scoring threat","Key defensive anchor for Minnesota's playoff push"]
+}
+];
+
+const PF_PLAYERS = [
+{
+  slug:"giannis-antetokounmpo-pf", rank:1, name:"Giannis Antetokounmpo", team:"Miami Heat", pos:"Power Forward",
+  color:"#98002E",
+  hook:"A two-time MVP entering a completely new chapter after a blockbuster trade to Miami — still one of the most physically dominant players in basketball when healthy.",
+  grades:{skill:"A", twoway:"A", production:"B", pedigree:"A+", overall:"A-"},
+  stats:[["Interior scoring","95%"],["Rim protection","90%"],["Availability","60%"]],
+  statBoxes:[["2x","NBA MVP"],["NBA Champion","2021 Finals MVP"],["36","games played, 2025‑26"],["Traded","to Miami, 2026"]],
+  narrative:[
+    "Only 36 games last season due to injury, and Milwaukee missed the playoffs entirely — but that says more about roster context than about Giannis' physical dominance, which remains close to unmatched when he's on the floor.",
+    "The move to Miami, pairing him with Bam Adebayo, is one of the most-watched storylines of the offseason. Health and fit are the real questions; talent was never in doubt."
+  ],
+  achievements:["2x NBA Most Valuable Player","2021 NBA Champion and Finals MVP","Traded to Miami in one of the biggest deals in NBA history"]
+},
+{
+  slug:"anthony-davis-pf", rank:2, name:"Anthony Davis", team:"Washington Wizards", pos:"Power Forward",
+  color:"#00538C",
+  hook:"A former Defensive Player of the Year-caliber anchor whose two-way talent remains elite whenever he stays on the floor.",
+  grades:{skill:"A-", twoway:"A-", production:"B", pedigree:"A-", overall:"B+"},
+  stats:[["Rim protection","92%"],["Scoring versatility","87%"],["Availability","62%"]],
+  statBoxes:[["NBA Champion","2020"],["Multiple","All‑Star selections"],["Elite","two‑way big"],["WAS","current team"]],
+  narrative:[
+    "Davis remains one of the most skilled two-way forwards in basketball when healthy — a legitimate scorer, rebounder, and rim protector all at once.",
+    "Availability has been the recurring theme of his career, and it's the main thing keeping him out of the top tier of this list."
+  ],
+  achievements:["2020 NBA Champion, Los Angeles Lakers","Multiple NBA All‑Star and All‑Defensive selections","One of the league's most complete two‑way big men"]
+},
+{
+  slug:"pascal-siakam-pf", rank:3, name:"Pascal Siakam", team:"Indiana Pacers", pos:"Power Forward",
+  color:"#002D62",
+  hook:"A former Most Improved Player and champion whose versatile scoring has made him a key piece of Indiana's recent playoff runs.",
+  grades:{skill:"B+", twoway:"B", production:"B+", pedigree:"B+", overall:"B+"},
+  stats:[["Scoring versatility","87%"],["Transition scoring","89%"],["Rebounding","80%"]],
+  statBoxes:[["2019","NBA Champion"],["Former","Most Improved Player"],["Elite","face‑up scorer"],["IND","core piece"]],
+  narrative:[
+    "Siakam's face-up scoring and open-floor speed remain a difficult matchup for slower power forwards, and he's been a consistent driver of Indiana's recent playoff pushes.",
+    "He's more complementary than true No. 1 option at this stage, but a genuinely excellent one on a well-built roster."
+  ],
+  achievements:["2019 NBA Champion, Toronto Raptors","Former NBA Most Improved Player","Key piece of Indiana's 2025 Finals run"]
+},
+{
+  slug:"paolo-banchero-pf", rank:4, name:"Paolo Banchero", team:"Orlando Magic", pos:"Power Forward",
+  color:"#0077C0",
+  hook:"A physically imposing scoring forward who has grown into Orlando's clear franchise centerpiece.",
+  grades:{skill:"A-", twoway:"B", production:"A-", pedigree:"B+", overall:"B+"},
+  stats:[["Scoring volume","89%"],["Shot creation","86%"],["Rebounding","82%"]],
+  statBoxes:[["Rookie of the Year","2023"],["Multiple","All‑Star selections"],["Elite","frontcourt scorer"],["ORL","franchise centerpiece"]],
+  narrative:[
+    "Banchero's combination of size, handle, and touch has made him one of the league's most reliable frontcourt scorers, and Orlando's continued playoff progress runs through his development.",
+    "The defensive engagement and efficiency both have room to grow, but the offensive foundation is already elite‑tier."
+  ],
+  achievements:["2023 NBA Rookie of the Year","Multiple NBA All‑Star selections","Orlando's clear franchise centerpiece"]
+},
+{
+  slug:"evan-mobley-pf", rank:5, name:"Evan Mobley", team:"Cleveland Cavaliers", pos:"Power Forward",
+  color:"#6F263D",
+  hook:"A rangy, rim-protecting big whose defensive versatility and expanding offensive game have made him one of the league's premier young frontcourt anchors.",
+  grades:{skill:"B+", twoway:"A", production:"B+", pedigree:"B", overall:"B+"},
+  stats:[["Rim protection","91%"],["Defensive versatility","90%"],["Shooting range growth","70%"]],
+  statBoxes:[["Defensive Player of the Year","caliber season"],["Elite","multi‑position defender"],["CLE","frontcourt anchor"],["Expanding","offensive skill set"]],
+  narrative:[
+    "Mobley's length and mobility let him guard almost anyone on the floor, and his rim protection anchors one of the league's most disciplined defenses.",
+    "The offensive game keeps expanding outward, and as his shooting range grows, his two-way ceiling looks like one of the highest at the position."
+  ],
+  achievements:["Perennial Defensive Player of the Year consideration","One of the league's most versatile defensive anchors","Growing floor‑spacing threat for Cleveland"]
+},
+{
+  slug:"chet-holmgren-pf", rank:6, name:"Chet Holmgren", team:"Oklahoma City Thunder", pos:"Power Forward",
+  color:"#EF3B24",
+  hook:"A rim-protecting stretch big on the league's best team, giving Oklahoma City a rare shot-blocking-and-shooting combination up front.",
+  grades:{skill:"B+", twoway:"A-", production:"A", pedigree:"B", overall:"B+"},
+  stats:[["Rim protection","90%"],["Shooting range","85%"],["Team fit","96%"]],
+  statBoxes:[["Third Team","All‑NBA, 2025‑26"],["Elite","shot‑blocking stretch big"],["OKC","best record in NBA"],["Strong","two‑way fit"]],
+  narrative:[
+    "Holmgren's shot-blocking combined with real three-point range gives Oklahoma City one of the most modern frontcourt profiles in the league, perfectly complementing Gilgeous-Alexander's downhill scoring.",
+    "As the Thunder's title window opens further, Holmgren's two-way fit is a big part of why they're the league's best team."
+  ],
+  achievements:["Kia All‑NBA Third Team selection, 2025‑26","Key piece of the league's best regular‑season team","Elite shot‑blocking, stretch skill set"]
+},
+{
+  slug:"jaren-jackson-jr-pf", rank:8, name:"Jaren Jackson Jr.", team:"Utah Jazz", pos:"Power Forward",
+  color:"#5D76A9",
+  hook:"A former Defensive Player of the Year whose rim protection and stretch shooting give Utah a rare two-way frontcourt weapon.",
+  grades:{skill:"B", twoway:"A-", production:"B", pedigree:"B", overall:"B"},
+  stats:[["Shot‑blocking rate","90%"],["Shooting range","82%"],["Foul discipline","60%"]],
+  statBoxes:[["Defensive Player of the Year","past winner"],["Elite","stretch shot‑blocker"],["UTA","frontcourt anchor"],["Strong","two‑way profile"]],
+  narrative:[
+    "Jackson's rim protection paired with real three-point range remains one of the more unique combinations at the position, giving Utah a defensive anchor who doesn't sacrifice floor spacing.",
+    "Foul trouble has been the recurring swing factor in his availability, but the two-way talent level is without question elite."
+  ],
+  achievements:["NBA Defensive Player of the Year (past winner)","Elite shot‑blocking, stretch‑shooting big man","Key frontcourt anchor for Utah"]
+},
+{
+  slug:"julius-randle-pf", rank:9, name:"Julius Randle", team:"Charlotte Hornets", pos:"Power Forward",
+  color:"#00788C",
+  hook:"A physical, high-usage scoring forward who has found a new role as a frontcourt piece in Charlotte.",
+  grades:{skill:"B", twoway:"C+", production:"B", pedigree:"B", overall:"B-"},
+  stats:[["Scoring volume","84%"],["Physicality/rebounding","82%"],["Shot creation","78%"]],
+  statBoxes:[["Multiple","All‑Star selections"],["Elite","bully‑ball scorer"],["CHA","current team"],["Strong","rebounding forward"]],
+  narrative:[
+    "Randle's combination of strength and shot-making remains a load for opposing forwards, and he's found a productive role as a frontcourt scorer in Charlotte.",
+    "The efficiency swings year to year, but the physical scoring profile has been consistent for most of his career."
+  ],
+  achievements:["Multiple NBA All‑Star selections","Consistent 20+ points, 8+ rebounds producer","Physical mismatch scoring forward"]
+},
+{
+  slug:"scottie-barnes-pf", rank:7, name:"Scottie Barnes", team:"Toronto Raptors", pos:"Power Forward",
+  color:"#CE1141",
+  hook:"A do-everything, positionless forward whose defensive versatility and improving playmaking make him one of the league's most valuable two-way pieces.",
+  grades:{skill:"B+", twoway:"A-", production:"A-", pedigree:"B+", overall:"B+"},
+  stats:[["Positional versatility","93%"],["Playmaking growth","85%"],["Defensive impact","90%"]],
+  statBoxes:[["Rookie of the Year","2022"],["NBA All‑Star","selection"],["Elite","multi‑position defender"],["TOR","franchise cornerstone"]],
+  narrative:[
+    "Barnes' ability to guard multiple positions while running point-forward duties on offense makes him one of the most valuable non-scoring forwards in the league, and his shooting continues to trend up year over year.",
+    "As Toronto builds around him, he remains one of the safest two-way bets at the position for the next decade."
+  ],
+  achievements:["2022 NBA Rookie of the Year","NBA All‑Star selection","One of the league's most versatile defenders"]
+},
+{
+  slug:"zion-williamson-pf", rank:10, name:"Zion Williamson", team:"New Orleans Pelicans", pos:"Power Forward",
+  color:"#0C2340",
+  hook:"When healthy, one of the most physically unstoppable forwards in the league — availability remains the defining question entering next season.",
+  grades:{skill:"A-", twoway:"B", production:"C+", pedigree:"B-", overall:"C+"},
+  stats:[["Interior scoring","96%"],["Availability","50%"],["Rebounding","83%"]],
+  statBoxes:[["Elite","interior scoring efficiency"],["Injury history","recurring concern"],["NOP","current team"],["High","physical ceiling"]],
+  narrative:[
+    "When he's on the floor, Williamson remains close to unguardable at the rim — few players in the league combine his strength and touch inside the paint.",
+    "The availability question has followed him for years and keeps this grade lower than the talent alone would suggest."
+  ],
+  achievements:["Career elite interior scoring efficiency","One of the league's most physically dominant finishers","2019 No. 1 overall draft pick"]
+}
+];
+
+const C_PLAYERS = [
+{
+  slug:"nikola-jokic-c", rank:1, name:"Nikola Jokić", team:"Denver Nuggets", pos:"Center",
+  color:"#FEC524",
+  hook:"The most statistically dominant center in the league by a wide margin, and one of the greatest offensive big men in NBA history.",
+  grades:{skill:"A+", twoway:"A", production:"A+", pedigree:"A+", overall:"A+"},
+  stats:[["Offensive skill","99%"],["Playmaking load","96%"],["Rebounding rate","94%"]],
+  statBoxes:[["27.9","PPG, 2025‑26"],["12.9","RPG, 2025‑26"],["10.9","APG, 2025‑26"],["3x","NBA MVP"]],
+  narrative:[
+    "Jokić's blend of scoring, rebounding, and elite passing at his size remains completely without precedent — a near triple-double average from the center position is still the most statistically absurd thing happening in basketball.",
+    "There's no real competition for the top center spot; his combination of skill and production is simply on a different level."
+  ],
+  achievements:["3x NBA Most Valuable Player","Kia All‑NBA First Team, unanimous, 2025‑26","Led the NBA in rebounding and assists, 2025‑26"]
+},
+{
+  slug:"victor-wembanyama-c", rank:2, name:"Victor Wembanyama", team:"San Antonio Spurs", pos:"Center",
+  color:"#C4CED4",
+  hook:"A generational two-way anomaly who led San Antonio to the 2026 NBA Finals while anchoring the league's most feared defense.",
+  grades:{skill:"A", twoway:"A+", production:"A", pedigree:"A-", overall:"A"},
+  stats:[["Rim protection","98%"],["Guard‑like shot‑making","90%"],["Playoff run","95%"]],
+  statBoxes:[["2026","NBA Finals appearance"],["3rd","MVP finalist, 2025‑26"],["Elite","shot‑blocking anchor"],["First Team","All‑NBA, 99/100 votes"]],
+  narrative:[
+    "No player in the league combines Wembanyama's defensive gravity with guard-like shot-making at his size, and the Finals run only reinforced how close he already is to the top of this position.",
+    "The gap to Jokić is almost entirely about offensive polish and playmaking; on defense, Wembanyama is arguably already the best center in the league."
+  ],
+  achievements:["2025‑26 NBA MVP finalist (3rd place)","Kia All‑NBA First Team, 99‑of‑100 vote","Led San Antonio to the 2026 NBA Finals"]
+},
+{
+  slug:"joel-embiid-c", rank:3, name:"Joel Embiid", team:"Philadelphia 76ers", pos:"Center",
+  color:"#006BB6",
+  hook:"A former MVP whose talent is still top-tier when on the floor — availability remains the single biggest question mark entering next season.",
+  grades:{skill:"A", twoway:"B+", production:"C+", pedigree:"A", overall:"B"},
+  stats:[["Scoring efficiency","93%"],["Availability","45%"],["Rim protection","85%"]],
+  statBoxes:[["NBA MVP","2023"],["Multiple","scoring titles"],["Injury history","recurring concern"],["PHI","current team"]],
+  narrative:[
+    "When healthy, Embiid remains one of the most dominant scoring bigs the league has seen — the MVP-level talent has never gone anywhere.",
+    "The games-missed total has grown every year, and it's genuinely uncertain how much of next season he'll be able to play — the reason this grade sits below the pure talent level."
+  ],
+  achievements:["2023 NBA Most Valuable Player","Multiple NBA scoring titles","One of the most dominant offensive centers of his generation"]
+},
+{
+  slug:"karl-anthony-towns-c", rank:4, name:"Karl‑Anthony Towns", team:"New York Knicks", pos:"Center",
+  color:"#F58426",
+  hook:"A stretch-big cornerstone of the defending champions, giving New York's title roster a rare shooting-and-scoring frontcourt weapon.",
+  grades:{skill:"A-", twoway:"B-", production:"A", pedigree:"B+", overall:"B+"},
+  stats:[["Shooting range","93%"],["Interior scoring","85%"],["Rebounding","83%"]],
+  statBoxes:[["2026","NBA Champion"],["Elite","stretch‑five scoring big"],["Multiple","All‑Star selections"],["NYK","title‑team starter"]],
+  narrative:[
+    "Towns' shooting gravity and scoring versatility gave New York's championship roster a dimension few contenders have at his size, spacing the floor for Brunson's drive-and-kick game.",
+    "He'll never be a plus rim protector, but as an offensive weapon on a title team, his fit could hardly be better."
+  ],
+  achievements:["2026 NBA Champion, New York Knicks","Multiple NBA All‑Star selections","One of the most prolific shooting big men in NBA history"]
+},
+{
+  slug:"alperen-sengun-c", rank:5, name:"Alperen Şengün", team:"Houston Rockets", pos:"Center",
+  color:"#CE1141",
+  hook:"A skilled, high-IQ passing big whose all-around game has made him one of the league's fastest-rising centers.",
+  grades:{skill:"A-", twoway:"B+", production:"A-", pedigree:"B", overall:"B+"},
+  stats:[["Passing from the post","91%"],["Scoring touch","87%"],["Rebounding","82%"]],
+  statBoxes:[["NBA All‑Star","selection"],["Elite","passing big man"],["Rising","two‑way trajectory"],["HOU","franchise centerpiece"]],
+  narrative:[
+    "Şengün's combination of footwork, touch, and elite passing out of the post has made him one of the most fun young centers in the league to watch, and his defense continues to improve.",
+    "As Houston builds around him and Durant, he's one of the clearer long-term bets at the position."
+  ],
+  achievements:["NBA All‑Star selection","One of the league's best passing big men","Houston's franchise center of the future"]
+},
+{
+  slug:"jalen-duren-c", rank:7, name:"Jalen Duren", team:"Detroit Pistons", pos:"Center",
+  color:"#1D42BA",
+  hook:"An athletic, high-energy rim-runner who has become a key defensive and lob-catching piece of Detroit's playoff rise.",
+  grades:{skill:"B-", twoway:"B", production:"B+", pedigree:"C+", overall:"B-"},
+  stats:[["Rebounding","90%"],["Rim finishing","88%"],["Rim protection","78%"]],
+  statBoxes:[["Third Team","All‑NBA consideration"],["Elite","rebounding energy big"],["DET","playoff riser"],["Strong","lob‑catching finisher"]],
+  narrative:[
+    "Duren's rebounding and rim-running have been a perfect complement to Cade Cunningham's playmaking, and his defensive activity was a key part of Detroit's rise to the East's top seed.",
+    "The offensive skill set is still developing, but as an energy and rebounding anchor, he's already one of the better young centers in the league."
+  ],
+  achievements:["Key rebounding and rim‑protection piece of Detroit's rise","Elite lob‑catching finisher","One of the league's most active young rebounders"]
+},
+{
+  slug:"domantas-sabonis-c", rank:8, name:"Domantas Sabonis", team:"Sacramento Kings", pos:"Center",
+  color:"#5A2D81",
+  hook:"One of the league's most reliable double-double machines, anchoring Sacramento's offense with elite passing and rebounding.",
+  grades:{skill:"B+", twoway:"B", production:"B+", pedigree:"B+", overall:"B+"},
+  stats:[["Rebounding rate","93%"],["Passing from the elbow","88%"],["Scoring efficiency","85%"]],
+  statBoxes:[["Multiple","All‑Star selections"],["Elite","rebounding big"],["Career","double‑double leader"],["SAC","franchise centerpiece"]],
+  narrative:[
+    "Sabonis' combination of elite rebounding and elbow passing makes him one of the league's most reliable offensive hubs at the position, night in and night out.",
+    "He's not a rim-protecting anchor, but as a two-way, high-floor center, he's about as consistent as it gets."
+  ],
+  achievements:["Multiple NBA All‑Star selections","Perennial league leader in double‑doubles","One of the league's best passing centers"]
+},
+{
+  slug:"bam-adebayo-c", rank:6, name:"Bam Adebayo", team:"Miami Heat", pos:"Center",
+  color:"#98002E",
+  hook:"An All-NBA-caliber two-way big now paired with Giannis Antetokounmpo, giving Miami one of the more physically imposing frontcourts in the league.",
+  grades:{skill:"B", twoway:"A-", production:"B+", pedigree:"B+", overall:"B"},
+  stats:[["Rim protection","89%"],["Playmaking from the post","82%"],["Rebounding","85%"]],
+  statBoxes:[["Multiple","All‑Star selections"],["Elite","defensive anchor"],["MIA","paired with Giannis"],["Strong","passing big"]],
+  narrative:[
+    "Adebayo's defense and underrated passing have made him one of the league's most valuable non-scoring bigs, and now he shares the frontcourt with Antetokounmpo.",
+    "The fit alongside another traditional big is the storyline to watch, but individually, Adebayo remains one of the league's better two-way centers."
+  ],
+  achievements:["Multiple NBA All‑Star selections","One of the league's premier defensive frontcourt players","Now paired with Giannis Antetokounmpo in Miami"]
+},
+{
+  slug:"jarrett-allen-c", rank:9, name:"Jarrett Allen", team:"Cleveland Cavaliers", pos:"Center",
+  color:"#6F263D",
+  hook:"A high-efficiency lob finisher and rim protector who anchors one of the league's most disciplined defenses.",
+  grades:{skill:"B", twoway:"B+", production:"B", pedigree:"B-", overall:"B-"},
+  stats:[["Finishing efficiency","91%"],["Rim protection","85%"],["Rebounding","83%"]],
+  statBoxes:[["Elite","field‑goal efficiency"],["Strong","rim‑protecting anchor"],["CLE","longtime starter"],["Reliable","double‑double threat"]],
+  narrative:[
+    "Allen's efficiency at the rim and reliable rebounding make him one of the more underrated defensive anchors in the league, quietly holding down the middle of one of basketball's best defenses.",
+    "He's not a high-usage offensive piece, but as a low-mistake, high-value starting center, few do it more consistently."
+  ],
+  achievements:["One of the league's most efficient interior finishers","Key defensive anchor for a top‑tier Cleveland defense","Consistent double‑double producer"]
+},
+{
+  slug:"rudy-gobert-c", rank:10, name:"Rudy Gobert", team:"Minnesota Timberwolves", pos:"Center",
+  color:"#78BE20",
+  hook:"A three-time Defensive Player of the Year whose rim protection remains a foundational piece of Minnesota's defensive identity.",
+  grades:{skill:"C+", twoway:"A", production:"B-", pedigree:"A-", overall:"B-"},
+  stats:[["Rim protection","95%"],["Rebounding rate","90%"],["Offensive polish","45%"]],
+  statBoxes:[["3x","Defensive Player of the Year"],["Elite","interior anchor"],["MIN","defensive backbone"],["Multiple","All‑Defensive selections"]],
+  narrative:[
+    "Gobert's rim protection remains among the very best the league has ever seen, anchoring Minnesota's defense and altering shots even when he's not the one blocking them.",
+    "The offensive game has never been the point, but as a pure defensive value center, he's still one of the most impactful players in the league when healthy."
+  ],
+  achievements:["3x NBA Defensive Player of the Year","Multiple‑time All‑Defensive First Team selection","One of the most impactful defensive anchors in NBA history"]
+}
+];
 const RANKINGS = [
   {
     id:"top-10-nba-players-2025-26",
@@ -433,35 +1124,131 @@ const RANKINGS = [
       ["PLAYOFF SUCCESS","How far they went, and how they performed when it mattered."],
       ["ACHIEVEMENTS","Awards, All‑NBA nods, and hardware earned this season."]
     ],
-    players: PLAYERS
+    gradeCategories:[["raw","Raw Stats"],["advanced","Advanced"],["playoffs","Playoffs"],["achievements","Achievements"]],
+    players: PLAYERS,
+    honorableMentions: NBA_TOP10_HM,
+    missedTime: NBA_TOP10_MISSED_TIME,
+    missedTimeNote:"These three have top‑10‑caliber résumés in other years, but all missed heavy chunks of 2025‑26 — too big a gap to grade against a full season of work."
   },
   {
-    id:"top-10-centers-all-time",
-    status:"soon",
-    badge:"All‑Time · Coming Soon",
-    title:"Top 10 Centers of All Time",
-    blurb:"From George Mikan to Jokić — a full-career look at the players who defined the middle of the floor."
+    id:"top-10-point-guards-2026-27",
+    status:"live",
+    badge:"NBA · Entering 2026–27",
+    title:"Top 10 Point Guards Entering Next Season",
+    short:"Top 10 Point Guards",
+    blurb:"A position-by-position power ranking heading into 2026‑27 — who's the best lead guard in basketball right now, based on skill level, two‑way impact, team situation, and pedigree.",
+    eyebrow:"// 2026–27 POSITION PREVIEW",
+    headline:["TOP <span class=\"stroke\">10</span>","POINT GUARDS","ENTERING NEXT SEASON"],
+    meta:[
+      ["TOP SEED","Luka Dončić"],
+      ["DEFENDING CHAMP","Jalen Brunson"],
+      ["BIGGEST RISER","Cade Cunningham"],
+      ["COMEBACK WATCH","Tyrese Haliburton"]
+    ],
+    method:[
+      ["SCORING & SKILL","Shot creation, shooting touch, and offensive versatility."],
+      ["TWO‑WAY IMPACT","Playmaking plus what they take away defensively."],
+      ["LAST SEASON","How they performed last season — full sample, or reputation and limited-sample production for anyone who missed real time to injury."],
+      ["PEDIGREE","Track record — All‑NBA history, team success, résumé."]
+    ],
+    gradeCategories:[["skill","Scoring & Skill"],["twoway","Two‑Way Impact"],["production","Last Season"],["pedigree","Pedigree"]],
+    players: PG_PLAYERS
   },
   {
-    id:"top-10-rookies-2025-26",
-    status:"soon",
-    badge:"NBA · Coming Soon",
-    title:"Top 10 Rookies Right Now",
-    blurb:"Grading this season's rookie class on production, efficiency, and what it means for their ceilings."
+    id:"top-10-shooting-guards-2026-27",
+    status:"live",
+    badge:"NBA · Entering 2026–27",
+    title:"Top 10 Shooting Guards Entering Next Season",
+    short:"Top 10 Shooting Guards",
+    blurb:"The league's best two-guards heading into 2026‑27, ranked on scoring, two‑way impact, team situation, and pedigree.",
+    eyebrow:"// 2026–27 POSITION PREVIEW",
+    headline:["TOP <span class=\"stroke\">10</span>","SHOOTING GUARDS","ENTERING NEXT SEASON"],
+    meta:[
+      ["TOP SEED","Anthony Edwards"],
+      ["MOST EFFICIENT","Devin Booker"],
+      ["ROOKIE STANDOUT","Stephon Castle"],
+      ["DEFENSIVE ACE","Derrick White"]
+    ],
+    method:[
+      ["SCORING & SKILL","Shot creation, shooting touch, and offensive versatility."],
+      ["TWO‑WAY IMPACT","On‑ball scoring plus perimeter defense."],
+      ["LAST SEASON","How they performed last season — full sample, or reputation and limited-sample production for anyone who missed real time to injury."],
+      ["PEDIGREE","Track record — All‑NBA history, team success, résumé."]
+    ],
+    gradeCategories:[["skill","Scoring & Skill"],["twoway","Two‑Way Impact"],["production","Last Season"],["pedigree","Pedigree"]],
+    players: SG_PLAYERS
   },
   {
-    id:"top-10-defenders-2025-26",
-    status:"soon",
-    badge:"NBA · Coming Soon",
-    title:"Top 10 Defenders Right Now",
-    blurb:"The league's best two-way disruptors, ranked on matchup data, rim protection, and playoff defensive impact."
+    id:"top-10-small-forwards-2026-27",
+    status:"live",
+    badge:"NBA · Entering 2026–27",
+    title:"Top 10 Small Forwards Entering Next Season",
+    short:"Top 10 Small Forwards",
+    blurb:"The best wings in basketball heading into 2026‑27, ranked on scoring, two‑way impact, team situation, and pedigree.",
+    eyebrow:"// 2026–27 POSITION PREVIEW",
+    headline:["TOP <span class=\"stroke\">10</span>","SMALL FORWARDS","ENTERING NEXT SEASON"],
+    meta:[
+      ["TOP SEED","LeBron James"],
+      ["COMEBACK WATCH","Jayson Tatum (Achilles)"],
+      ["NEW TEAM","Jaylen Brown → 76ers"],
+      ["NEW TEAM","Kawhi Leonard → Raptors"]
+    ],
+    method:[
+      ["SCORING & SKILL","Shot creation, shooting touch, and offensive versatility."],
+      ["TWO‑WAY IMPACT","Wing scoring plus point-of-attack and help defense."],
+      ["LAST SEASON","How they performed last season — full sample, or reputation and limited-sample production for anyone who missed real time to injury."],
+      ["PEDIGREE","Track record — All‑NBA history, team success, résumé."]
+    ],
+    gradeCategories:[["skill","Scoring & Skill"],["twoway","Two‑Way Impact"],["production","Last Season"],["pedigree","Pedigree"]],
+    players: SF_PLAYERS
   },
   {
-    id:"top-10-point-guards-all-time",
-    status:"soon",
-    badge:"All‑Time · Coming Soon",
-    title:"Top 10 Point Guards of All Time",
-    blurb:"Magic, Stockton, Curry, and the rest of the position's all-time greats, graded across every era."
+    id:"top-10-power-forwards-2026-27",
+    status:"live",
+    badge:"NBA · Entering 2026–27",
+    title:"Top 10 Power Forwards Entering Next Season",
+    short:"Top 10 Power Forwards",
+    blurb:"The best four-men in the league heading into 2026‑27, ranked on scoring, two‑way impact, team situation, and pedigree.",
+    eyebrow:"// 2026–27 POSITION PREVIEW",
+    headline:["TOP <span class=\"stroke\">10</span>","POWER FORWARDS","ENTERING NEXT SEASON"],
+    meta:[
+      ["TOP SEED","Giannis Antetokounmpo"],
+      ["NEW TEAM","Giannis Antetokounmpo → Miami"],
+      ["RISING STAR","Evan Mobley"],
+      ["TWO‑WAY ACE","Anthony Davis"]
+    ],
+    method:[
+      ["SCORING & SKILL","Shot creation, shooting touch, and offensive versatility."],
+      ["TWO‑WAY IMPACT","Frontcourt scoring plus rebounding and rim defense."],
+      ["LAST SEASON","How they performed last season — full sample, or reputation and limited-sample production for anyone who missed real time to injury."],
+      ["PEDIGREE","Track record — All‑NBA history, team success, résumé."]
+    ],
+    gradeCategories:[["skill","Scoring & Skill"],["twoway","Two‑Way Impact"],["production","Last Season"],["pedigree","Pedigree"]],
+    players: PF_PLAYERS
+  },
+  {
+    id:"top-10-centers-2026-27",
+    status:"live",
+    badge:"NBA · Entering 2026–27",
+    title:"Top 10 Centers Entering Next Season",
+    short:"Top 10 Centers",
+    blurb:"The best players anchoring the middle of the floor heading into 2026‑27, ranked on scoring, two‑way impact, team situation, and pedigree.",
+    eyebrow:"// 2026–27 POSITION PREVIEW",
+    headline:["TOP <span class=\"stroke\">10</span>","CENTERS","ENTERING NEXT SEASON"],
+    meta:[
+      ["TOP SEED","Nikola Jokić"],
+      ["BEST DEFENDER","Victor Wembanyama"],
+      ["RISING STAR","Alperen Şengün"],
+      ["HEALTH WATCH","Joel Embiid"]
+    ],
+    method:[
+      ["SCORING & SKILL","Post scoring, shooting touch, and passing feel."],
+      ["TWO‑WAY IMPACT","Rim protection and rebounding weighed against offensive load."],
+      ["LAST SEASON","How they performed last season — full sample, or reputation and limited-sample production for anyone who missed real time to injury."],
+      ["PEDIGREE","Track record — All‑NBA history, team success, résumé."]
+    ],
+    gradeCategories:[["skill","Scoring & Skill"],["twoway","Two‑Way Impact"],["production","Last Season"],["pedigree","Pedigree"]],
+    players: C_PLAYERS
   }
 ];
 
@@ -647,6 +1434,35 @@ function renderRanking(id){
   const metaRow = ranking.meta.map(([k,v])=>`<div class="meta-item">${k}<b>${v}</b></div>`).join("");
   const methodRow = ranking.method.map(([k,v])=>`<div><span>${k}</span><p>${v}</p></div>`).join("");
 
+  const hmSection = (ranking.honorableMentions && ranking.honorableMentions.length) ? `
+    <div class="section-title">HONORABLE MENTIONS</div>
+    <div class="hm-grid">
+      ${ranking.honorableMentions.map(h=>`
+        <div class="hm-card" style="--team:${h.color || 'var(--amber)'}">
+          <span class="hm-tag mono">${h.tag}</span>
+          <h4>${h.name}</h4>
+          <div class="hm-team mono">${h.team}</div>
+          <p>${h.note}</p>
+        </div>
+      `).join("")}
+    </div>
+  ` : "";
+
+  const missedSection = (ranking.missedTime && ranking.missedTime.length) ? `
+    <div class="section-title">JUST MISSED — MISSED SIGNIFICANT TIME*</div>
+    ${ranking.missedTimeNote ? `<p class="hm-asterisk-note">*${ranking.missedTimeNote}</p>` : ""}
+    <div class="hm-grid">
+      ${ranking.missedTime.map(h=>`
+        <div class="hm-card asterisk">
+          <span class="hm-tag mono">MISSED TIME</span>
+          <h4>${h.name}</h4>
+          <div class="hm-team mono">${h.team}</div>
+          <p>${h.note}</p>
+        </div>
+      `).join("")}
+    </div>
+  ` : "";
+
   return `
     <a href="#/rankings" class="back-link">← ALL RANKINGS</a>
     <section class="hero">
@@ -661,6 +1477,8 @@ function renderRanking(id){
     </div>
     <div class="list">${rows}</div>
     ${adSlot()}
+    ${hmSection}
+    ${missedSection}
     ${siteFooter()}
   `;
 }
@@ -695,8 +1513,7 @@ function renderPlayer(rankingId, slug){
 
   const narrative = p.narrative.map(par=>`<p>${par}</p>`).join("");
   const achv = p.achievements.map(a=>`<li>${a}</li>`).join("");
-  const cells = ["raw","advanced","playoffs","achievements"].map(key=>{
-    const label = {raw:"Raw Stats",advanced:"Advanced",playoffs:"Playoffs",achievements:"Achievements"}[key];
+  const cells = ranking.gradeCategories.map(([key,label])=>{
     const g = p.grades[key];
     return `<div class="cell" style="--grade-color:${GRADE_COLOR(g)}"><div class="label">${label}</div><div class="grade">${g}</div></div>`;
   }).join("");
