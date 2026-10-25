@@ -358,6 +358,37 @@ main{position:relative; z-index:1; max-width:1120px; margin:0 auto; padding:0 5v
 .also-block{margin-top:10px;}
 .key-hint{font-size:0.68rem; color:var(--chalk-dim); margin-top:18px; letter-spacing:0.04em;}
 @media(hover:none){ .key-hint{display:none;} }
+
+/* ---- PHOTOS ---- */
+.hero.has-photo{
+  position:relative; overflow:hidden; border:1px solid var(--line); border-radius:18px;
+  padding:64px 40px 52px; margin-top:16px; isolation:isolate;
+}
+.hero.has-photo::before{
+  content:""; position:absolute; inset:0; z-index:-2;
+  background:var(--photo) center/cover no-repeat;
+}
+.hero.has-photo::after{
+  content:""; position:absolute; inset:0; z-index:-1;
+  background:linear-gradient(90deg, rgba(10,10,12,0.93) 0%, rgba(10,10,12,0.78) 50%, rgba(10,10,12,0.5) 100%),
+             linear-gradient(0deg, rgba(10,10,12,0.75), rgba(10,10,12,0) 55%);
+}
+@media(max-width:640px){ .hero.has-photo{padding:40px 22px 48px;} }
+.photo-credit{
+  position:absolute; right:16px; bottom:12px; font-size:0.62rem; color:rgba(255,255,255,0.65); letter-spacing:0.02em;
+}
+.photo-credit a{color:rgba(255,255,255,0.85); text-decoration:underline; text-underline-offset:2px;}
+.photo-credit a:hover{color:var(--amber);}
+.hub-card .thumb{
+  height:130px; margin:-26px -26px 20px; border-radius:16px 16px 0 0;
+  background-size:cover; background-position:center; position:relative;
+}
+.hub-card .thumb::after{
+  content:""; position:absolute; inset:0; border-radius:inherit;
+  background:linear-gradient(0deg, var(--panel) 0%, rgba(10,10,12,0.15) 70%);
+}
+.fbottom .photo-line{display:block; margin-top:8px; font-size:0.72rem;}
+.fbottom .photo-line a{text-decoration:underline; text-underline-offset:2px;}
 </style>
 </head>
 <body>
@@ -1595,7 +1626,7 @@ function renderHub(){
   const newsPreview = NEWS.slice(0,3).map(n=>newsCard(n)).join("");
 
   return `
-    <section class="hero">
+    <section class="hero has-photo"${photoAttr(PHOTOS.hero)}>
       <div class="eyebrow">// WELCOME TO COURTSIDE TEN</div>
       <h1>RANKING THE<br>GAME, <span class="stroke">10</span><br>AT A TIME</h1>
       <p>Courtside Ten builds ranked, graded countdowns of basketball's best — players, seasons, and eras — using a transparent mix of raw stats, advanced metrics, and playoff results. New countdowns drop regularly — search any player, compare two side by side, or jump straight into a list.</p>
@@ -1610,6 +1641,7 @@ function renderHub(){
         <a class="btn ghost" href="#/compare">⇄ Compare players</a>
         <a class="btn ghost" href="#/rankings" onclick="location.hash=randomPlayerHref(); return false;">🎲 Random player</a>
       </div>
+      ${photoCredit(PHOTOS.hero)}
     </section>
 
     ${featured ? `
@@ -1643,6 +1675,7 @@ function hubCard(r){
   const href = isLive ? `href="#/rankings/${r.id}"` : "";
   return `
     <a ${href} class="hub-card ${isLive ? "" : "soon"}">
+      ${photoThumb(PHOTOS[r.id])}
       <span class="badge mono">${r.badge}${r.isNew ? '<span class="new-pill">NEW</span>' : ''}</span>
       <h3>${r.title}</h3>
       <p>${r.blurb}</p>
@@ -1732,12 +1765,13 @@ function renderRanking(id){
 
   return `
     <a href="#/rankings" class="back-link">← ALL RANKINGS</a>
-    <section class="hero">
+    <section class="hero${PHOTOS[ranking.id] ? " has-photo" : ""}"${photoAttr(PHOTOS[ranking.id])}>
       <div class="eyebrow">${ranking.eyebrow}</div>
       <h1>${ranking.headline.join("<br>")}</h1>
       <p>${ranking.blurb} Click into any player for the full report.</p>
       <div class="meta-row">${metaRow}</div>
       <div class="method">${methodRow}</div>
+      ${photoCredit(PHOTOS[ranking.id])}
     </section>
     <div class="list-head">
       <h2 class="mono">THE COUNTDOWN — TAP ANY PLAYER FOR THE FULL REPORT</h2>
@@ -1977,9 +2011,45 @@ function siteFooter(){
       </div>
       <div class="fbottom">
         Courtside Ten — independent basketball rankings, grading &amp; analysis. Grades reflect editorial judgment, not official league scoring.
+        <span class="photo-line">Photos from <a href="https://unsplash.com/${UTM}" target="_blank" rel="noopener">Unsplash</a>: ${photoCreditsList()}.</span>
       </div>
     </footer>
   `;
+}
+
+/* ---------- UNSPLASH PHOTOS (free to use under the Unsplash License) ---------- */
+const PHOTOS = {
+  hero: {name:"Tom Macret", user:"tom_macret", alt:"Basketball game in a crowded arena at night",
+    base:"https://images.unsplash.com/photo-1765924705648-9a0731ac5202?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8M3x8YmFza2V0YmFsbCUyMGFyZW5hfGVufDB8MHx8fDE3OTI5MjYyNjd8Mg&ixlib=rb-4.1.0"},
+  "top-10-nba-players-2025-26": {name:"Steve DiMatteo", user:"stevedimatteo", alt:"Packed basketball arena with a cheering crowd",
+    base:"https://images.unsplash.com/photo-1767016697775-001518392206?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8Nnx8YmFza2V0YmFsbCUyMGFyZW5hfGVufDB8MHx8fDE3OTI5MjYyNjd8Mg&ixlib=rb-4.1.0"},
+  "top-10-players-under-25-2026-27": {name:"Davide Aracri", user:"davieees", alt:"Basketball going through the hoop",
+    base:"https://images.unsplash.com/photo-1728637690621-ad046564a657?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8Mnx8YmFza2V0YmFsbCUyMGR1bmt8ZW58MHwwfHx8MTc5MjkyNjI3NXwy&ixlib=rb-4.1.0"},
+  "top-10-point-guards-2026-27": {name:"Markus Spiske", user:"markusspiske", alt:"Basketball shot on the basket",
+    base:"https://images.unsplash.com/photo-1549210194-fb0aac030c32?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8NXx8YmFza2V0YmFsbCUyMGR1bmt8ZW58MHwwfHx8MTc5MjkyNjI3NXwy&ixlib=rb-4.1.0"},
+  "top-10-shooting-guards-2026-27": {name:"Markus Spiske", user:"markusspiske", alt:"Basketball under the ring",
+    base:"https://images.unsplash.com/photo-1546519638-68e109498ffc?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8MXx8YmFza2V0YmFsbCUyMGFyZW5hfGVufDB8MHx8fDE3OTI5MjYyNjd8Mg&ixlib=rb-4.1.0"},
+  "top-10-small-forwards-2026-27": {name:"Danny Lines", user:"dannylines", alt:"Basketball hovering near the ring",
+    base:"https://images.unsplash.com/photo-1576437630698-61d25beb0038?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8Nnx8YmFza2V0YmFsbCUyMGR1bmt8ZW58MHwwfHx8MTc5MjkyNjI3NXwy&ixlib=rb-4.1.0"},
+  "top-10-power-forwards-2026-27": {name:"Logan Weaver", user:"lgnwvr", alt:"White and red basketball hoop",
+    base:"https://images.unsplash.com/photo-1577416412292-747c6607f055?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8NHx8YmFza2V0YmFsbCUyMGFyZW5hfGVufDB8MHx8fDE3OTI5MjYyNjd8Mg&ixlib=rb-4.1.0"},
+  "top-10-centers-2026-27": {name:"JC Gellidon", user:"jcgellidon", alt:"People playing inside a basketball court",
+    base:"https://images.unsplash.com/photo-1504450758481-7338eba7524a?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8Mnx8YmFza2V0YmFsbCUyMGFyZW5hfGVufDB8MHx8fDE3OTI5MjYyNjd8Mg&ixlib=rb-4.1.0"}
+};
+const UTM = "?utm_source=courtside_ten&utm_medium=referral";
+function photoUrl(ph, w){ return ph.base + "&auto=format&fit=crop&w=" + w + "&q=70"; }
+function photoAttr(ph){ return ph ? ` style="--photo:url('${photoUrl(ph,1600)}')"` : ""; }
+function photoCredit(ph){
+  if(!ph) return "";
+  return `<div class="photo-credit mono">Photo by <a href="https://unsplash.com/@${ph.user}${UTM}" target="_blank" rel="noopener">${ph.name}</a> on <a href="https://unsplash.com/${UTM}" target="_blank" rel="noopener">Unsplash</a></div>`;
+}
+function photoThumb(ph){
+  return ph ? `<div class="thumb" role="img" aria-label="${ph.alt}" style="background-image:url('${photoUrl(ph,700)}')"></div>` : "";
+}
+function photoCreditsList(){
+  const seen = new Map();
+  Object.values(PHOTOS).forEach(ph=>seen.set(ph.user, ph.name));
+  return [...seen].map(([u,n])=>`<a href="https://unsplash.com/@${u}${UTM}" target="_blank" rel="noopener">${n}</a>`).join(", ");
 }
 
 /* ---------- SHARED HELPERS (search, cross-list, compare) ---------- */
