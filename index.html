@@ -8,6 +8,13 @@
 <meta property="og:title" content="Courtside Ten — NBA Rankings, Grades & Analysis">
 <meta property="og:description" content="Ranked, graded countdowns of basketball's best players, built from raw stats, advanced metrics, and playoff results.">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="Courtside Ten">
+<meta property="og:image" content="https://images.unsplash.com/photo-1765924705648-9a0731ac5202?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8M3x8YmFza2V0YmFsbCUyMGFyZW5hfGVufDB8MHx8fDE3OTI5MjYyNjd8Mg&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=1200&amp;h=630&amp;q=70">
+<meta property="og:image:alt" content="Basketball game in a crowded arena at night">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Courtside Ten — NBA Rankings, Grades &amp; Analysis">
+<meta name="twitter:description" content="Ranked, graded countdowns of basketball's best players, built from raw stats, advanced metrics, and playoff results.">
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1765924705648-9a0731ac5202?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8M3x8YmFza2V0YmFsbCUyMGFyZW5hfGVufDB8MHx8fDE3OTI5MjYyNjd8Mg&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=1200&amp;h=630&amp;q=70">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
@@ -389,9 +396,104 @@ main{position:relative; z-index:1; max-width:1120px; margin:0 auto; padding:0 5v
 }
 .fbottom .photo-line{display:block; margin-top:8px; font-size:0.72rem;}
 .fbottom .photo-line a{text-decoration:underline; text-underline-offset:2px;}
+
+/* ---- TIER 3 POLISH ---- */
+.read-progress{
+  position:fixed; top:0; left:0; right:0; height:2px; background:var(--amber);
+  transform:scaleX(0); transform-origin:left center; z-index:100; opacity:0; pointer-events:none;
+}
+.read-progress.on{opacity:1;}
+.sr-help{
+  display:flex; flex-wrap:wrap; gap:6px 14px; padding:9px 14px; border-top:1px solid var(--line);
+  background:rgba(0,0,0,0.18); font-size:0.64rem; color:var(--chalk-dim);
+}
+.sr-help .key{
+  display:inline-block; border:1px solid var(--line); border-radius:4px; padding:0 5px; margin-right:4px;
+  font-size:0.62rem; color:var(--chalk);
+}
+@media(hover:none){ .sr-help{display:none;} }
+.updated-tag{color:var(--chalk-dim); margin-left:6px; font-weight:400;}
+.hub-card .badge .updated{color:var(--chalk-dim); margin-left:8px; letter-spacing:0.04em;}
+@media(max-width:759px){
+  .row{
+    grid-template-columns:48px 1fr auto;
+    grid-template-areas:"rank name pill" "rank hook hook";
+    gap:6px 14px; padding:24px 14px; min-height:104px; align-items:start;
+  }
+  .row:hover{padding-left:14px;}
+  .rank-num{grid-area:rank; font-size:2.2rem;}
+  .row-name{grid-area:name; min-width:0;}
+  .row-name h3{font-size:1.15rem;}
+  .grade-pill{grid-area:pill; align-self:center;}
+  .row-hook{
+    grid-area:hook; display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2; line-clamp:2;
+    overflow:hidden; font-size:0.82rem; line-height:1.4; color:var(--chalk-dim); max-width:none;
+  }
+}
+
+/* ---- MY BOARD ---- */
+.board-title-row{margin-top:30px;}
+.board-title-row label span{display:block; font-size:0.68rem; color:var(--chalk-dim); letter-spacing:0.08em; margin-bottom:8px;}
+.board-title-row input, .pool-controls input, .pool-controls select, .board-share-row input{
+  width:100%; background:var(--panel); color:var(--chalk); border:1px solid var(--line); border-radius:12px;
+  padding:12px 14px; font-size:0.9rem; outline:none;
+}
+.board-title-row input:focus, .pool-controls input:focus, .pool-controls select:focus, .board-share-row input:focus{border-color:var(--amber);}
+.board-wrap{display:grid; grid-template-columns:1.1fr 1fr; gap:22px; margin-top:22px; align-items:start;}
+@media(max-width:860px){ .board-wrap{grid-template-columns:1fr;} }
+.board-panel{background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:18px; min-width:0;}
+.board-panel h2.mono{font-size:0.72rem; color:var(--amber); letter-spacing:0.1em; margin:0 0 14px; font-weight:700;}
+.board-panel h2 span{color:var(--chalk-dim); margin-left:6px;}
+.slot{
+  display:grid; grid-template-columns:36px 1fr auto; gap:12px; align-items:center;
+  padding:10px 12px; margin-bottom:8px; border:1px solid var(--line); border-radius:12px; min-height:58px;
+  transition:border-color .15s, background .15s;
+}
+.slot.filled{border-left:3px solid var(--team, var(--amber)); cursor:grab; background:var(--panel-2);}
+.slot.filled:active{cursor:grabbing;}
+.slot.empty{border-style:dashed; color:var(--chalk-dim);}
+.slot.dragging{opacity:0.4;}
+.slot.drag-over{border-color:var(--amber); background:var(--panel-2);}
+.slot-rank{font-family:'Anton',sans-serif; font-size:1.5rem; line-height:1; color:var(--team, var(--chalk-dim)); text-align:center;}
+.slot-main{min-width:0; display:block;}
+.slot-main b{display:block; font-size:0.95rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.slot-main small{display:block; font-size:0.72rem; color:var(--chalk-dim); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.slot-actions{display:flex; gap:4px;}
+.icon-btn{
+  background:transparent; border:1px solid var(--line); color:var(--chalk); border-radius:8px;
+  width:34px; height:34px; font-size:0.8rem; cursor:pointer; line-height:1;
+}
+.icon-btn:hover:not([disabled]){border-color:var(--amber); color:var(--amber);}
+.icon-btn[disabled]{opacity:0.3; cursor:default;}
+.pool-controls{display:flex; gap:8px; margin-bottom:12px; flex-wrap:wrap;}
+.pool-controls input{flex:1 1 160px; width:auto;}
+.pool-controls select{flex:1 1 150px; width:auto; cursor:pointer;}
+.pool-list{max-height:620px; overflow:auto; padding-right:2px;}
+.pool-item{display:flex; align-items:center; gap:10px; padding:8px 10px; border-radius:10px; border:1px solid transparent; cursor:grab;}
+.pool-item:hover{background:var(--panel-2); border-color:var(--line);}
+.pool-item.on{opacity:0.5; cursor:default;}
+.pool-item .slot-main{flex:1;}
+.pool-item .icon-btn.add{color:var(--amber);}
+.pool-empty{font-size:0.74rem; color:var(--chalk-dim); padding:16px 4px;}
+.board-share{margin-top:22px; padding:20px; border:1px solid var(--line); border-radius:16px; background:var(--panel);}
+.board-share-label{font-size:0.68rem; color:var(--amber); letter-spacing:0.1em; margin-bottom:12px;}
+.board-share-row{display:flex; gap:10px; flex-wrap:wrap; align-items:center;}
+.board-share-row input{flex:1 1 280px; width:auto; font-family:'JetBrains Mono',monospace; font-size:0.78rem;}
+.board-share-row .btn{display:inline-flex; align-items:center; font-family:'JetBrains Mono',monospace; font-size:0.78rem; font-weight:700; color:var(--ink); background:var(--amber); padding:12px 20px; border-radius:100px; border:none; cursor:pointer;}
+.board-share-row .btn:hover{background:var(--flare);}
+.board-share-row .btn.ghost{background:transparent; color:var(--chalk); border:1px solid var(--line);}
+.board-share-row .btn.ghost:hover{border-color:var(--amber); color:var(--amber);}
+.board-note{font-size:0.68rem; color:var(--chalk-dim); margin:12px 0 0;}
+.board-msg{font-size:0.74rem; color:var(--amber); min-height:1.2em; margin-top:14px;}
 </style>
 </head>
 <body>
+<div id="readProgress" class="read-progress" aria-hidden="true"></div>
+<noscript>
+  <div style="padding:24px; margin:16px; border:1px solid #444; border-radius:12px; font-family:sans-serif; color:#f2efe8; background:#16161a;">
+    <b>Courtside Ten needs JavaScript.</b> Our rankings, player report cards, and compare tool are built in the browser, so please turn JavaScript on (or try another browser) to see them.
+  </div>
+</noscript>
 <nav class="nav">
   <a href="#/" class="logo">
     <span class="dot"></span>
@@ -401,6 +503,7 @@ main{position:relative; z-index:1; max-width:1120px; margin:0 auto; padding:0 5v
     <a href="#/" data-route="#/">Home</a>
     <a href="#/rankings" data-route="#/rankings">Rankings</a>
     <a href="#/compare" data-route="#/compare">Compare</a>
+    <a href="#/board" data-route="#/board">My Board</a>
     <a href="#/news" data-route="#/news">News</a>
     <a href="#/about" data-route="#/about">About</a>
     <a href="#/contact" data-route="#/contact">Contact</a>
@@ -747,17 +850,17 @@ const SG_PLAYERS = [
   achievements:["Multiple NBA All‑Star selections","Career 45%+ shooter from the field","Consistently ranks among the league's top scorers"]
 },
 {
-  slug:"derrick-white-sg", rank:6, name:"Derrick White", team:"Boston Celtics", pos:"Shooting Guard",
-  color:"#007A33",
-  hook:"A steady, switchable two-way guard whose shot-making and defensive versatility make him one of the most reliable complementary pieces at the position.",
-  grades:{skill:"B+", twoway:"A-", production:"B", pedigree:"B+", overall:"B+"},
-  stats:[["Perimeter defense","88%"],["Catch‑and‑shoot volume","82%"],["Decision‑making","85%"]],
-  statBoxes:[["2024","NBA Champion"],["Elite","switchable defender"],["Career","38%+ 3‑point shooter"],["BOS","longtime starter"]],
+  slug:"amen-thompson-sg", rank:4, name:"Amen Thompson", team:"Houston Rockets", pos:"Shooting Guard",
+  color:"#CE1141",
+  hook:"An explosive, defense-first athlete whose two-way upside has made him one of the most talked-about young guards in the league.",
+  grades:{skill:"B", twoway:"A-", production:"B", pedigree:"C+", overall:"B-"},
+  stats:[["Defensive versatility","90%"],["Transition scoring","85%"],["Jump‑shot development","55%"]],
+  statBoxes:[["Elite","point‑of‑attack defender"],["Explosive","open‑court athlete"],["HOU","rising two‑way piece"],["High","defensive ceiling"]],
   narrative:[
-    "White's game is built on doing the right thing possession after possession — a high-IQ, low-mistake guard who can guard multiple positions and space the floor at a high clip from three.",
-    "He's never going to be a high-usage scorer, but as a winning, two-way piece for a contender, few guards in the league offer more consistent value."
+    "Thompson's combination of length, speed, and defensive instincts already rates among the best perimeter defenders in the league at his age.",
+    "The jump shot remains the swing skill, but the two-way tools are rare enough that his ceiling keeps climbing regardless."
   ],
-  achievements:["2024 NBA Champion, Boston Celtics","One of the league's most switchable perimeter defenders","Career 38%+ three‑point shooter"]
+  achievements:["One of the league's most disruptive young perimeter defenders","Elite open‑court athlete and finisher","Rising two‑way piece for a deep Houston roster"]
 },
 {
   slug:"austin-reaves-sg", rank:5, name:"Austin Reaves", team:"Los Angeles Lakers", pos:"Shooting Guard",
@@ -773,6 +876,19 @@ const SG_PLAYERS = [
   achievements:["Emerged as a full‑time starter and secondary creator for the Lakers","One of the league's most efficient foul‑drawing guards","Undrafted‑to‑core‑piece success story"]
 },
 {
+  slug:"derrick-white-sg", rank:6, name:"Derrick White", team:"Boston Celtics", pos:"Shooting Guard",
+  color:"#007A33",
+  hook:"A steady, switchable two-way guard whose shot-making and defensive versatility make him one of the most reliable complementary pieces at the position.",
+  grades:{skill:"B+", twoway:"A-", production:"B", pedigree:"B+", overall:"B+"},
+  stats:[["Perimeter defense","88%"],["Catch‑and‑shoot volume","82%"],["Decision‑making","85%"]],
+  statBoxes:[["2024","NBA Champion"],["Elite","switchable defender"],["Career","38%+ 3‑point shooter"],["BOS","longtime starter"]],
+  narrative:[
+    "White's game is built on doing the right thing possession after possession — a high-IQ, low-mistake guard who can guard multiple positions and space the floor at a high clip from three.",
+    "He's never going to be a high-usage scorer, but as a winning, two-way piece for a contender, few guards in the league offer more consistent value."
+  ],
+  achievements:["2024 NBA Champion, Boston Celtics","One of the league's most switchable perimeter defenders","Career 38%+ three‑point shooter"]
+},
+{
   slug:"desmond-bane-sg", rank:7, name:"Desmond Bane", team:"Memphis Grizzlies", pos:"Shooting Guard",
   color:"#5D76A9",
   hook:"A high-volume, high-efficiency shooter whose scoring has become the steadiest thing about Memphis' offense.",
@@ -784,19 +900,6 @@ const SG_PLAYERS = [
     "He's taken on more offensive load as Memphis has retooled around him, and the efficiency has largely held up."
   ],
   achievements:["Career 40%+ three‑point shooter","One of the league's most efficient high‑volume shooters","Grizzlies' primary offensive option"]
-},
-{
-  slug:"amen-thompson-sg", rank:4, name:"Amen Thompson", team:"Houston Rockets", pos:"Shooting Guard",
-  color:"#CE1141",
-  hook:"An explosive, defense-first athlete whose two-way upside has made him one of the most talked-about young guards in the league.",
-  grades:{skill:"B", twoway:"A-", production:"B", pedigree:"C+", overall:"B-"},
-  stats:[["Defensive versatility","90%"],["Transition scoring","85%"],["Jump‑shot development","55%"]],
-  statBoxes:[["Elite","point‑of‑attack defender"],["Explosive","open‑court athlete"],["HOU","rising two‑way piece"],["High","defensive ceiling"]],
-  narrative:[
-    "Thompson's combination of length, speed, and defensive instincts already rates among the best perimeter defenders in the league at his age.",
-    "The jump shot remains the swing skill, but the two-way tools are rare enough that his ceiling keeps climbing regardless."
-  ],
-  achievements:["One of the league's most disruptive young perimeter defenders","Elite open‑court athlete and finisher","Rising two‑way piece for a deep Houston roster"]
 },
 {
   slug:"stephon-castle-sg", rank:8, name:"Stephon Castle", team:"San Antonio Spurs", pos:"Shooting Guard",
@@ -919,19 +1022,6 @@ const SF_PLAYERS = [
   achievements:["Key two‑way piece of the league's best regular‑season team","One of the more versatile perimeter defenders at the position","Growing go‑to scoring option in crunch time"]
 },
 {
-  slug:"franz-wagner-sf", rank:8, name:"Franz Wagner", team:"Orlando Magic", pos:"Small Forward",
-  color:"#0077C0",
-  hook:"A smooth, efficient two-way wing forming one of the league's most promising young frontcourt duos alongside Paolo Banchero.",
-  grades:{skill:"B", twoway:"B+", production:"B+", pedigree:"B", overall:"B"},
-  stats:[["Scoring efficiency","85%"],["Defensive versatility","83%"],["Playmaking","78%"]],
-  statBoxes:[["Elite","secondary scorer"],["ORL","paired with Banchero"],["Improving","shot creation"],["Strong","two‑way profile"]],
-  narrative:[
-    "Wagner's efficiency and defensive versatility make him an ideal complement to Banchero, and his shot creation has steadily improved each season.",
-    "As Orlando pushes toward true contention, Wagner's two-way consistency is one of the more underrated pieces league-wide."
-  ],
-  achievements:["Key piece of Orlando's playoff rise","Efficient two‑way scoring wing","Growing shot‑creation portfolio"]
-},
-{
   slug:"jalen-johnson-sf", rank:7, name:"Jalen Johnson", team:"Atlanta Hawks", pos:"Small Forward",
   color:"#E03A3E",
   hook:"A breakout, do-everything forward who emerged as one of the league's most exciting young two-way talents.",
@@ -943,6 +1033,19 @@ const SF_PLAYERS = [
     "As Atlanta builds around Young and Johnson together, he's one of the more exciting long-term bets at the position."
   ],
   achievements:["Emerged as one of the league's top young forwards","Elite transition and open‑floor athlete","Growing multi‑position defensive impact"]
+},
+{
+  slug:"franz-wagner-sf", rank:8, name:"Franz Wagner", team:"Orlando Magic", pos:"Small Forward",
+  color:"#0077C0",
+  hook:"A smooth, efficient two-way wing forming one of the league's most promising young frontcourt duos alongside Paolo Banchero.",
+  grades:{skill:"B", twoway:"B+", production:"B+", pedigree:"B", overall:"B"},
+  stats:[["Scoring efficiency","85%"],["Defensive versatility","83%"],["Playmaking","78%"]],
+  statBoxes:[["Elite","secondary scorer"],["ORL","paired with Banchero"],["Improving","shot creation"],["Strong","two‑way profile"]],
+  narrative:[
+    "Wagner's efficiency and defensive versatility make him an ideal complement to Banchero, and his shot creation has steadily improved each season.",
+    "As Orlando pushes toward true contention, Wagner's two-way consistency is one of the more underrated pieces league-wide."
+  ],
+  achievements:["Key piece of Orlando's playoff rise","Efficient two‑way scoring wing","Growing shot‑creation portfolio"]
 },
 {
   slug:"mikal-bridges-sf", rank:9, name:"Mikal Bridges", team:"New York Knicks", pos:"Small Forward",
@@ -1052,6 +1155,19 @@ const PF_PLAYERS = [
   achievements:["Kia All‑NBA Third Team selection, 2025‑26","Key piece of the league's best regular‑season team","Elite shot‑blocking, stretch skill set"]
 },
 {
+  slug:"scottie-barnes-pf", rank:7, name:"Scottie Barnes", team:"Toronto Raptors", pos:"Power Forward",
+  color:"#CE1141",
+  hook:"A do-everything, positionless forward whose defensive versatility and improving playmaking make him one of the league's most valuable two-way pieces.",
+  grades:{skill:"B+", twoway:"A-", production:"A-", pedigree:"B+", overall:"B+"},
+  stats:[["Positional versatility","93%"],["Playmaking growth","85%"],["Defensive impact","90%"]],
+  statBoxes:[["Rookie of the Year","2022"],["NBA All‑Star","selection"],["Elite","multi‑position defender"],["TOR","franchise cornerstone"]],
+  narrative:[
+    "Barnes' ability to guard multiple positions while running point-forward duties on offense makes him one of the most valuable non-scoring forwards in the league, and his shooting continues to trend up year over year.",
+    "As Toronto builds around him, he remains one of the safest two-way bets at the position for the next decade."
+  ],
+  achievements:["2022 NBA Rookie of the Year","NBA All‑Star selection","One of the league's most versatile defenders"]
+},
+{
   slug:"jaren-jackson-jr-pf", rank:8, name:"Jaren Jackson Jr.", team:"Utah Jazz", pos:"Power Forward",
   color:"#F9A01B",
   hook:"A former Defensive Player of the Year whose rim protection and stretch shooting give Utah a rare two-way frontcourt weapon.",
@@ -1076,19 +1192,6 @@ const PF_PLAYERS = [
     "The efficiency swings year to year, but the physical scoring profile has been consistent for most of his career."
   ],
   achievements:["Multiple NBA All‑Star selections","Consistent 20+ points, 8+ rebounds producer","Physical mismatch scoring forward"]
-},
-{
-  slug:"scottie-barnes-pf", rank:7, name:"Scottie Barnes", team:"Toronto Raptors", pos:"Power Forward",
-  color:"#CE1141",
-  hook:"A do-everything, positionless forward whose defensive versatility and improving playmaking make him one of the league's most valuable two-way pieces.",
-  grades:{skill:"B+", twoway:"A-", production:"A-", pedigree:"B+", overall:"B+"},
-  stats:[["Positional versatility","93%"],["Playmaking growth","85%"],["Defensive impact","90%"]],
-  statBoxes:[["Rookie of the Year","2022"],["NBA All‑Star","selection"],["Elite","multi‑position defender"],["TOR","franchise cornerstone"]],
-  narrative:[
-    "Barnes' ability to guard multiple positions while running point-forward duties on offense makes him one of the most valuable non-scoring forwards in the league, and his shooting continues to trend up year over year.",
-    "As Toronto builds around him, he remains one of the safest two-way bets at the position for the next decade."
-  ],
-  achievements:["2022 NBA Rookie of the Year","NBA All‑Star selection","One of the league's most versatile defenders"]
 },
 {
   slug:"zion-williamson-pf", rank:10, name:"Zion Williamson", team:"New Orleans Pelicans", pos:"Power Forward",
@@ -1172,32 +1275,6 @@ const C_PLAYERS = [
   achievements:["NBA All‑Star selection","One of the league's best passing big men","Houston's franchise center of the future"]
 },
 {
-  slug:"jalen-duren-c", rank:7, name:"Jalen Duren", team:"Detroit Pistons", pos:"Center",
-  color:"#1D42BA",
-  hook:"An athletic, high-energy rim-runner who has become a key defensive and lob-catching piece of Detroit's playoff rise.",
-  grades:{skill:"B-", twoway:"B", production:"B+", pedigree:"C+", overall:"B-"},
-  stats:[["Rebounding","90%"],["Rim finishing","88%"],["Rim protection","78%"]],
-  statBoxes:[["Third Team","All‑NBA, 2025‑26"],["Elite","rebounding energy big"],["DET","playoff riser"],["Strong","lob‑catching finisher"]],
-  narrative:[
-    "Duren's rebounding and rim-running have been a perfect complement to Cade Cunningham's playmaking, and his defensive activity was a key part of Detroit's rise to the East's top seed.",
-    "The offensive skill set is still developing, but as an energy and rebounding anchor, he's already one of the better young centers in the league."
-  ],
-  achievements:["Key rebounding and rim‑protection piece of Detroit's rise","Elite lob‑catching finisher","One of the league's most active young rebounders"]
-},
-{
-  slug:"domantas-sabonis-c", rank:9, name:"Domantas Sabonis", team:"Sacramento Kings", pos:"Center",
-  color:"#5A2D81",
-  hook:"One of the league's most reliable double-double machines, anchoring Sacramento's offense with elite passing and rebounding.",
-  grades:{skill:"B+", twoway:"B", production:"B+", pedigree:"B+", overall:"B+"},
-  stats:[["Rebounding rate","93%"],["Passing from the elbow","88%"],["Scoring efficiency","85%"]],
-  statBoxes:[["Multiple","All‑Star selections"],["Elite","rebounding big"],["Career","double‑double leader"],["SAC","franchise centerpiece"]],
-  narrative:[
-    "Sabonis' combination of elite rebounding and elbow passing makes him one of the league's most reliable offensive hubs at the position, night in and night out.",
-    "He's not a rim-protecting anchor, but as a two-way, high-floor center, he's about as consistent as it gets."
-  ],
-  achievements:["Multiple NBA All‑Star selections","Perennial league leader in double‑doubles","One of the league's best passing centers"]
-},
-{
   slug:"bam-adebayo-c", rank:6, name:"Bam Adebayo", team:"Miami Heat", pos:"Center",
   color:"#98002E",
   hook:"An All-NBA-caliber two-way big now paired with Giannis Antetokounmpo, giving Miami one of the more physically imposing frontcourts in the league.",
@@ -1211,6 +1288,19 @@ const C_PLAYERS = [
   achievements:["Multiple NBA All‑Star selections","One of the league's premier defensive frontcourt players","Now paired with Giannis Antetokounmpo in Miami"]
 },
 {
+  slug:"jalen-duren-c", rank:7, name:"Jalen Duren", team:"Detroit Pistons", pos:"Center",
+  color:"#1D42BA",
+  hook:"An athletic, high-energy rim-runner who has become a key defensive and lob-catching piece of Detroit's playoff rise.",
+  grades:{skill:"B-", twoway:"B", production:"B+", pedigree:"C+", overall:"B-"},
+  stats:[["Rebounding","90%"],["Rim finishing","88%"],["Rim protection","78%"]],
+  statBoxes:[["Third Team","All‑NBA, 2025‑26"],["Elite","rebounding energy big"],["DET","playoff riser"],["Strong","lob‑catching finisher"]],
+  narrative:[
+    "Duren's rebounding and rim-running have been a perfect complement to Cade Cunningham's playmaking, and his defensive activity was a key part of Detroit's rise to the East's top seed.",
+    "The offensive skill set is still developing, but as an energy and rebounding anchor, he's already one of the better young centers in the league."
+  ],
+  achievements:["Key rebounding and rim‑protection piece of Detroit's rise","Elite lob‑catching finisher","One of the league's most active young rebounders"]
+},
+{
   slug:"jarrett-allen-c", rank:8, name:"Jarrett Allen", team:"Cleveland Cavaliers", pos:"Center",
   color:"#6F263D",
   hook:"A high-efficiency lob finisher and rim protector who anchors one of the league's most disciplined defenses.",
@@ -1222,6 +1312,19 @@ const C_PLAYERS = [
     "He's not a high-usage offensive piece, but as a low-mistake, high-value starting center, few do it more consistently."
   ],
   achievements:["One of the league's most efficient interior finishers","Key defensive anchor for a top‑tier Cleveland defense","Consistent double‑double producer"]
+},
+{
+  slug:"domantas-sabonis-c", rank:9, name:"Domantas Sabonis", team:"Sacramento Kings", pos:"Center",
+  color:"#5A2D81",
+  hook:"One of the league's most reliable double-double machines, anchoring Sacramento's offense with elite passing and rebounding.",
+  grades:{skill:"B+", twoway:"B", production:"B+", pedigree:"B+", overall:"B+"},
+  stats:[["Rebounding rate","93%"],["Passing from the elbow","88%"],["Scoring efficiency","85%"]],
+  statBoxes:[["Multiple","All‑Star selections"],["Elite","rebounding big"],["Career","double‑double leader"],["SAC","franchise centerpiece"]],
+  narrative:[
+    "Sabonis' combination of elite rebounding and elbow passing makes him one of the league's most reliable offensive hubs at the position, night in and night out.",
+    "He's not a rim-protecting anchor, but as a two-way, high-floor center, he's about as consistent as it gets."
+  ],
+  achievements:["Multiple NBA All‑Star selections","Perennial league leader in double‑doubles","One of the league's best passing centers"]
 },
 {
   slug:"rudy-gobert-c", rank:10, name:"Rudy Gobert", team:"Minnesota Timberwolves", pos:"Center",
@@ -1401,6 +1504,7 @@ const RANKINGS = [
   {
     id:"top-10-players-under-25-2026-27",
     status:"live",
+    lastUpdated:"Oct 26, 2026",
     isNew:true,
     featured:true,
     badge:"NBA · Entering 2026–27",
@@ -1451,6 +1555,7 @@ const RANKINGS = [
   {
     id:"top-10-shooting-guards-2026-27",
     status:"live",
+    lastUpdated:"Oct 26, 2026",
     badge:"NBA · Entering 2026–27",
     title:"Top 10 Shooting Guards Entering Next Season",
     short:"Top 10 Shooting Guards",
@@ -1475,6 +1580,7 @@ const RANKINGS = [
   {
     id:"top-10-small-forwards-2026-27",
     status:"live",
+    lastUpdated:"Oct 26, 2026",
     badge:"NBA · Entering 2026–27",
     title:"Top 10 Small Forwards Entering Next Season",
     short:"Top 10 Small Forwards",
@@ -1499,6 +1605,7 @@ const RANKINGS = [
   {
     id:"top-10-power-forwards-2026-27",
     status:"live",
+    lastUpdated:"Oct 26, 2026",
     badge:"NBA · Entering 2026–27",
     title:"Top 10 Power Forwards Entering Next Season",
     short:"Top 10 Power Forwards",
@@ -1523,6 +1630,7 @@ const RANKINGS = [
   {
     id:"top-10-centers-2026-27",
     status:"live",
+    lastUpdated:"Oct 26, 2026",
     badge:"NBA · Entering 2026–27",
     title:"Top 10 Centers Entering Next Season",
     short:"Top 10 Centers",
@@ -1638,6 +1746,7 @@ function renderHub(){
       </div>
       <div class="btn-row">
         <a class="btn" href="#/rankings">Browse all rankings →</a>
+        <a class="btn ghost" href="#/board">★ Build your Top 10</a>
         <a class="btn ghost" href="#/compare">⇄ Compare players</a>
         <a class="btn ghost" href="#/rankings" onclick="location.hash=randomPlayerHref(); return false;">🎲 Random player</a>
       </div>
@@ -1676,7 +1785,7 @@ function hubCard(r){
   return `
     <a ${href} class="hub-card ${isLive ? "" : "soon"}">
       ${photoThumb(PHOTOS[r.id])}
-      <span class="badge mono">${r.badge}${r.isNew ? '<span class="new-pill">NEW</span>' : ''}</span>
+      <span class="badge mono">${r.badge}${r.isNew ? '<span class="new-pill">NEW</span>' : ''}${r.lastUpdated ? '<span class="updated">UPDATED ' + r.lastUpdated.toUpperCase() + '</span>' : ''}</span>
       <h3>${r.title}</h3>
       <p>${r.blurb}</p>
       <div class="cta mono">${isLive ? "See the countdown →" : "Coming soon"}</div>
@@ -1718,6 +1827,7 @@ function renderRanking(id){
     return notFoundBlock("That ranking isn't live yet.", "#/rankings", "← Back to all rankings");
   }
   document.title = ranking.title + " | Courtside Ten";
+  setShareMeta({title:ranking.title + " | Courtside Ten", description:ranking.blurb, image:shareImage(ranking.id)});
   const list = ranking.players.slice().sort((a,b)=>a.rank-b.rank);
   const rows = list.map(p=>`
     <a href="#/rankings/${ranking.id}/player/${p.slug}" class="row" style="--team:${p.color}">
@@ -1766,7 +1876,7 @@ function renderRanking(id){
   return `
     <a href="#/rankings" class="back-link">← ALL RANKINGS</a>
     <section class="hero${PHOTOS[ranking.id] ? " has-photo" : ""}"${photoAttr(PHOTOS[ranking.id])}>
-      <div class="eyebrow">${ranking.eyebrow}</div>
+      <div class="eyebrow">${ranking.eyebrow}${ranking.lastUpdated ? '<span class="updated-tag">· UPDATED ' + ranking.lastUpdated.toUpperCase() + '</span>' : ""}</div>
       <h1>${ranking.headline.join("<br>")}</h1>
       <p>${ranking.blurb} Click into any player for the full report.</p>
       <div class="meta-row">${metaRow}</div>
@@ -1801,6 +1911,7 @@ function renderPlayer(rankingId, slug){
   }
   const p = list[idx];
   document.title = `${p.name} — #${p.rank} | ${ranking.title} | Courtside Ten`;
+  setShareMeta({title:`${p.name} — #${p.rank} on ${ranking.short} | Courtside Ten`, description:`${p.team} · ${p.pos}. Overall grade ${p.grades.overall}. ${p.hook}`, image:shareImage(ranking.id)});
   const prev = list[(idx-1+list.length)%list.length];
   const next = list[(idx+1)%list.length];
 
@@ -1858,6 +1969,7 @@ function renderPlayer(rankingId, slug){
 
     <div class="player-actions">
       <a class="btn" href="#/compare/${entry.key}/">⇄ Compare with another player</a>
+      <button class="btn ghost" type="button" onclick="boardQuickAdd('${p.slug}', this)">＋ Add to my board</button>
     </div>
     <div class="key-hint mono">TIP: USE ← → TO FLIP BETWEEN PLAYERS · PRESS / TO SEARCH</div>
 
@@ -1953,7 +2065,7 @@ function renderContact(){
       <p>Questions about a grade, a tip for a future ranking, or an advertising inquiry — send it over.</p>
     </section>
 
-    <form class="contact-form" onsubmit="event.preventDefault(); this.querySelector('.form-note').textContent='Thanks — this demo form isn\\'t wired up yet, but message sending is coming soon. Email us directly in the meantime.';">
+    <form class="contact-form" onsubmit="return handleContactSubmit(event, this);">
       <div>
         <label class="mono">NAME</label>
         <input type="text" placeholder="Your name" required>
@@ -2011,7 +2123,7 @@ function siteFooter(){
       </div>
       <div class="fbottom">
         Courtside Ten — independent basketball rankings, grading &amp; analysis. Grades reflect editorial judgment, not official league scoring.
-        <span class="photo-line">Photos from <a href="https://unsplash.com/${UTM}" target="_blank" rel="noopener">Unsplash</a>: ${photoCreditsList()}.</span>
+        <span class="photo-line">All photos used under the <a href="https://unsplash.com/license" target="_blank" rel="noopener">Unsplash License</a>. Photographers: ${photoCreditsList()}. Their work appears here as decoration only — neither the photographers nor Unsplash endorse or are affiliated with Courtside Ten.</span>
       </div>
     </footer>
   `;
@@ -2052,13 +2164,44 @@ function photoCreditsList(){
   return [...seen].map(([u,n])=>`<a href="https://unsplash.com/@${u}${UTM}" target="_blank" rel="noopener">${n}</a>`).join(", ");
 }
 
+/* ---------- SHARE / SEO META (updated on every page change) ---------- */
+const SITE_DEFAULTS = {
+  title:"Courtside Ten — NBA Rankings, Grades & Analysis",
+  description:"Courtside Ten is a home for ranked, graded breakdowns of basketball's best — countdowns, player report cards, and analysis, with new lists added all the time.",
+  image:PHOTOS.hero.base + "&auto=format&fit=crop&w=1200&h=630&q=70"
+};
+function setMetaTag(attr, key, value){
+  let el = document.querySelector('meta[' + attr + '="' + key + '"]');
+  if(!el){ el = document.createElement("meta"); el.setAttribute(attr, key); document.head.appendChild(el); }
+  el.setAttribute("content", value);
+}
+function setShareMeta(o){
+  o = o || {};
+  const title = o.title || SITE_DEFAULTS.title;
+  const desc = o.description || SITE_DEFAULTS.description;
+  const img = o.image || SITE_DEFAULTS.image;
+  setMetaTag("name","description",desc);
+  setMetaTag("property","og:title",title);
+  setMetaTag("property","og:description",desc);
+  setMetaTag("property","og:image",img);
+  setMetaTag("property","og:url",location.href);
+  setMetaTag("name","twitter:card","summary_large_image");
+  setMetaTag("name","twitter:title",title);
+  setMetaTag("name","twitter:description",desc);
+  setMetaTag("name","twitter:image",img);
+}
+function shareImage(rankingId){
+  const ph = PHOTOS[rankingId];
+  return ph ? ph.base + "&auto=format&fit=crop&w=1200&h=630&q=70" : "";
+}
+
 /* ---------- SHARED HELPERS (search, cross-list, compare) ---------- */
 const normName = s => String(s).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9]/g,"");
 
 function allEntries(){
   const out = [];
   RANKINGS.filter(r=>r.status==="live").forEach(r=>{
-    r.players.forEach(p=>out.push({r,p,key:r.id+"~"+p.slug}));
+    r.players.slice().sort((a,b)=>a.rank-b.rank).forEach(p=>out.push({r,p,key:r.id+"~"+p.slug}));
   });
   return out;
 }
@@ -2229,6 +2372,7 @@ function initSearch(){
           <span class="sr-tag mono">${x.tag}</span>
         </a>`).join("");
     }
+    box.innerHTML += `<div class="sr-help mono"><span><span class="key">↑</span><span class="key">↓</span>navigate</span><span><span class="key">↵</span>open</span><span><span class="key">Esc</span>close</span></div>`;
     box.classList.add("open");
   }
 
@@ -2286,12 +2430,409 @@ document.addEventListener("keydown", ev=>{
 });
 window.addEventListener("DOMContentLoaded", initSearch);
 
+/* ---------- READING PROGRESS, SCROLL RESET, CONTACT FORM ---------- */
+function updateReadProgress(){
+  const bar = document.getElementById("readProgress");
+  if(!bar) return;
+  const onPlayer = /^#\/rankings\/[a-z0-9-]+\/player\//.test(location.hash || "");
+  bar.classList.toggle("on", onPlayer);
+  if(!onPlayer){ bar.style.transform = "scaleX(0)"; return; }
+  const max = document.documentElement.scrollHeight - window.innerHeight;
+  const y = window.pageYOffset || document.documentElement.scrollTop || 0;
+  bar.style.transform = "scaleX(" + (max > 0 ? Math.min(1, Math.max(0, y / max)) : 0) + ")";
+}
+let _rpTick = false;
+window.addEventListener("scroll", ()=>{
+  if(_rpTick) return;
+  _rpTick = true;
+  requestAnimationFrame(()=>{ _rpTick = false; updateReadProgress(); });
+}, {passive:true});
+window.addEventListener("resize", updateReadProgress);
+
+/* The page uses html{scroll-behavior:smooth}, so a plain scrollTo would animate on every
+   page change. Turn smooth scrolling off for this one jump; this works in every browser. */
+function jumpToTop(){
+  const root = document.documentElement, prev = root.style.scrollBehavior;
+  root.style.scrollBehavior = "auto";
+  window.scrollTo(0, 0);
+  root.style.scrollBehavior = prev;
+}
+
+function handleContactSubmit(ev, form){
+  ev.preventDefault();
+  const note = form.querySelector(".form-note");
+  if(note) note.textContent = "Thanks — this demo form isn't wired up yet, but message sending is coming soon. Email us directly in the meantime.";
+  return false;
+}
+
+/* ---------- MY BOARD (build your own Top 10) ---------- */
+const BOARD_KEY = "ct-board";
+const BOARD_MAX = 10;
+const escHtml = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+let _slugIndex = null;
+function slugIndex(){
+  if(!_slugIndex){
+    _slugIndex = new Map();
+    allEntries().forEach(e=>{ if(!_slugIndex.has(e.p.slug)) _slugIndex.set(e.p.slug, e); });
+  }
+  return _slugIndex;
+}
+function boardEntry(slug){ return slugIndex().get(slug) || null; }
+function cleanTitle(t){ return String(t || "").replace(/[\u0000-\u001f\u007f]/g, "").trim().slice(0, 60); }
+
+/* keep only real slugs, one entry per player, max 10 */
+function cleanSlugs(list){
+  const out = [], seen = new Set();
+  (list || []).forEach(sl=>{
+    const e = boardEntry(String(sl).trim());
+    if(!e) return;
+    const id = normName(e.p.name);
+    if(seen.has(id)) return;
+    seen.add(id);
+    out.push(e.p.slug);
+  });
+  return out.slice(0, BOARD_MAX);
+}
+
+let boardState = {title:"", slugs:[]};   // the visitor's own board (saved in localStorage)
+let boardView = null;                    // set when looking at someone else's shared board
+let boardPoolQuery = "", boardPoolList = "all";
+
+function boardLoad(){
+  try{
+    const raw = window.localStorage.getItem(BOARD_KEY);
+    if(raw){
+      const o = JSON.parse(raw);
+      if(Array.isArray(o)) return {title:"", slugs:cleanSlugs(o)};
+      if(o && Array.isArray(o.slugs)) return {title:cleanTitle(o.title), slugs:cleanSlugs(o.slugs)};
+    }
+  }catch(e){}
+  return {title:"", slugs:[]};
+}
+function boardSave(){
+  try{ window.localStorage.setItem(BOARD_KEY, JSON.stringify(boardState)); return true; }
+  catch(e){ return false; }
+}
+
+function boardOnBoard(slug){
+  const e = boardEntry(slug);
+  if(!e) return false;
+  const id = normName(e.p.name);
+  return boardState.slugs.some(s=>{ const x = boardEntry(s); return x && normName(x.p.name) === id; });
+}
+function boardAdd(slug, at){
+  const e = boardEntry(slug);
+  if(!e) return {ok:false, short:"NOT FOUND", msg:"That player isn't available."};
+  if(boardOnBoard(slug)) return {ok:false, short:"ALREADY ON BOARD", msg:e.p.name + " is already on your board."};
+  if(boardState.slugs.length >= BOARD_MAX) return {ok:false, short:"BOARD FULL", msg:"Your board is full — remove someone first."};
+  const i = (typeof at === "number" && at >= 0 && at <= boardState.slugs.length) ? at : boardState.slugs.length;
+  boardState.slugs.splice(i, 0, e.p.slug);
+  boardSave();
+  return {ok:true, short:"ADDED ✓", msg:e.p.name + " added at #" + (i + 1) + "."};
+}
+function boardRemove(i){
+  if(i < 0 || i >= boardState.slugs.length) return;
+  boardState.slugs.splice(i, 1);
+  boardSave();
+}
+function boardMove(from, to){
+  const n = boardState.slugs.length;
+  if(from < 0 || from >= n) return;
+  to = Math.max(0, Math.min(n - 1, to));
+  if(from === to) return;
+  const x = boardState.slugs.splice(from, 1)[0];
+  boardState.slugs.splice(to, 0, x);
+  boardSave();
+}
+
+function boardShareUrl(state){
+  const base = location.href.split("#")[0];
+  let q = "?p=" + state.slugs.join(",");
+  if(state.title) q += "&t=" + encodeURIComponent(state.title);
+  return base + "#/board" + q;
+}
+/* rest = whatever follows "#/board" in the address: "", "?p=a,b&t=Name", or "/a,b,c" */
+function boardParse(rest){
+  let p = "", t = "";
+  if(rest.startsWith("?")){
+    const q = new URLSearchParams(rest.slice(1));
+    p = q.get("p") || ""; t = q.get("t") || "";
+  } else if(rest.startsWith("/")){
+    const parts = rest.slice(1).split("?");
+    p = parts[0];
+    if(parts[1]) t = new URLSearchParams(parts[1]).get("t") || "";
+  }
+  return {title:cleanTitle(t), slugs:cleanSlugs(p.split(","))};
+}
+
+/* ---- rendering ---- */
+function boardPoolEntries(){
+  const q = normName(boardPoolQuery);
+  let list = allEntries();
+  if(boardPoolList !== "all") list = list.filter(e=>e.r.id === boardPoolList);
+  else list = list.filter((e,i,arr)=>arr.findIndex(x=>normName(x.p.name) === normName(e.p.name)) === i);
+  if(q) list = list.filter(e=>normName(e.p.name).includes(q) || normName(e.p.team).includes(q));
+  return list;
+}
+
+function renderBoard(rest){
+  document.title = "My Board | Courtside Ten";
+  boardState = boardLoad();
+  const parsed = boardParse(rest || "");
+  const hadLink = !!(rest && rest.length > 1);
+  boardView = parsed.slugs.length ? parsed : null;
+
+  if(boardView){
+    const heading = boardView.title ? escHtml(boardView.title) : "A custom Top " + boardView.slugs.length;
+    const names = boardView.slugs.map(s=>boardEntry(s).p.name);
+    setShareMeta({
+      title:(boardView.title || "A custom Top " + boardView.slugs.length) + " | Courtside Ten",
+      description:"1. " + names.slice(0,3).join(", then ") + (names.length > 3 ? " … and more." : ".") + " Build your own board on Courtside Ten."
+    });
+    const rows = boardView.slugs.map((s,i)=>{
+      const e = boardEntry(s), p = e.p;
+      return `
+      <a href="${playerHref(e)}" class="row" style="--team:${p.color}">
+        <div class="rank-num">${i + 1}</div>
+        <div class="row-name"><h3>${p.name}</h3><div class="sub">${p.team} · ${p.pos}</div></div>
+        <div class="row-hook">${p.hook}</div>
+        <div class="grade-pill" style="--grade-color:${GRADE_COLOR(p.grades.overall)}">${p.grades.overall}</div>
+      </a>`;
+    }).join("");
+    return `
+      <section class="page-hero">
+        <div class="eyebrow">// SHARED BOARD</div>
+        <h1 class="display">${heading}</h1>
+        <p>Someone built this Top ${boardView.slugs.length} on Courtside Ten. Agree? Disagree? Make your own.</p>
+        <div class="btn-row">
+          <a class="btn" href="#/board">★ Build your own board</a>
+          <button class="btn ghost" type="button" onclick="boardAdopt()">Use this as my board</button>
+          <button class="btn ghost" type="button" onclick="boardCopy(this)">COPY LINK</button>
+        </div>
+        <div id="boardMsg" class="board-msg mono" aria-live="polite"></div>
+      </section>
+      <div class="list-head"><h2 class="mono">THE BOARD — TAP A PLAYER FOR THE FULL REPORT</h2></div>
+      ${rows}
+      ${adSlot()}
+      ${siteFooter()}`;
+  }
+
+  setShareMeta({title:"My Board — build your own Top 10 | Courtside Ten", description:"Pick your own Top 10 from every Courtside Ten list, drag them into order, and share the link."});
+  const listOpts = `<option value="all">All lists</option>` + RANKINGS.filter(r=>r.status === "live").map(r=>`<option value="${r.id}">${r.short}</option>`).join("");
+  return `
+    <section class="page-hero">
+      <div class="eyebrow">// YOUR RANKINGS</div>
+      <h1 class="display">MY BOARD</h1>
+      <p>Build your own Top 10 from any Courtside Ten list. Drag players into your board (or tap +), reorder with drag or the arrows, then share the link. Your board saves in this browser automatically.</p>
+      ${hadLink ? `<p class="board-msg mono">THAT BOARD LINK HAD NO PLAYERS WE RECOGNIZE — SHOWING YOUR OWN BOARD.</p>` : ""}
+    </section>
+
+    <div class="board-title-row">
+      <label><span class="mono">BOARD NAME (OPTIONAL)</span>
+        <input id="boardTitle" type="text" maxlength="60" placeholder="e.g. My Top 10 Players Right Now" value="${escHtml(boardState.title)}" oninput="boardTitleInput(this)">
+      </label>
+    </div>
+
+    <div class="board-wrap">
+      <div class="board-panel">
+        <h2 class="mono">YOUR TOP 10 <span id="boardCount"></span></h2>
+        <div id="boardSlots"></div>
+      </div>
+      <div class="board-panel">
+        <h2 class="mono">PLAYER POOL</h2>
+        <div class="pool-controls">
+          <input id="poolSearch" type="text" placeholder="Filter by name or team…" oninput="boardPoolFilter(this.value)" autocomplete="off">
+          <select id="poolListSel" onchange="boardPoolPick(this.value)" aria-label="Show players from list">${listOpts}</select>
+        </div>
+        <div id="boardPool" class="pool-list"></div>
+      </div>
+    </div>
+
+    <div class="board-share">
+      <div class="mono board-share-label">SHARE YOUR BOARD</div>
+      <div class="board-share-row">
+        <input id="boardShareInput" type="text" readonly value="" aria-label="Shareable link">
+        <button class="btn" type="button" onclick="boardCopy(this)">COPY LINK</button>
+        <a id="boardTweet" class="btn ghost" href="#/board" target="_blank" rel="noopener">POST ON X</a>
+        <button class="btn ghost" type="button" onclick="boardClear()">CLEAR BOARD</button>
+      </div>
+      <p class="mono board-note">Saved on this device only. Use the share link to keep a copy or open it on another device.</p>
+    </div>
+    <div id="boardMsg" class="board-msg mono" aria-live="polite"></div>
+    ${adSlot()}
+    ${siteFooter()}`;
+}
+
+function boardSay(msg){
+  const el = document.getElementById("boardMsg");
+  if(el) el.textContent = msg || "";
+}
+
+function boardPaintSlots(){
+  const root = document.getElementById("boardSlots");
+  if(!root) return;
+  const n = boardState.slugs.length;
+  let html = "";
+  for(let i = 0; i < BOARD_MAX; i++){
+    const e = boardEntry(boardState.slugs[i]);
+    if(e){
+      html += `
+      <div class="slot filled" draggable="true" data-slot="${i}" style="--team:${e.p.color}">
+        <div class="slot-rank">${i + 1}</div>
+        <div class="slot-main"><a href="${playerHref(e)}" draggable="false"><b>${e.p.name}</b></a><small>${e.p.team} · ${e.r.short}</small></div>
+        <div class="slot-actions">
+          <button class="icon-btn" type="button" aria-label="Move ${e.p.name} up" onclick="boardMoveBtn(${i},-1)" ${i === 0 ? "disabled" : ""}>▲</button>
+          <button class="icon-btn" type="button" aria-label="Move ${e.p.name} down" onclick="boardMoveBtn(${i},1)" ${i === n - 1 ? "disabled" : ""}>▼</button>
+          <button class="icon-btn" type="button" aria-label="Remove ${e.p.name}" onclick="boardRemoveBtn(${i})">✕</button>
+        </div>
+      </div>`;
+    } else {
+      html += `
+      <div class="slot empty" data-slot="${i}">
+        <div class="slot-rank">${i + 1}</div>
+        <div class="slot-main"><small>${i === n ? "Drag a player here, or tap + in the pool" : "Empty"}</small></div>
+      </div>`;
+    }
+  }
+  root.innerHTML = html;
+  const c = document.getElementById("boardCount");
+  if(c) c.textContent = "· " + n + "/" + BOARD_MAX;
+}
+
+function boardPaintPool(){
+  const root = document.getElementById("boardPool");
+  if(!root) return;
+  const items = boardPoolEntries().map(e=>{
+    const on = boardOnBoard(e.p.slug);
+    return `
+    <div class="pool-item${on ? " on" : ""}" ${on ? "" : 'draggable="true"'} data-pool="${e.p.slug}" style="--team:${e.p.color}">
+      <span class="sr-dot"></span>
+      <span class="slot-main"><b>${e.p.name}</b><small>${e.p.team}${boardPoolList === "all" ? "" : " · #" + e.p.rank}</small></span>
+      <button class="icon-btn add" type="button" onclick="boardAddBtn('${e.p.slug}')" ${on ? "disabled" : ""} aria-label="${on ? "Already on board: " : "Add "}${e.p.name}">${on ? "✓" : "+"}</button>
+    </div>`;
+  }).join("");
+  root.innerHTML = items || `<p class="mono pool-empty">No players match.</p>`;
+}
+
+function boardPaintShare(){
+  const input = document.getElementById("boardShareInput");
+  const tweet = document.getElementById("boardTweet");
+  if(!input) return;
+  if(boardState.slugs.length){
+    const url = boardShareUrl(boardState);
+    input.value = url;
+    if(tweet){
+      const text = (boardState.title || "My Top " + boardState.slugs.length) + " — built on Courtside Ten";
+      tweet.href = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(text) + "&url=" + encodeURIComponent(url);
+    }
+  } else {
+    input.value = "";
+    input.placeholder = "Add at least one player to get a share link";
+    if(tweet) tweet.href = "#/board";
+  }
+}
+
+function boardRefresh(){ boardPaintSlots(); boardPaintPool(); boardPaintShare(); }
+
+function initBoard(){
+  boardInitDnD();
+  if(boardView) return;
+  boardPoolQuery = ""; boardPoolList = "all";
+  boardRefresh();
+}
+
+/* ---- button / input handlers ---- */
+function boardAddBtn(slug){ const r = boardAdd(slug); boardSay(r.msg); boardRefresh(); }
+function boardRemoveBtn(i){ boardRemove(i); boardSay(""); boardRefresh(); }
+function boardMoveBtn(i, d){ boardMove(i, i + d); boardSay(""); boardRefresh(); }
+function boardTitleInput(el){ boardState.title = cleanTitle(el.value); boardSave(); boardPaintShare(); }
+function boardPoolFilter(v){ boardPoolQuery = v; boardPaintPool(); }
+function boardPoolPick(v){ boardPoolList = v; boardPaintPool(); }
+function boardClear(){
+  if(!boardState.slugs.length) return;
+  if(window.confirm && !window.confirm("Clear your whole board?")) return;
+  boardState.slugs = []; boardSave(); boardSay("Board cleared."); boardRefresh();
+}
+function boardAdopt(){
+  if(!boardView) return;
+  const mine = boardLoad();
+  if(mine.slugs.length && window.confirm && !window.confirm("This replaces the board you've saved in this browser. Continue?")) return;
+  boardState = {title:boardView.title, slugs:boardView.slugs.slice()};
+  boardSave();
+  location.hash = "#/board";
+}
+function boardCopy(btn){
+  const url = boardShareUrl(boardView || boardState);
+  const done = ()=>{ const old = btn.textContent; btn.textContent = "LINK COPIED ✓"; setTimeout(()=>{ btn.textContent = old; }, 1600); };
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(url).then(done, ()=>{ window.prompt("Copy this link:", url); });
+  } else {
+    window.prompt("Copy this link:", url);
+  }
+}
+/* the "add to my board" button on player pages */
+function boardQuickAdd(slug, btn){
+  boardState = boardLoad();
+  const r = boardAdd(slug);
+  btn.textContent = r.short;
+  btn.disabled = true;
+}
+
+/* ---- drag and drop (mouse); touch users use the + ▲ ▼ ✕ buttons ---- */
+function boardHandleDrop(data, to){
+  if(data.indexOf("slot:") === 0){
+    boardMove(parseInt(data.slice(5), 10), Math.min(to, boardState.slugs.length - 1));
+    boardSay("");
+  } else if(data.indexOf("pool:") === 0){
+    const r = boardAdd(data.slice(5), to);
+    boardSay(r.msg);
+  }
+  boardRefresh();
+}
+let _boardDnD = false;
+function boardInitDnD(){
+  if(_boardDnD) return;
+  _boardDnD = true;
+  const slotOf = ev => (ev.target && ev.target.closest) ? ev.target.closest("#boardSlots .slot") : null;
+  document.addEventListener("dragstart", ev=>{
+    const t = ev.target && ev.target.closest ? ev.target : null;
+    if(!t) return;
+    const slot = t.closest("#boardSlots .slot.filled");
+    const pool = t.closest(".pool-item[data-pool]");
+    if(slot){
+      ev.dataTransfer.setData("text/plain", "slot:" + slot.dataset.slot);
+      ev.dataTransfer.effectAllowed = "move";
+      slot.classList.add("dragging");
+    } else if(pool && !pool.classList.contains("on")){
+      ev.dataTransfer.setData("text/plain", "pool:" + pool.dataset.pool);
+      ev.dataTransfer.effectAllowed = "copy";
+    }
+  });
+  document.addEventListener("dragend", ()=>{
+    document.querySelectorAll(".dragging, .drag-over").forEach(el=>el.classList.remove("dragging", "drag-over"));
+  });
+  document.addEventListener("dragover", ev=>{
+    const s = slotOf(ev); if(!s) return;
+    ev.preventDefault(); s.classList.add("drag-over");
+  });
+  document.addEventListener("dragleave", ev=>{
+    const s = slotOf(ev); if(s) s.classList.remove("drag-over");
+  });
+  document.addEventListener("drop", ev=>{
+    const s = slotOf(ev); if(!s) return;
+    ev.preventDefault(); s.classList.remove("drag-over");
+    boardHandleDrop(ev.dataTransfer.getData("text/plain") || "", parseInt(s.dataset.slot, 10));
+  });
+}
+
 /* ---------- ROUTER ---------- */
 function updateActiveNav(hash){
   const links = document.querySelectorAll("#navLinks a");
   let section = "#/";
   if(hash.startsWith("#/rankings")) section = "#/rankings";
   else if(hash.startsWith("#/compare")) section = "#/compare";
+  else if(hash.startsWith("#/board")) section = "#/board";
   else if(hash.startsWith("#/news")) section = "#/news";
   else if(hash.startsWith("#/about")) section = "#/about";
   else if(hash.startsWith("#/contact")) section = "#/contact";
@@ -2304,6 +2845,7 @@ function router(){
   const hash = location.hash || "#/";
   const app = document.getElementById("app");
   let m;
+  setShareMeta();
   if(hash === "#/" || hash === ""){
     app.innerHTML = renderHub();
   } else if(hash === "#/rankings"){
@@ -2312,6 +2854,9 @@ function router(){
     app.innerHTML = renderPlayer(m[1], m[2]);
   } else if(m = hash.match(/^#\/rankings\/([a-z0-9-]+)/)){
     app.innerHTML = renderRanking(m[1]);
+  } else if(m = hash.match(/^#\/board(?=$|[\/?])(.*)$/)){
+    app.innerHTML = renderBoard(m[1]);
+    initBoard();
   } else if(m = hash.match(/^#\/compare(?:\/([a-z0-9~-]*)(?:\/([a-z0-9~-]*))?)?$/)){
     app.innerHTML = renderCompare(m[1] || "", m[2] || "");
   } else if(hash === "#/news"){
@@ -2326,7 +2871,8 @@ function router(){
     app.innerHTML = notFoundBlock("That page doesn't exist.", "#/", "← Back home");
   }
   updateActiveNav(hash);
-  window.scrollTo({top:0, behavior:"instant"});
+  jumpToTop();
+  updateReadProgress();
 }
 window.addEventListener("hashchange", router);
 window.addEventListener("DOMContentLoaded", router);
