@@ -485,6 +485,24 @@ main{position:relative; z-index:1; max-width:1120px; margin:0 auto; padding:0 5v
 .board-share-row .btn.ghost:hover{border-color:var(--amber); color:var(--amber);}
 .board-note{font-size:0.68rem; color:var(--chalk-dim); margin:12px 0 0;}
 .board-msg{font-size:0.74rem; color:var(--amber); min-height:1.2em; margin-top:14px;}
+
+/* ---- INSTAGRAM / FOLLOW ---- */
+.nav-ig{display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; border:1px solid var(--line); border-radius:50%; color:var(--chalk-dim); transition:border-color .15s, color .15s;}
+.nav-ig[hidden]{display:none;}
+.nav-ig:hover{border-color:var(--amber); color:var(--amber);}
+.follow-banner{
+  display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap;
+  margin-top:56px; padding:34px 36px; border:1px solid var(--line); border-radius:18px;
+  background:linear-gradient(120deg, var(--panel) 0%, var(--panel-2) 100%); border-left:4px solid var(--amber);
+}
+.follow-banner h2{font-size:2.2rem; margin:6px 0 8px; line-height:1.05;}
+.follow-banner p{margin:0; color:var(--chalk-dim); max-width:46ch; line-height:1.5;}
+.follow-banner .btn, .btn .ig-icon{display:inline-flex; align-items:center; gap:8px;}
+.btn svg, .follow-banner svg{flex-shrink:0;}
+.follow-banner .btn{font-family:'JetBrains Mono',monospace; font-size:0.78rem; font-weight:700; color:var(--ink); background:var(--amber); padding:13px 22px; border-radius:100px; transition:background .15s;}
+.follow-banner .btn:hover{background:var(--flare);}
+.contact-alt a{color:var(--amber);}
+@media(max-width:640px){ .follow-banner{padding:26px 22px;} .follow-banner h2{font-size:1.8rem;} }
 </style>
 </head>
 <body>
@@ -513,6 +531,7 @@ main{position:relative; z-index:1; max-width:1120px; margin:0 auto; padding:0 5v
     <kbd>/</kbd>
     <div class="search-results" id="searchResults" role="listbox"></div>
   </div>
+  <a id="navIg" class="nav-ig" hidden target="_blank" rel="noopener noreferrer" aria-label="Follow Courtside Ten on Instagram" title="Follow us on Instagram"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"/></svg></a>
   <div class="season mono">2025–26 SEASON</div>
 </nav>
 <main id="app"></main>
@@ -1769,6 +1788,8 @@ function renderHub(){
     </div>
     <div class="hub-grid">${previewCards}</div>
 
+    ${igBanner()}
+
     <div class="list-head">
       <h2 class="mono">FROM THE BLOG</h2>
       <a href="#/news" class="mono" style="color:var(--amber); font-size:0.8rem;">View all articles →</a>
@@ -2083,8 +2104,8 @@ function renderContact(){
     </form>
 
     <div class="contact-alt">
-      <div><b class="mono">GENERAL</b>hello@courtsideten.example</div>
-      <div><b class="mono">ADVERTISING</b>ads@courtsideten.example</div>
+      <div><b class="mono">GENERAL &amp; ADVERTISING</b><a href="mailto:courtside.ten@gmail.com">courtside.ten@gmail.com</a></div>
+      ${igUrl() ? `<div><b class="mono">INSTAGRAM</b><a href="${igUrl()}" target="_blank" rel="noopener noreferrer">${igHandle()}</a></div>` : ""}
     </div>
 
     ${siteFooter()}
@@ -2120,6 +2141,7 @@ function siteFooter(){
           <a href="#/contact">Contact</a>
           <a href="#/contact">Advertise</a>
         </div>
+        ${igUrl() ? `<div class="fcol"><b>FOLLOW</b><a href="${igUrl()}" target="_blank" rel="noopener noreferrer">Instagram ${igHandle()}</a></div>` : ""}
       </div>
       <div class="fbottom">
         Courtside Ten — independent basketball rankings, grading &amp; analysis. Grades reflect editorial judgment, not official league scoring.
@@ -2128,6 +2150,44 @@ function siteFooter(){
     </footer>
   `;
 }
+
+/* =====================================================================
+   SITE SETTINGS — put your Instagram username between the quotes (no @).
+   Example: const INSTAGRAM_HANDLE = "courtsideten";
+   While it's empty, every "Follow us on Instagram" element stays hidden.
+   ===================================================================== */
+const INSTAGRAM_HANDLE = "courtside_ten";
+
+const IG_ICON = `<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"/></svg>`;
+function igName(){
+  const h = String(INSTAGRAM_HANDLE || "").replace(/^@/, "").trim();
+  return /^[A-Za-z0-9._]{1,30}$/.test(h) ? h : "";
+}
+function igUrl(){ const h = igName(); return h ? "https://www.instagram.com/" + h + "/" : ""; }
+function igHandle(){ const h = igName(); return h ? "@" + h : ""; }
+function igButton(cls){
+  const u = igUrl();
+  return u ? `<a class="${cls || "btn ghost"}" href="${u}" target="_blank" rel="noopener noreferrer">${IG_ICON} Follow us on Instagram</a>` : "";
+}
+function igBanner(){
+  const u = igUrl();
+  if(!u) return "";
+  return `
+    <section class="follow-banner">
+      <div>
+        <div class="eyebrow">// JOIN THE CONVERSATION</div>
+        <h2 class="display">THINK WE GOT IT WRONG?</h2>
+        <p>Follow ${igHandle()} on Instagram and tell us who's too high and who's too low.</p>
+      </div>
+      ${igButton("btn")}
+    </section>`;
+}
+function initSocial(){
+  const a = document.getElementById("navIg");
+  const u = igUrl();
+  if(a && u){ a.href = u; a.hidden = false; }
+}
+window.addEventListener("DOMContentLoaded", initSocial);
 
 /* ---------- UNSPLASH PHOTOS (free to use under the Unsplash License) ---------- */
 const PHOTOS = {
@@ -2657,7 +2717,7 @@ function renderBoard(rest){
         <a id="boardTweet" class="btn ghost" href="#/board" target="_blank" rel="noopener">POST ON X</a>
         <button class="btn ghost" type="button" onclick="boardClear()">CLEAR BOARD</button>
       </div>
-      <p class="mono board-note">Saved on this device only. Use the share link to keep a copy or open it on another device.</p>
+      <p class="mono board-note">Saved on this device only. Use the share link to keep a copy or open it on another device.${igUrl() ? " Post your board and tag " + igHandle() + "." : ""}</p>
     </div>
     <div id="boardMsg" class="board-msg mono" aria-live="polite"></div>
     ${adSlot()}
