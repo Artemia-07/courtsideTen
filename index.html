@@ -532,6 +532,11 @@ main{position:relative; z-index:1; max-width:1120px; margin:0 auto; padding:0 5v
 .dir-card small{display:block; font-size:0.78rem; color:var(--chalk-dim); margin-top:2px;}
 .dir-meta{display:block; font-size:0.66rem; color:var(--amber); margin-top:10px; letter-spacing:0.02em;}
 @media(max-width:520px){ .dir-grid{grid-template-columns:repeat(auto-fill, minmax(160px, 1fr));} }
+.dir-top{display:flex; align-items:center; justify-content:space-between; gap:8px;}
+.dir-top b{min-width:0;}
+.dir-pos{font-style:normal; font-size:0.62rem; font-weight:700; color:var(--amber); border:1px solid var(--line); border-radius:100px; padding:2px 8px; flex-shrink:0;}
+.dir-controls select#dirPosSel{flex:0 1 150px;}
+.dir-note{font-size:0.66rem; color:var(--chalk-dim); margin:12px 0 0; line-height:1.5;}
 </style>
 </head>
 <body>
@@ -938,17 +943,17 @@ const SG_PLAYERS = [
   achievements:["2024 NBA Champion, Boston Celtics","One of the league's most switchable perimeter defenders","Career 38%+ three‑point shooter"]
 },
 {
-  slug:"desmond-bane-sg", rank:7, name:"Desmond Bane", team:"Memphis Grizzlies", pos:"Shooting Guard",
-  color:"#5D76A9",
-  hook:"A high-volume, high-efficiency shooter whose scoring has become the steadiest thing about Memphis' offense.",
+  slug:"desmond-bane-sg", rank:7, name:"Desmond Bane", team:"Orlando Magic", pos:"Shooting Guard",
+  color:"#0077C0",
+  hook:"A high-volume, high-efficiency shooter now bringing his movement shooting to Orlando, where he joins Banchero and Wagner on a young core.",
   grades:{skill:"B", twoway:"C+", production:"B", pedigree:"B-", overall:"B-"},
   stats:[["Catch‑and‑shoot volume","89%"],["Shooting efficiency","86%"],["Perimeter defense","60%"]],
-  statBoxes:[["Career","40%+ 3‑point shooter"],["Elite","movement shooter"],["MEM","offensive focal point"],["Multi‑level","scoring growth"]],
+  statBoxes:[["Career","40%+ 3‑point shooter"],["Elite","movement shooter"],["ORL","new team"],["Multi‑level","scoring growth"]],
   narrative:[
     "Bane's shooting gravity off movement remains one of the most efficient weapons in the league, and his shot creation has continued to expand each season.",
-    "He's taken on more offensive load as Memphis has retooled around him, and the efficiency has largely held up."
+    "Now with Orlando, he gives Banchero and Wagner a proven floor-spacer, and the efficiency has largely held up as his role changes."
   ],
-  achievements:["Career 40%+ three‑point shooter","One of the league's most efficient high‑volume shooters","Grizzlies' primary offensive option"]
+  achievements:["Career 40%+ three‑point shooter","One of the league's most efficient high‑volume shooters","Now part of Orlando's scoring group alongside Banchero and Wagner"]
 },
 {
   slug:"stephon-castle-sg", rank:8, name:"Stephon Castle", team:"San Antonio Spurs", pos:"Shooting Guard",
@@ -993,15 +998,15 @@ const SG_PLAYERS = [
 
 const SF_PLAYERS = [
 {
-  slug:"lebron-james-sf", rank:1, name:"LeBron James", team:"Los Angeles Lakers", pos:"Small Forward",
-  color:"#FDB927",
-  hook:"Still producing at an All-NBA level deep into his twenties season, LeBron remains one of the most complete offensive threats at the position.",
+  slug:"lebron-james-sf", rank:1, name:"LeBron James", team:"Philadelphia 76ers", pos:"Small Forward",
+  color:"#006BB6",
+  hook:"Now in Philadelphia after signing with the 76ers this summer, LeBron is still producing at an All-NBA level at 42 and remains one of the most complete offensive threats at the position.",
   grades:{skill:"A-", twoway:"B", production:"B+", pedigree:"A+", overall:"A-"},
   stats:[["Playmaking vision","90%"],["Scoring versatility","86%"],["Availability","70%"]],
-  statBoxes:[["4x","NBA Champion"],["4x","Finals MVP"],["All‑time","scoring leader"],["LAL","current team"]],
+  statBoxes:[["4x","NBA Champion"],["4x","Finals MVP"],["All‑time","scoring leader"],["PHI","joined 76ers, 2026"]],
   narrative:[
     "Even this deep into his career, LeBron's court vision and shot-making versatility remain good enough to anchor a playoff offense, and his conditioning has kept him productive well past the point most careers wind down.",
-    "Health and workload management are the real variables entering next season, but on pure two-way feel for the game, he's still one of the position's most complete players."
+    "Health and workload management are the real variables, and fitting in alongside Embiid, Maxey, and Brown in Philadelphia adds one more, but on pure two-way feel for the game he's still one of the position's most complete players."
   ],
   achievements:["4x NBA Champion, 4x Finals MVP","NBA's all‑time leading scorer","One of the most durable superstars in league history"]
 },
@@ -1230,14 +1235,14 @@ const PF_PLAYERS = [
   achievements:["NBA Defensive Player of the Year (past winner)","Elite shot‑blocking, stretch‑shooting big man","Key frontcourt anchor for Utah"]
 },
 {
-  slug:"julius-randle-pf", rank:9, name:"Julius Randle", team:"Charlotte Hornets", pos:"Power Forward",
-  color:"#00788C",
-  hook:"A physical, high-usage scoring forward who has found a new role as a frontcourt piece in Charlotte.",
+  slug:"julius-randle-pf", rank:9, name:"Julius Randle", team:"Brooklyn Nets", pos:"Power Forward",
+  color:"#C6CFD4",
+  hook:"A physical, high-usage scoring forward who landed in Brooklyn this summer in a three-team trade out of Minnesota.",
   grades:{skill:"B", twoway:"C+", production:"B", pedigree:"B", overall:"B-"},
   stats:[["Scoring volume","84%"],["Physicality/rebounding","82%"],["Shot creation","78%"]],
-  statBoxes:[["Multiple","All‑Star selections"],["Elite","bully‑ball scorer"],["CHA","current team"],["Strong","rebounding forward"]],
+  statBoxes:[["Multiple","All‑Star selections"],["Elite","bully‑ball scorer"],["BKN","current team"],["Strong","rebounding forward"]],
   narrative:[
-    "Randle's combination of strength and shot-making remains a load for opposing forwards, and he's found a productive role as a frontcourt scorer in Charlotte.",
+    "Randle's combination of strength and shot-making remains a load for opposing forwards, and he arrives in Brooklyn as a veteran frontcourt scorer after a summer trade from Minnesota.",
     "The efficiency swings year to year, but the physical scoring profile has been consistent for most of his career."
   ],
   achievements:["Multiple NBA All‑Star selections","Consistent 20+ points, 8+ rebounds producer","Physical mismatch scoring forward"]
@@ -1604,7 +1609,7 @@ const RANKINGS = [
   {
     id:"top-10-shooting-guards-2026-27",
     status:"live",
-    lastUpdated:"Oct 26, 2026",
+    lastUpdated:"Nov 11, 2026",
     badge:"NBA · Entering 2026–27",
     title:"Top 10 Shooting Guards Entering Next Season",
     short:"Top 10 Shooting Guards",
@@ -1629,7 +1634,7 @@ const RANKINGS = [
   {
     id:"top-10-small-forwards-2026-27",
     status:"live",
-    lastUpdated:"Oct 26, 2026",
+    lastUpdated:"Nov 11, 2026",
     badge:"NBA · Entering 2026–27",
     title:"Top 10 Small Forwards Entering Next Season",
     short:"Top 10 Small Forwards",
@@ -1654,7 +1659,7 @@ const RANKINGS = [
   {
     id:"top-10-power-forwards-2026-27",
     status:"live",
-    lastUpdated:"Oct 26, 2026",
+    lastUpdated:"Nov 11, 2026",
     badge:"NBA · Entering 2026–27",
     title:"Top 10 Power Forwards Entering Next Season",
     short:"Top 10 Power Forwards",
@@ -2950,8 +2955,19 @@ function boardInitDnD(){
   });
 }
 
+/* ---------- REFERENCE DATA: positions as listed by Basketball-Reference (2026-27 player stats page) ---------- */
+const PLAYER_POS_REF = {
+  checked:"Nov 11, 2026",
+  list:[["Jalen Johnson","SF"],["Derrick White","SG"],["Jayson Tatum","PF"],["Julius Randle","PF"],["Donovan Mitchell","SG"],["Evan Mobley","PF"],["Jarrett Allen","C"],["Cooper Flagg","SF"],["Jamal Murray","PG"],["Nikola Jokić","C"],["Jalen Duren","C"],["Cade Cunningham","PG"],["Stephen Curry","PG"],["Amen Thompson","SF"],["Alperen Şengün","C"],["Kevin Durant","PF"],["Tyrese Haliburton","PG"],["Pascal Siakam","PF"],["Luka Dončić","PG"],["Austin Reaves","SG"],["LeBron James","SF"],["Desmond Bane","SG"],["Giannis Antetokounmpo","PF"],["Bam Adebayo","C"],["Tyler Herro","SG"],["LaMelo Ball","PG"],["Anthony Edwards","SG"],["Jaden McDaniels","PF"],["Rudy Gobert","C"],["Zion Williamson","PF"],["Jalen Brunson","PG"],["Mikal Bridges","SF"],["Karl-Anthony Towns","C"],["Chet Holmgren","C"],["Shai Gilgeous-Alexander","PG"],["Jalen Williams","SG"],["Paolo Banchero","PF"],["Franz Wagner","SF"],["Tyrese Maxey","PG"],["Jaylen Brown","SF"],["Joel Embiid","C"],["Devin Booker","SG"],["Jalen Green","SG"],["Domantas Sabonis","C"],["Victor Wembanyama","C"],["Stephon Castle","PG"],["Dylan Harper","SG"],["Kawhi Leonard","SF"],["Scottie Barnes","PF"],["Jaren Jackson Jr.","C"],["Trae Young","PG"],["Anthony Davis","PF"]]
+};
+let _posMap = null;
+function playerPos(name){
+  if(!_posMap) _posMap = new Map(PLAYER_POS_REF.list.map(([n,p])=>[normName(n), p]));
+  return _posMap.get(normName(name)) || "";
+}
+
 /* ---------- ALL PLAYERS DIRECTORY ---------- */
-let dirQuery = "", dirSort = "az";
+let dirQuery = "", dirSort = "az", dirPos = "all";
 function dirLastName(name){
   const parts = String(name).trim().split(/\s+/);
   while(parts.length > 1 && /^(jr\.?|sr\.?|ii|iii|iv)$/i.test(parts[parts.length - 1])) parts.pop();
@@ -2961,6 +2977,7 @@ function dirKey(name){ return normName(dirLastName(name)) + " " + normName(name)
 function dirList(){
   const q = normName(dirQuery);
   return allEntries().filter(isNewestEntry)
+    .filter(e=>dirPos === "all" || playerPos(e.p.name) === dirPos)
     .filter(e=>!q || normName(e.p.name).includes(q) || normName(e.p.team).includes(q));
 }
 function dirCard(e){
@@ -2968,7 +2985,7 @@ function dirCard(e){
   const listName = e.r.short.replace(/^Top 10 /, "");
   return `
     <a class="dir-card" href="${playerHref(e)}" style="--team:${e.p.color}">
-      <b>${e.p.name}</b>
+      <span class="dir-top"><b>${e.p.name}</b>${playerPos(e.p.name) ? `<i class="dir-pos mono">${playerPos(e.p.name)}</i>` : ""}</span>
       <small>${e.p.team}</small>
       <span class="dir-meta mono">#${e.p.rank} ${listName}${more ? " · +" + more + " more" : ""}</span>
     </a>`;
@@ -2988,7 +3005,7 @@ function dirBuild(){
     </section>`).join("");
 }
 function renderPlayers(){
-  dirQuery = ""; dirSort = "az";
+  dirQuery = ""; dirSort = "az"; dirPos = "all";
   document.title = "All Players | Courtside Ten";
   setShareMeta({title:"All Players | Courtside Ten", description:"Every player graded on Courtside Ten — browse A–Z or by team and jump straight to their report card."});
   const n = dirList().length;
@@ -3004,7 +3021,12 @@ function renderPlayers(){
         <option value="az">A–Z (by last name)</option>
         <option value="team">By team</option>
       </select>
+      <select id="dirPosSel" onchange="dirPosPick(this.value)" aria-label="Filter by position">
+        <option value="all">All positions</option>
+        <option value="PG">PG</option><option value="SG">SG</option><option value="SF">SF</option><option value="PF">PF</option><option value="C">C</option>
+      </select>
     </div>
+    <p class="mono dir-note">Teams and positions checked against Basketball-Reference and NBA.com on ${PLAYER_POS_REF.checked}. Positions are the listed position and can differ from the list a player is ranked on.</p>
     <div id="dirCount" class="mono dir-count">${n} players</div>
     <div id="dirGrid">${dirBuild()}</div>
     ${adSlot()}
@@ -3018,6 +3040,7 @@ function dirUpdate(){
 }
 function dirFilter(v){ dirQuery = v; dirUpdate(); }
 function dirPick(v){ dirSort = v; dirUpdate(); }
+function dirPosPick(v){ dirPos = v; dirUpdate(); }
 
 /* ---------- ROUTER ---------- */
 function updateActiveNav(hash){
